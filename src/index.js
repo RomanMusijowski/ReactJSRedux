@@ -5,7 +5,9 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { Provider} from 'react-redux'
 import store from './store/reducers/store'
+import setAuthToken from "./shared/setAuthToken";
 
+setAuthToken(localStorage.jwtToken);
 
 ReactDOM.render(<Provider store={store}><App /></Provider>, document.getElementById('root'));
 

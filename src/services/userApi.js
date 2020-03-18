@@ -8,6 +8,7 @@ import {
     registerRequest,
     registerSuccess
 } from "../actions/auth/actions";
+import setAuthToken from "../shared/setAuthToken";
 import history from "../shared/history";
 
 const userApi ={
@@ -30,6 +31,10 @@ function login(usernameOrEmail, password ) {
             .then(
                 res => {
                     dispatch(loginSuccess(res));
+
+                    const token = res.data.accessToken;
+                    localStorage.setItem('jwtToken', token);
+                    setAuthToken(token);
                 })
             .catch(
                 error => {dispatch(loginFailure(error))});
