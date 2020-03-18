@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+import {connect} from "react-redux";
+import userApi from "../../services/userApi";
 
 class SignIn extends Component {
 
@@ -17,7 +19,14 @@ class SignIn extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
+        this.setState({
+            submitted: true
+        });
 
+        const {usernameOrEmail, password} = this.state;
+        if (usernameOrEmail && password) {
+            this.props.login(usernameOrEmail, password);
+        }
     };
 
 
@@ -56,5 +65,13 @@ class SignIn extends Component {
     }
 }
 
+const mapState = (state) => {
+    const { loggedIn } = state.auth;
+    return loggedIn;
+};
 
-export default SignIn
+const actionCreator = {
+    login: userApi.login
+};
+
+export default connect(mapState, actionCreator)(SignIn)

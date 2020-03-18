@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+import {connect} from "react-redux";
+import userApi from "../../services/userApi";
 
 class SignUp extends Component{
 
@@ -18,6 +20,15 @@ class SignUp extends Component{
 
     handleSubmit = (e) => {
         e.preventDefault();
+        this.setState({
+            submitted: true
+        });
+        const {user} = this.state;
+        if (user.email && user.username && user.firstName && user.lastName
+            && user.phoneNumber && user.gender && user.password) {
+
+            this.props.register(user);
+        }
     };
 
     handleChange = (e) => {
@@ -31,6 +42,7 @@ class SignUp extends Component{
     };
 
     render() {
+        const {registering} = this.props;
         const {user, submitted} = this.state;
 
         return (
@@ -103,4 +115,13 @@ class SignUp extends Component{
 
 }
 
-export default SignUp
+const mapState = (state) => {
+    const {registering} = state.register;
+    return {registering};
+};
+
+const actionCreator = {
+    register: userApi.register
+};
+
+export default connect(mapState, actionCreator)(SignUp)
