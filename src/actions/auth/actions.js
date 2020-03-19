@@ -8,3 +8,5 @@ export const loginFailure = (error) => createAction(userConstants.LOGIN_FAILURE,
 export const registerRequest = (data) => createAction(userConstants.REGISTER_REQUEST, data);
 export const registerSuccess = (data) => createAction(userConstants.REGISTER_SUCCESS, data);
 export const registerFailure = (error) => createAction(userConstants.REGISTER_FAILURE, error);
+
+export const logoutSuccess = (data) => createAction(userConstants.LOGUOT, data);
