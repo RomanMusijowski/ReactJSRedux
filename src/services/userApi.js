@@ -3,7 +3,7 @@ import URLS from "../shared/Urls.constants";
 import {
     loginFailure,
     loginRequest,
-    loginSuccess,
+    loginSuccess, logoutSuccess,
     registerFailure,
     registerRequest,
     registerSuccess
@@ -13,7 +13,8 @@ import history from "../shared/history";
 
 const userApi ={
     login,
-    register
+    register,
+    logout
 };
 
 function login(usernameOrEmail, password ) {
@@ -60,6 +61,13 @@ function register(user){
                 })
             .catch(
                 error => {dispatch(registerFailure(error))});
+    }
+}
+
+function logout() {
+    return dispatch => {
+        localStorage.removeItem('jwtToken');
+        dispatch(logoutSuccess('User has logged out successfully.'))
     }
 }
 
