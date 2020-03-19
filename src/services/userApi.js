@@ -61,6 +61,10 @@ function register(user){
                 })
             .catch(
                 //jdgklasdg;sagas jigo
+                //jjjjjjjjjjj
+                //
+                //
+                //dhdfhafhdfhd
                 error => {dispatch(registerFailure(error))});
     }
 }
