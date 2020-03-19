@@ -3,13 +3,16 @@ import URLS from "../shared/Urls.constants";
 import {
     loginFailure,
     loginRequest,
-    loginSuccess, logoutSuccess,
+    loginSuccess,
+    logoutSuccess,
     registerFailure,
     registerRequest,
     registerSuccess
 } from "../actions/auth/actions";
 import setAuthToken from "../shared/setAuthToken";
-import history from "../shared/history";
+import {withRouter} from "react-router";
+import { useHistory } from "react-router-dom";
+
 
 const userApi ={
     login,
@@ -18,6 +21,7 @@ const userApi ={
 };
 
 function login(usernameOrEmail, password ) {
+
     return dispatch => {
         const config = {
             headers: {
@@ -36,6 +40,7 @@ function login(usernameOrEmail, password ) {
                     const token = res.data.accessToken;
                     localStorage.setItem('jwtToken', token);
                     setAuthToken(token);
+                    history.push('/');
                 })
             .catch(
                 error => {dispatch(loginFailure(error))});
@@ -57,7 +62,7 @@ function register(user){
             .then(
                 res => {
                     dispatch(registerSuccess(res));
-                    history.push('/signIn');
+                    // history.push('/signIn');
                 })
             .catch(
                 error => {dispatch(registerFailure(error))});
@@ -67,8 +72,11 @@ function register(user){
 function logout() {
     return dispatch => {
         localStorage.removeItem('jwtToken');
+        // history.push('/signIn');
         dispatch(logoutSuccess('User has logged out successfully.'))
+
+        //fffffffffffffffffasadfasdfafsdf
     }
 }
 
-export default userApi
+export default withRouter(userApi)
