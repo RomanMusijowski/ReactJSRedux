@@ -60,6 +60,7 @@ function register(user){
                     history.push('/signIn');
                 })
             .catch(
+                //jdgklasdg;sagas jigo
                 error => {dispatch(registerFailure(error))});
     }
 }
