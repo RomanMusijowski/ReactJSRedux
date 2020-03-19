@@ -25,7 +25,7 @@ class SignIn extends Component {
 
         const {usernameOrEmail, password} = this.state;
         if (usernameOrEmail && password) {
-            this.props.login(usernameOrEmail, password);
+            this.props.login(usernameOrEmail, password, this.props.history);
         }
     };
 

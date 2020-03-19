@@ -3,13 +3,15 @@ import URLS from "../shared/Urls.constants";
 import {
     loginFailure,
     loginRequest,
-    loginSuccess, logoutSuccess,
+    loginSuccess,
+    logoutSuccess,
     registerFailure,
     registerRequest,
     registerSuccess
 } from "../actions/auth/actions";
 import setAuthToken from "../shared/setAuthToken";
-import history from "../shared/history";
+import {withRouter} from "react-router";
+
 
 const userApi ={
     login,
@@ -17,7 +19,8 @@ const userApi ={
     logout
 };
 
-function login(usernameOrEmail, password ) {
+function login(usernameOrEmail, password, history ) {
+
     return dispatch => {
         const config = {
             headers: {
@@ -30,19 +33,20 @@ function login(usernameOrEmail, password ) {
 
         axios.post(URLS.apiAuth+'/signin', body, config)
             .then(
-                res => {
+                (res) => {
                     dispatch(loginSuccess(res));
 
                     const token = res.data.accessToken;
                     localStorage.setItem('jwtToken', token);
                     setAuthToken(token);
+                    history.push('/');
                 })
             .catch(
-                error => {dispatch(loginFailure(error))});
+                (error) => {dispatch(loginFailure(error))});
     }
 }
 
-function register(user){
+function register(user, history){
     return dispatch => {
         const config = {
             headers: {
@@ -55,12 +59,12 @@ function register(user){
 
         axios.post(URLS.apiAuth+'/signup', body, config)
             .then(
-                res => {
+                (res) => {
                     dispatch(registerSuccess(res));
                     history.push('/signIn');
                 })
             .catch(
-                error => {dispatch(registerFailure(error))});
+                (error) => {dispatch(registerFailure(error))});
     }
 }
 
@@ -71,4 +75,4 @@ function logout() {
     }
 }
 
-export default userApi
+export default withRouter(userApi)

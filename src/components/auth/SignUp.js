@@ -27,7 +27,7 @@ class SignUp extends Component{
         if (user.email && user.username && user.firstName && user.lastName
             && user.phoneNumber && user.gender && user.password) {
 
-            this.props.register(user);
+            this.props.register(user, this.props.history);
         }
     };
 

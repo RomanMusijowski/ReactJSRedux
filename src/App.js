@@ -4,12 +4,11 @@ import {BrowserRouter, Route, Switch} from "react-router-dom";
 import SignUp from "./components/auth/SignUp";
 import SignIn from "./components/auth/SignIn"
 import Home from "./components/home/Home";
-import history from "./shared/history";
 
 class App extends Component{
   render() {
       return (
-          <BrowserRouter history={history}>
+          <BrowserRouter >
               <div className="App">
                 <Navbar/>
                 <Switch>
