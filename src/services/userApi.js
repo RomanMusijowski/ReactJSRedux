@@ -11,7 +11,6 @@ import {
 } from "../actions/auth/actions";
 import setAuthToken from "../shared/setAuthToken";
 import {withRouter} from "react-router";
-import { useHistory } from "react-router-dom";
 
 
 const userApi ={
@@ -20,7 +19,7 @@ const userApi ={
     logout
 };
 
-function login(usernameOrEmail, password ) {
+function login(usernameOrEmail, password, history ) {
 
     return dispatch => {
         const config = {
@@ -34,7 +33,7 @@ function login(usernameOrEmail, password ) {
 
         axios.post(URLS.apiAuth+'/signin', body, config)
             .then(
-                res => {
+                (res) => {
                     dispatch(loginSuccess(res));
 
                     const token = res.data.accessToken;
@@ -43,11 +42,11 @@ function login(usernameOrEmail, password ) {
                     history.push('/');
                 })
             .catch(
-                error => {dispatch(loginFailure(error))});
+                (error) => {dispatch(loginFailure(error))});
     }
 }
 
-function register(user){
+function register(user, history){
     return dispatch => {
         const config = {
             headers: {
@@ -60,22 +59,19 @@ function register(user){
 
         axios.post(URLS.apiAuth+'/signup', body, config)
             .then(
-                res => {
+                (res) => {
                     dispatch(registerSuccess(res));
-                    // history.push('/signIn');
+                    history.push('/signIn');
                 })
             .catch(
-                error => {dispatch(registerFailure(error))});
+                (error) => {dispatch(registerFailure(error))});
     }
 }
 
 function logout() {
     return dispatch => {
         localStorage.removeItem('jwtToken');
-        // history.push('/signIn');
         dispatch(logoutSuccess('User has logged out successfully.'))
-
-        //fffffffffffffffffasadfasdfafsdf
     }
 }
 
