@@ -42,7 +42,7 @@ class SignUp extends Component{
     };
 
     render() {
-        const {registering} = this.props;
+        const {registerError} = this.props;
         const {user, submitted} = this.state;
 
         return (
@@ -107,6 +107,9 @@ class SignUp extends Component{
                     </div>
                     <div className="input-field">
                         <button className="btn pink lighten-1 z-depth-0">Register</button>
+                        <div className="red-text center">
+                            { registerError ? <p>{registerError}</p> : null}
+                        </div>
                     </div>
                 </form>
             </div>
@@ -115,13 +118,14 @@ class SignUp extends Component{
 
 }
 
-const mapState = (state) => {
-    const {registering} = state.register;
-    return {registering};
+const mapStateToProps = (state) => {
+    return{
+        registerError: state.register.registerError
+    }
 };
 
 const actionCreator = {
     register: userApi.register
 };
 
-export default connect(mapState, actionCreator)(SignUp)
+export default connect(mapStateToProps, actionCreator)(SignUp)
