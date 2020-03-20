@@ -1,13 +1,20 @@
 import {userConstants} from "../../constans/userConstans";
 
-const registerReducer = (state = {}, action) => {
+const initialState = {
+    registerError: null
+}
+
+const registerReducer = (state = initialState, action) => {
     switch (action.type) {
         case userConstants.REGISTER_REQUEST:
-            return {registering: true};
+            return {};
         case userConstants.REGISTER_SUCCESS:
             return {};
         case userConstants.REGISTER_FAILURE:
-            return {};
+            return {
+                ...state,
+                registerError: 'Registration failure'
+            };
         default:
             return state
     }

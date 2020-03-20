@@ -32,6 +32,7 @@ class SignIn extends Component {
 
     render() {
         const { usernameOrEmail, password, submitted } = this.state;
+        const { authError } = this.props;
 
         return (
             <div className="container">
@@ -58,6 +59,9 @@ class SignIn extends Component {
                     </div>
                     <div className="input-field">
                         <button className="btn pink lighten-1 z-depth-0">Login</button>
+                        <div className="red-text center">
+                            { authError ? <p>{authError}</p> : null}
+                        </div>
                     </div>
                 </form>
             </div>
@@ -65,13 +69,14 @@ class SignIn extends Component {
     }
 }
 
-const mapState = (state) => {
-    const { loggedIn } = state.auth;
-    return loggedIn;
+const mapStateToProps = (state) => {
+    return {
+        authError: state.auth.authError
+    }
 };
 
 const actionCreator = {
     login: userApi.login
 };
 
-export default connect(mapState, actionCreator)(SignIn)
+export default connect(mapStateToProps, actionCreator)(SignIn)
