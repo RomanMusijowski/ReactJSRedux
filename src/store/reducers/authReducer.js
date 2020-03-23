@@ -1,22 +1,22 @@
 import {userConstants} from "../../constans/userConstans";
 
-const initialState = {
-    authError: null
-}
 
-const authReducer = (state = initialState, action) => {
+const authReducer = (state = {}, action) => {
     switch (action.type) {
         case userConstants.LOGIN_REQUEST:
             return{
-                ...state
+                ...state,
+                authenticated: false
             };
         case userConstants.LOGIN_SUCCESS:
             return{
                 ...state,
+                authenticated: true
             };
         case userConstants.LOGIN_FAILURE:
             return {
                 ...state,
+                authenticated: false,
                 authError: 'Login failure'
             };
 
@@ -28,7 +28,12 @@ const authReducer = (state = initialState, action) => {
                 userInfo: action.userInfo
             };
         case userConstants.LOGUOT:
-            return {};
+            return {
+                ...state,
+                userInfo: null,
+                authError: null,
+                authenticated: false
+            };
         default:
             return state
     }
