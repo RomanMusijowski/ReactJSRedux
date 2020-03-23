@@ -5,11 +5,12 @@ import SingOutLinks from "./SignOutLinks";
 import {connect} from "react-redux";
 
 
-const Navbar = () => {
+const Navbar = (props) => {
 
-    // const {userInfo} = this.props;
+    const {userInfo} = props;
     // console.log(this.props);
-    // console.log(userInfo);
+    console.log('User information is here')
+    console.log(userInfo);
 
     return(
         <nav className="nav-wrapper grey darken-3">

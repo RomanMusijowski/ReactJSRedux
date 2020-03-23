@@ -8,7 +8,9 @@ import {
     registerFailure,
     registerRequest,
     registerSuccess,
-    userLoadRequest
+    userLoadFailure,
+    userLoadRequest,
+    userLoadSuccess
 } from "../actions/auth/actions";
 import setAuthToken from "../shared/setAuthToken";
 import {withRouter} from "react-router";
@@ -33,33 +35,19 @@ function fetchLoadUser() {
         const config = {
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTg0ODI2NTU3LCJleHAiOjE1ODU0MzEzNTd9.UoHXW3a8LTZqijBs98_oL5fCSrbtSe_Fi88oF1E9J2RCIPCFJQ8_zcDrOTaXSIgtN74JOqrsmxltx2TkcajDcA'
             },
         };
 
-
-        axios.delete(URLS.apiPost+'/1' , config)
-            .then((res)=>{
-                console.log(res)
-            })
-            .catch((error)=> {
-                console.log(error)
-            });
-
-//send request straight forward to auth server
-//add request interceptor
-
-        // axios.get(URLS.apiAuth+'/currentUser', config)
-        //     .then(
-        //         (res) => {
-        //             console.log(res);
-        //             dispatch(userLoadSuccess(res))})
-        //     .catch(
-        //         (error) => {dispatch(userLoadFailure(error))})
+        axios.get(URLS.apiAuth+'/currentUser', config)
+            .then(
+                (res) => {
+                    console.log(res);
+                    dispatch(userLoadSuccess(res))})
+            .catch(
+                (error) => {dispatch(userLoadFailure(error))})
     }
 }
 
-//put to localStorage usernameOrEmail
 function login(usernameOrEmail, password, history ) {
 
     return dispatch => {
@@ -77,11 +65,10 @@ function login(usernameOrEmail, password, history ) {
                 (res) => {
                     dispatch(loginSuccess(res));
 
-                    const token = res.data.accessToken;
-                    localStorage.setItem('token', token);
-                    localStorage.setItem('usernameOrEmail', usernameOrEmail);
-                    setAuthToken(token);
+                    localStorage.setItem('token', res.data.accessToken);
+                    localStorage.setItem('usernameOrEmail', usernameOrEmail)
 
+                    fetchLoadUser();
                     history.push('/');
                 })
             .catch(

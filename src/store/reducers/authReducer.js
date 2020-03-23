@@ -21,18 +21,17 @@ const authReducer = (state = {}, action) => {
             };
 
         case userConstants.USER_LOAD_SUCCESS:
-            console.log('YOU HAVE DONE IT');
-            console.log(action)
             return {
                 ...state,
                 userInfo: action.userInfo
             };
         case userConstants.LOGUOT:
+            localStorage.clear();
             return {
                 ...state,
                 userInfo: null,
                 authError: null,
-                authenticated: false
+                authenticated: false,
             };
         default:
             return state
