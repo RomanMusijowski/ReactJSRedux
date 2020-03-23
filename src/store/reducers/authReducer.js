@@ -19,6 +19,14 @@ const authReducer = (state = initialState, action) => {
                 ...state,
                 authError: 'Login failure'
             };
+
+        case userConstants.USER_LOAD_SUCCESS:
+            console.log('YOU HAVE DONE IT');
+            console.log(action)
+            return {
+                ...state,
+                userInfo: action.userInfo
+            };
         case userConstants.LOGUOT:
             return {};
         default:

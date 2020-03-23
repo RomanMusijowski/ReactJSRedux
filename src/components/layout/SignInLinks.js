@@ -1,6 +1,6 @@
 import React from 'react'
 import {NavLink} from "react-router-dom";
-import userApi, { logout} from '../../services/userApi'
+import userApi, {logout} from '../../services/userApi'
 import {connect} from "react-redux";
 
 
@@ -15,10 +15,14 @@ const SingInLinks = (props) => {
     )
 };
 
-const mapDispatchToProps = (dispatch) => {
-    return{
-        logout: () => dispatch(userApi.logout())
-    }
+// const mapDispatchToProps = (dispatch) => {
+//     return{
+//         logout: () => dispatch(userApi.logout())
+//     }
+// }
+
+const actionCreator = {
+    logout: userApi.logout
 }
 
-export default connect(null, mapDispatchToProps)(SingInLinks)
+export default connect(null, actionCreator)(SingInLinks)
