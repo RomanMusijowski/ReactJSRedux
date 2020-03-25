@@ -29,31 +29,26 @@ function fetchLoadUser() {
         setAuthToken(localStorage.token);
     }
 
-    return dispatch =>{
-        dispatch(userLoadRequest('User loading have started.'));
+        return dispatch =>{
+            dispatch(userLoadRequest('User loading have started.'));
 
-        const config = {
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        };
+            axios.get(URLS.apiAuth+'/currentUser')
+                .then(
+                    (res) => {
+                        console.log(res);
+                        dispatch(userLoadSuccess(res))})
+                .catch(
+                    (error) => {dispatch(userLoadFailure(error))})
+        }
 
-        axios.get(URLS.apiAuth+'/currentUser', config)
-            .then(
-                (res) => {
-                    console.log(res);
-                    dispatch(userLoadSuccess(res))})
-            .catch(
-                (error) => {dispatch(userLoadFailure(error))})
-    }
 }
 
-function login(usernameOrEmail, password, history ) {
+function login(usernameOrEmail, password, history) {
 
     return dispatch => {
         const config = {
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
             },
         };
 
@@ -66,9 +61,7 @@ function login(usernameOrEmail, password, history ) {
                     dispatch(loginSuccess(res));
 
                     localStorage.setItem('token', res.data.accessToken);
-                    localStorage.setItem('usernameOrEmail', usernameOrEmail)
 
-                    fetchLoadUser();
                     history.push('/');
                 })
             .catch(

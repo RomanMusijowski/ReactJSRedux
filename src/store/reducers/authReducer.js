@@ -23,7 +23,7 @@ const authReducer = (state = {}, action) => {
         case userConstants.USER_LOAD_SUCCESS:
             return {
                 ...state,
-                userInfo: action.userInfo
+                userInfo: action.payload.data
             };
         case userConstants.LOGUOT:
             localStorage.clear();
