@@ -7,24 +7,48 @@ import {
     logoutSuccess,
     registerFailure,
     registerRequest,
-    registerSuccess
+    registerSuccess,
+    userLoadFailure,
+    userLoadRequest,
+    userLoadSuccess
 } from "../actions/auth/actions";
 import setAuthToken from "../shared/setAuthToken";
 import {withRouter} from "react-router";
 
 
 const userApi ={
+    fetchLoadUser,
     login,
     register,
     logout
 };
 
-function login(usernameOrEmail, password, history ) {
+function fetchLoadUser() {
+
+    if (localStorage.token) {
+        setAuthToken(localStorage.token);
+    }
+
+        return dispatch =>{
+            dispatch(userLoadRequest('User loading have started.'));
+
+            axios.get(URLS.apiAuth+'/currentUser')
+                .then(
+                    (res) => {
+                        console.log(res);
+                        dispatch(userLoadSuccess(res))})
+                .catch(
+                    (error) => {dispatch(userLoadFailure(error))})
+        }
+
+}
+
+function login(usernameOrEmail, password, history) {
 
     return dispatch => {
         const config = {
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
             },
         };
 
@@ -36,9 +60,8 @@ function login(usernameOrEmail, password, history ) {
                 (res) => {
                     dispatch(loginSuccess(res));
 
-                    const token = res.data.accessToken;
-                    localStorage.setItem('jwtToken', token);
-                    setAuthToken(token);
+                    localStorage.setItem('token', res.data.accessToken);
+
                     history.push('/');
                 })
             .catch(
@@ -69,8 +92,9 @@ function register(user, history){
 }
 
 function logout() {
-    return dispatch => {
-        localStorage.removeItem('jwtToken');
+    return  dispatch => {
+        localStorage.removeItem('token');
+        dispatch(logoutSuccess, 'User has logged out');
         dispatch(logoutSuccess('User has logged out successfully.'))
     }
 }

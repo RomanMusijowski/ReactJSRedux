@@ -6,6 +6,15 @@ import SignIn from "./components/auth/SignIn"
 import Home from "./components/home/Home";
 import requireAuth from "./shared/requireAuth";
 import noRequireAuth from "./shared/noRequireAuth";
+import store from './store/reducers/store'
+import {loginSuccess} from "./actions/auth/actions";
+
+
+const token = localStorage.getItem('token');
+
+if(token) {
+    store.dispatch(loginSuccess(token));
+}
 
 
 class App extends Component{

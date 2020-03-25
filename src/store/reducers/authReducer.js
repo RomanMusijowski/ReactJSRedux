@@ -19,12 +19,19 @@ const authReducer = (state = {}, action) => {
                 authenticated: false,
                 authError: 'Login failure'
             };
+
+        case userConstants.USER_LOAD_SUCCESS:
+            return {
+                ...state,
+                userInfo: action.payload.data
+            };
         case userConstants.LOGUOT:
+            localStorage.clear();
             return {
                 ...state,
                 userInfo: null,
                 authError: null,
-                authenticated: false
+                authenticated: false,
             };
         default:
             return state

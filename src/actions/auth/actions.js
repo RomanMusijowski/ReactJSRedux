@@ -10,3 +10,7 @@ export const registerSuccess = (data) => createAction(userConstants.REGISTER_SUC
 export const registerFailure = (error) => createAction(userConstants.REGISTER_FAILURE, error);
 
 export const logoutSuccess = (data) => createAction(userConstants.LOGUOT, data);
+
+export const userLoadRequest = (data) => createAction(userConstants.USER_LOAD_REQUEST, data);
+export const userLoadSuccess = (data) => createAction(userConstants.USER_LOAD_SUCCESS, data);
+export const userLoadFailure = (error) => createAction(userConstants.USER_LOAD_FAILURE, error);
