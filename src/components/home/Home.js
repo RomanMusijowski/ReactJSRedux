@@ -4,28 +4,24 @@ import userApi from "../../services/userApi";
 
 class Home extends Component {
 
-    componentWillMount() {
+    componentDidMount() {
         this.props.fetchLoadUser();
     }
 
     render() {
         return (
             <div>
-                HOme
-                {/*{userInfo}*/}
+                HOME
+
             </div>
         );
     }
 }
 
-const mapStateToProps = (state) => {
-    return {
-        userInfo: state.auth.userInfo
-    }
-};
+
 
 const mapDispatchToProps = {
     fetchLoadUser: userApi.fetchLoadUser
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Home)
+export default connect(null, mapDispatchToProps)(Home)

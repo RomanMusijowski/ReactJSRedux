@@ -35,7 +35,6 @@ function fetchLoadUser() {
             axios.get(URLS.apiAuth+'/currentUser')
                 .then(
                     (res) => {
-                        console.log(res);
                         dispatch(userLoadSuccess(res))})
                 .catch(
                     (error) => {dispatch(userLoadFailure(error))})
