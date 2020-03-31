@@ -6,24 +6,28 @@ const authReducer = (state = {}, action) => {
         case userConstants.LOGIN_REQUEST:
             return{
                 ...state,
+                userIsLoaded: false,
                 authenticated: false
             };
         case userConstants.LOGIN_SUCCESS:
             return{
                 ...state,
+                userIsLoaded: false,
                 authenticated: true
             };
         case userConstants.LOGIN_FAILURE:
             return {
                 ...state,
                 authenticated: false,
+                userIsLoaded: false,
                 authError: 'Login failure'
             };
 
         case userConstants.USER_LOAD_SUCCESS:
             return {
                 ...state,
-                userInfo: action.payload.data
+                userIsLoaded: true,
+                username: action.payload.data.username
             };
         case userConstants.LOGUOT:
             localStorage.clear();
@@ -31,6 +35,7 @@ const authReducer = (state = {}, action) => {
                 ...state,
                 userInfo: null,
                 authError: null,
+                userIsLoaded: false,
                 authenticated: false,
             };
         default:

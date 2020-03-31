@@ -6,10 +6,12 @@ import {connect} from "react-redux";
 
 
 class Navbar extends Component{
+
+
     navbarLinks(){
-        if(this.props.authenticated){
+        if(this.props.authenticated && this.props.userIsLoaded){
             return [
-                <SingInLinks/>
+                <SingInLinks username={this.props.username}/>
             ];
         } else {
             return [
@@ -32,7 +34,9 @@ class Navbar extends Component{
 
 const mapStateToProps = (state) => {
     return {
-        authenticated: state.auth.authenticated
+        authenticated: state.auth.authenticated,
+        userIsLoaded: state.auth.userIsLoaded,
+        username: state.auth.username
     }
 };
 

@@ -9,20 +9,14 @@ const SingInLinks = (props) => {
         <div>
             <ul className="right">
                 <li><a onClick={props.logout}>Log out</a></li>
-                <li><NavLink to='/' className="btn btn-floating pink lighten-1">User</NavLink></li>
+                <li><NavLink to='/' className="btn btn-floating pink lighten-1">{props.username}</NavLink></li>
             </ul>
         </div>
     )
 };
 
-// const mapDispatchToProps = (dispatch) => {
-//     return{
-//         logout: () => dispatch(userApi.logout())
-//     }
-// }
-
 const actionCreator = {
     logout: userApi.logout
-}
+};
 
 export default connect(null, actionCreator)(SingInLinks)
