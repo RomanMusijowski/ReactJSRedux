@@ -13,11 +13,11 @@ class FormPostAdd extends Component {
         return (
             <Container maxWidth="sm">
                 <form onSubmit={this.handleSubmit}>
-                        <div className="card grey lighten-3">
+                        <div className="card light-green lighten-3">
                             <div className="card-content black-text">
                                 <Button href={"/#"}><Avatar /></Button>
                                 <span className="card-title">
-                                    <h8>Stwórz post + nazwa użytkownika</h8>
+                                    <h8>Create post</h8>
 
                                  </span>
                                 <div className="row">

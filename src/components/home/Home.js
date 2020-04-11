@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {connect} from "react-redux";
 import userApi from "../../services/userApi";
 import FormPostAdd from "../../components/posts/FormPostAdd";
+import Posts from "../posts/Posts";
 
 class Home extends Component {
 
@@ -13,6 +14,7 @@ class Home extends Component {
         return (
             <div>
                <FormPostAdd/>
+               <Posts/>
 
             </div>
         );
