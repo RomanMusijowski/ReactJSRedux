@@ -3,12 +3,14 @@ import PeopleIcon from '@material-ui/icons/People';
 import Card from '@material-ui/core/Card'
 import Typography from '@material-ui/core/Typography';
 import CardContent from '@material-ui/core/CardContent';
+import purple from '@material-ui/core/colors/purple';
 
-const ProfileSideBar = (props) => {
+const FriendsCount = (props) => {
     return(
-
-        <Card style={{marginTop: "15px"}}>
-            <CardContent style={{ backgroundColor: "yellow", textAlign: "center"}}>
+        <Card style={{backgroundColor: "purple",
+                marginTop: "15px",
+                textAlign: "center"}}>
+            <CardContent >
 
                 <Typography variant={"h5"}>
                     <PeopleIcon/>
@@ -20,6 +22,6 @@ const ProfileSideBar = (props) => {
             </CardContent>
         </Card>
     )
-}
+};
 
-export default ProfileSideBar
+export default FriendsCount

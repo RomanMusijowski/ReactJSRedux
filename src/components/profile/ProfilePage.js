@@ -1,18 +1,15 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import ProfileArea from "./ProfileArea";
-import ProfileSideBar from "./ProfileSideBar";
 import ProfileWall from "./ProfileWall";
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
+import FriendsCount from "./FriendsCount";
+import EventCount from "../events/EventCount"
 
 class ProfilePage extends Component {
 
-
     render() {
-
-        const { classes } = this.props;
-
         return (
             <Container maxWidth="lg">
                 <ProfileArea username={this.props.userInfo.username}
@@ -23,8 +20,13 @@ class ProfilePage extends Component {
                              gender={this.props.userInfo.gender}/>
 
                 <Grid container spacing={2}>
-                    <Grid item xs={4}>
-                        <ProfileSideBar friends={this.props.userInfo.friends.length}/>
+                    <Grid item
+                          xs={4}
+                          direction="column">
+                        <FriendsCount friends={this.props.userInfo.friends.length}/>
+                        <EventCount events={this.props.userInfo.invitedEvents !== null ?
+                            this.props.userInfo.invitedEvents :
+                            '0'}/>
                     </Grid>
                     <Grid item xs={8}>
                         <ProfileWall/>
