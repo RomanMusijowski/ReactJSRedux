@@ -8,7 +8,7 @@ import requireAuth from "./shared/requireAuth";
 import noRequireAuth from "./shared/noRequireAuth";
 import store from './store/reducers/store'
 import {loginSuccess} from "./actions/auth/actions";
-import Profile from "./components/profile/Profile";
+import ProfilePage from "./components/profile/ProfilePage";
 
 
 const token = localStorage.getItem('token');
@@ -28,7 +28,7 @@ class App extends Component{
                     <Route exact path='/' component={requireAuth(Home)}/>
                     <Route path='/signUp' component={noRequireAuth(SignUp)}/>
                     <Route path='/signIn' component={noRequireAuth(SignIn)}/>
-                    <Route path='/profile' component={requireAuth(Profile)}/>
+                    <Route path='/profile' component={requireAuth(ProfilePage)}/>
                 </Switch>
               </div>
           </BrowserRouter>

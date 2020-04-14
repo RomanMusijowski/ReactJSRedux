@@ -11,7 +11,7 @@ class Navbar extends Component{
     navbarLinks(){
         if(this.props.authenticated && this.props.userIsLoaded){
             return [
-                <SingInLinks username={this.props.username}/>
+                <SingInLinks username={this.props.userInfo.username}/>
             ];
         } else {
             return [
@@ -36,7 +36,7 @@ const mapStateToProps = (state) => {
     return {
         authenticated: state.auth.authenticated,
         userIsLoaded: state.auth.userIsLoaded,
-        username: state.auth.username
+        userInfo: state.auth.userInfo
     }
 };
 
