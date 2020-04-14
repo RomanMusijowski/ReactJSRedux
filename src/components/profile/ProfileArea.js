@@ -10,7 +10,7 @@ import Typography from '@material-ui/core/Typography';
 
 const ProfileArea = (props) => {
     return(
-        <Card>
+        <Card style={{marginTop: "15px"}}>
             <CardMedia
                 component="img"
                 alt="Contemplative Reptile"
@@ -31,27 +31,23 @@ const ProfileArea = (props) => {
                     </Grid>
                     <Grid item xs={12} sm container>
                         <Grid item xs>
+                            <Typography variant="body2" gutterBottom>
+                                 {props.username}
+                            </Typography>
                             <Typography gutterBottom variant="subtitle1">
-                                 First name last name
+                                {props.firstName} {props.lastName}
                             </Typography>
                             <Typography variant="body2" gutterBottom>
-                                Second
+                                {props.phoneNumber}
                             </Typography>
                             <Typography variant="body2" color="textSecondary">
-                                Third
+                                {props.email}
                             </Typography>
                         </Grid>
                     </Grid>
                 </Grid>
             </CardContent>
         </Card>
-
-                //     {/*<h3> Email is: {props.username}</h3>*/}
-                //     {/*<h4> Username is: {props.email}</h4>*/}
-                //     {/*<h4> Email is: {props.firstName}</h4>*/}
-                //     {/*<h4> Email is: {props.lastName}</h4>*/}
-                //     {/*<h4> Email is: {props.phoneNumber}</h4>*/}
-                //     {/*<h4> Email is: {props.gender}</h4>*/}
     )
 };
 

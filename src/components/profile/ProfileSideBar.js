@@ -7,10 +7,13 @@ import CardContent from '@material-ui/core/CardContent';
 const ProfileSideBar = (props) => {
     return(
 
-        <Card>
+        <Card style={{marginTop: "15px"}}>
             <CardContent style={{ backgroundColor: "yellow", textAlign: "center"}}>
-                <PeopleIcon/>
-                3685
+
+                <Typography variant={"h5"}>
+                    <PeopleIcon/>
+                    {props.friends}
+                </Typography>
                 <Typography variant="h5" component="h2">
                     Followers
                 </Typography>
