@@ -7,6 +7,8 @@ import Button from "@material-ui/core/Button";
 import Avatar from "@material-ui/core/Avatar";
 
 import { withStyles} from "@material-ui/core/styles";
+import {connect} from "react-redux";
+import {compose} from "redux";
 
 
 class FormPostAdd extends Component {
@@ -18,7 +20,7 @@ class FormPostAdd extends Component {
                 <form onSubmit={this.handleSubmit}>
                         <div className="card light-green lighten-3">
                             <div className="card-content black-text">
-                                <Button href={"/#"}><Avatar /><label className={classes.styleLabel}>Tak</label> </Button>
+                                <Button href={"/#"}><Avatar /><label className={classes.styleLabel}>{this.props.username}</label> </Button>
                                 <span className="card-title">
                                     <h8>Create post</h8>
                                  </span>
@@ -43,8 +45,14 @@ class FormPostAdd extends Component {
 
 }
 
-export default withStyles({
+const mapStateToProps = (state) => {
+    return {
+        username: state.auth.username
+    }
+};
+
+export default compose (withStyles({
     styleLabel: {
         marginLeft: "20px"
     }
-})(FormPostAdd);
+}), connect(mapStateToProps))(FormPostAdd);

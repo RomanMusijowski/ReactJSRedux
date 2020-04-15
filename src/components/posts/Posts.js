@@ -64,11 +64,11 @@ class Posts extends Component {
                                 title="Contemplative Reptile"
                             />
                             <CardContent>
-                                <p>{post.body}</p>
+                                <p>{post.content}</p>
                             </CardContent>
                             <CardActions disableSpacing>
                                 <IconButton aria-label="add to favorites">
-                                    <FavoriteIcon />
+                                    <FavoriteIcon /> {post.likes}
                                 </IconButton>
                                 <IconButton aria-label="share">
                                     <ShareIcon />
