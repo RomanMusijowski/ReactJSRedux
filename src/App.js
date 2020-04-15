@@ -24,7 +24,7 @@ class App extends Component{
               <div className="App">
                 <Navbar/>
                 <Switch>
-                    <Route exact path='/' component={noRequireAuth(Home)}/>
+                    <Route exact path='/' component={requireAuth(Home)}/>
                     <Route path='/signUp' component={noRequireAuth(SignUp)}/>
                     <Route path='/signIn' component={noRequireAuth(SignIn)}/>
                 </Switch>
