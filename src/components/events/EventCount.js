@@ -7,7 +7,8 @@ import CardContent from '@material-ui/core/CardContent';
 const EventCount = (props) => {
     return(
         <Card style={{marginTop: "15px"}}>
-            <CardContent style={{ backgroundColor: "orange", textAlign: "center"}}>
+            <CardContent style={{
+                backgroundColor: "orange", textAlign: "center"}}>
 
                 <Typography variant={"h5"}>
                     <PeopleIcon/>
