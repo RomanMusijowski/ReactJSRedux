@@ -1,6 +1,9 @@
 import React ,{Component} from "react";
-import Container from "@material-ui/core/Container";
+import axios from 'axios';
+import {Message} from "../messageInfo/Message";
+import { withStyles} from "@material-ui/core/styles";
 
+import Container from "@material-ui/core/Container";
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardMedia from '@material-ui/core/CardMedia';
@@ -15,9 +18,6 @@ import ShareIcon from '@material-ui/icons/Share';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 
-import axios from 'axios';
-
-import { withStyles} from "@material-ui/core/styles";
 
 
 class Posts extends Component {
@@ -103,7 +103,8 @@ class Posts extends Component {
                 )
             })
         ) : (
-            <div className="center">No posts yet. Add some friends</div>
+            <Message message="No posts yet. Add some friends"/>
+
         )
         return (
             <div className="center">{postList}</div>
