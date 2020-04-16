@@ -4,22 +4,22 @@ import Card from '@material-ui/core/Card'
 import Typography from '@material-ui/core/Typography';
 import CardContent from '@material-ui/core/CardContent';
 
-const ProfileSideBar = (props) => {
+const EventCount = (props) => {
     return(
-
         <Card style={{marginTop: "15px"}}>
-            <CardContent style={{ backgroundColor: "yellow", textAlign: "center"}}>
+            <CardContent style={{
+                backgroundColor: "orange", textAlign: "center"}}>
 
                 <Typography variant={"h5"}>
                     <PeopleIcon/>
-                    {props.friends}
+                    {props.events}
                 </Typography>
                 <Typography variant="h5" component="h2">
-                    Followers
+                    Events
                 </Typography>
             </CardContent>
         </Card>
     )
-}
+};
 
-export default ProfileSideBar
+export default EventCount;
