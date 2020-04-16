@@ -1,8 +1,4 @@
 import React ,{Component} from "react";
-import axios from 'axios';
-import {Message} from "../messageInfo/Message";
-import { withStyles} from "@material-ui/core/styles";
-
 import Container from "@material-ui/core/Container";
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
@@ -17,33 +13,24 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
+import postApi from "../../services/postApi";
+import {Message} from "../messageInfo/Message";
+import { withStyles} from "@material-ui/core/styles";
+import {connect} from "react-redux";
+import {compose} from "redux";
+//const { classes } = this.props;
 
+const Posts = (props) => {
+    console.log(props); // it's ok
+    console.log(props.id) // don't work
 
+        if(props === null){
+            return (<Message message="No posts yet. Add some friends"/>)
+        }
 
-class Posts extends Component {
-
-    state = {
-        posts: [ ]
-    };
-
-    componentDidMount() {
-        axios.get('http://localhost:5001/api/post')
-            .then(res => {
-                console.log(res);
-                this.setState({
-                    posts: res.data.slice(0, 10)
-                })
-            })
-    }
-
-    render() {
-        const { classes } = this.props;
-        const { posts } = this.state;
-        const postList = posts.length ? (
-            posts.map(post => {
                 return(
                     <Container maxWidth="sm">
-                        <Card key={post.id}>
+                        <Card key={props.id}>
                             <CardHeader
                                 avatar={
                                     <Avatar aria-label="recipe" >
@@ -55,20 +42,20 @@ class Posts extends Component {
                                         <MoreVertIcon />
                                     </IconButton>
                                 }
-                                title={post.title}
+
                                 subheader="September 14, 2016"
                             />
                             <CardMedia
-                                className={classes.media}
+                                //className={classes.media}
                                 image="https://material-ui.com/static/images/cards/contemplative-reptile.jpg"
                                 title="Contemplative Reptile"
                             />
                             <CardContent>
-                                <p>{post.content}</p>
+                                <p>{props.content}</p>
                             </CardContent>
                             <CardActions disableSpacing>
                                 <IconButton aria-label="add to favorites">
-                                    <FavoriteIcon /> {post.likes}
+                                    <FavoriteIcon /> {props.likes}
                                 </IconButton>
                                 <IconButton aria-label="share">
                                     <ShareIcon />
@@ -101,21 +88,14 @@ class Posts extends Component {
                     </Container>
 
                 )
-            })
-        ) : (
-            <Message message="No posts yet. Add some friends"/>
 
-        )
-        return (
-            <div className="center">{postList}</div>
-
-        );
-    }
 
 }
 
-export default withStyles({
+
+
+export default (withStyles({
     media: {
         minHeight: "300px"
     }
-})(Posts);
+}))(Posts);

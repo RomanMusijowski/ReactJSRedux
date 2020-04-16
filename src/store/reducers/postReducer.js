@@ -2,6 +2,7 @@ import { postConstants } from "../../constans/postConstans";
 
 const initState = {
    postError: null
+
 };
 
 const postReducer = (state = initState, action) => {
@@ -9,7 +10,10 @@ const postReducer = (state = initState, action) => {
       case postConstants.POST_LOAD_REQUEST:
           return {};
       case postConstants.POST_LOAD_SUCCESS:
-          return {};
+          return {
+              ...state,
+             posts: action.payload.data
+          };
       case postConstants.POST_LOAD_FAILURE:
           return {
               ...state,
