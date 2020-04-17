@@ -22,7 +22,9 @@ import {compose} from "redux";
 
 const Posts = (props) => {
     console.log(props); // it's ok
-    console.log(props.id) // don't work
+    console.log(props.post); // don't work
+
+
 
         if(props === null){
             return (<Message message="No posts yet. Add some friends"/>)

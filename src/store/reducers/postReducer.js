@@ -1,23 +1,28 @@
 import { postConstants } from "../../constans/postConstans";
+import _ from 'lodash';
 
 const initState = {
-   postError: null
+
 
 };
 
 const postReducer = (state = initState, action) => {
+    //console.log(action.payload.data);
+
   switch (action.type) {
       case postConstants.POST_LOAD_REQUEST:
           return {};
       case postConstants.POST_LOAD_SUCCESS:
+          const posts = _.mapKeys(action.payload, 'id');
           return {
               ...state,
-             posts: action.payload.data
+              ...posts
+             //posts: action.payload.data
           };
       case postConstants.POST_LOAD_FAILURE:
           return {
-              ...state,
-              postError: 'Posts load failure'
+              ...state
+
           };
       default:
           return state
