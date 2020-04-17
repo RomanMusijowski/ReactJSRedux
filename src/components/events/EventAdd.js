@@ -12,6 +12,11 @@ import FormikDateTime from "../../shared/components/formatik/FormikDateTime"
 import {addEvent} from "../../services/eventApi";
 import Grid from "@material-ui/core/Grid";
 
+const min = new Date();
+min.setHours(min.getHours()+2);
+min.toISOString().slice(0, 16).replace('T', ' ');
+
+
 const eventSchema = Yup.object().shape({
    name: Yup.string()
        .min(4, 'To short')
@@ -21,6 +26,9 @@ const eventSchema = Yup.object().shape({
        .min(10, 'To short')
        .max(255, 'Too long')
        .required("Required"),
+    dateTime: Yup.date().min(
+        min, "Date and time have to be in the future."
+    )
 });
 
 const EventAdd = (props) => {
@@ -28,7 +36,7 @@ const EventAdd = (props) => {
     const initState = {
         name: '',
         description: '',
-        dateTime: new Date()
+        dateTime: null
     };
 
     const dispatch = useDispatch();
