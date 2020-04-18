@@ -13,16 +13,16 @@ const PostList = (props) => {
 
     const listPosts = useSelector((state) => state.post);
     console.log(Object.keys(listPosts));
-    /*
+
     const item = Object.keys(listPosts).map(key =>
     <Posts id={listPosts[key].id}
            content={listPosts[key].content}
            likes={listPosts[key].likes}
     />);
-*/
+
 
     return(
-        <div></div>
+        <div>{item}</div>
     )
 };
 

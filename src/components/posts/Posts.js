@@ -20,19 +20,19 @@ import {connect} from "react-redux";
 import {compose} from "redux";
 //const { classes } = this.props;
 
-const Posts = (props) => {
-    console.log(props); // it's ok
-    console.log(props.post); // don't work
+const Posts = ({id,content,likes}) => {
+    //console.log(props); // it's ok
+    //console.log(props.post); // don't work
 
 
-
+/*
         if(props === null){
             return (<Message message="No posts yet. Add some friends"/>)
         }
-
+*/
                 return(
                     <Container maxWidth="sm">
-                        <Card key={props.id}>
+                        <Card key={id}>
                             <CardHeader
                                 avatar={
                                     <Avatar aria-label="recipe" >
@@ -53,11 +53,11 @@ const Posts = (props) => {
                                 title="Contemplative Reptile"
                             />
                             <CardContent>
-                                <p>{props.content}</p>
+                                <p>{content}</p>
                             </CardContent>
                             <CardActions disableSpacing>
                                 <IconButton aria-label="add to favorites">
-                                    <FavoriteIcon /> {props.likes}
+                                    <FavoriteIcon /> {likes}
                                 </IconButton>
                                 <IconButton aria-label="share">
                                     <ShareIcon />
@@ -93,8 +93,6 @@ const Posts = (props) => {
 
 
 }
-
-
 
 export default (withStyles({
     media: {
