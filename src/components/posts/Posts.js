@@ -13,6 +13,7 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
+import CommentList from "../posts/CommentList";
 import postApi from "../../services/postApi";
 import {Message} from "../messageInfo/Message";
 import { withStyles} from "@material-ui/core/styles";
@@ -20,16 +21,19 @@ import {connect} from "react-redux";
 import {compose} from "redux";
 //const { classes } = this.props;
 
-const Posts = ({id,content,likes}) => {
+
+const Posts = ({id,userId,content,likes,comments}) => {
     //console.log(props); // it's ok
     //console.log(props.post); // don't work
-
+    console.log(userId);
+    console.log(comments);
 
 /*
         if(props === null){
             return (<Message message="No posts yet. Add some friends"/>)
         }
 */
+
                 return(
                     <Container maxWidth="sm">
                         <Card key={id}>
@@ -64,27 +68,14 @@ const Posts = ({id,content,likes}) => {
                                 </IconButton>
                                 <IconButton
                                     aria-label="show more"
+                                    //onClick={handleExpandClick}
                                 >
                                     <ExpandMoreIcon />
                                 </IconButton>
                             </CardActions>
-                            <Collapse  timeout="auto" unmountOnExit>
-                                <CardContent>
-                                    <Typography paragraph>Method:</Typography>
-                                    <Typography paragraph>
-
-                                    </Typography>
-                                    <Typography paragraph>
-
-                                    </Typography>
-                                    <Typography paragraph>
-
-                                    </Typography>
-                                    <Typography>
-
-                                    </Typography>
-                                </CardContent>
-                            </Collapse>
+                            <Container>
+                                <CommentList idPost={id}/>
+                            </Container>
                         </Card>
                         <br/>
                     </Container>
@@ -92,7 +83,7 @@ const Posts = ({id,content,likes}) => {
                 )
 
 
-}
+};
 
 export default (withStyles({
     media: {

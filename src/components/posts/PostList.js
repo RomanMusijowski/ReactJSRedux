@@ -16,8 +16,10 @@ const PostList = (props) => {
 
     const item = Object.keys(listPosts).map(key =>
     <Posts id={listPosts[key].id}
+           userId={listPosts[key].userId}
            content={listPosts[key].content}
            likes={listPosts[key].likes}
+           comments={listPosts[key].comments}
     />);
 
 
