@@ -13,11 +13,19 @@ const postReducer = (state = initState, action) => {
           };
       case postConstants.POST_LOAD_SUCCESS:
           const posts = _.mapKeys(action.payload.data, 'id');
-          return {
-              ...state,
-              ...posts
-          };
+          return { ...state, ...posts };
       case postConstants.POST_LOAD_FAILURE:
+          return {
+              ...state
+          };
+      case postConstants.COMMENT_LOAD_REQUEST:
+          return {
+              ...state
+          };
+      case postConstants.COMMENT_LOAD_SUCCESS:
+          const comment = _.mapKeys(action.payload.data, 'id');
+          return { ...state, ...comment };
+      case postConstants.COMMENT_LOAD_FAILURE:
           return {
               ...state
           };
