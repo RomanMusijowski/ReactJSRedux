@@ -22,12 +22,12 @@ const authReducer = (state = {}, action) => {
                 userIsLoaded: false,
                 authError: 'Login failure'
             };
-
         case userConstants.USER_LOAD_SUCCESS:
             return {
                 ...state,
                 userIsLoaded: true,
-                username: action.payload.data.username
+                username: action.payload.data.username,
+                userInfo: action.payload.data
             };
         case userConstants.LOGUOT:
             localStorage.clear();

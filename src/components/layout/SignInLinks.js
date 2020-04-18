@@ -9,7 +9,8 @@ const SingInLinks = (props) => {
         <div>
             <ul className="right">
                 <li><a onClick={props.logout}>Log out</a></li>
-                <li><NavLink to='/' className="btn btn-floating pink lighten-1">{props.username}</NavLink></li>
+                <li><NavLink to='/profile' className="btn btn-floating pink lighten-1">{props.username}</NavLink></li>
+                <li><NavLink to='/event' className="btn btn-floating pink lighten-1">EV</NavLink></li>
             </ul>
         </div>
     )
