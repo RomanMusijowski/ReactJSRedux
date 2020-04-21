@@ -17,7 +17,7 @@ class Home extends Component {
     render() {
         return (
             <div>
-               <FormPostAdd/>
+               <FormPostAdd username={this.props.username} />
                <PostList/>
             </div>
         );
@@ -30,5 +30,10 @@ const mapDispatchToProps = {
     fetchLoadUser: userApi.fetchLoadUser,
 
 };
+const mapStateToProps = (state) => {
+    return {
+        username: state.auth.username
+    }
+};
 
-export default connect(null, mapDispatchToProps)(Home)
+export default connect(mapStateToProps, mapDispatchToProps)(Home)
