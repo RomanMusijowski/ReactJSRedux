@@ -1,4 +1,5 @@
 import React from 'react';
+import {useDispatch} from "react-redux";
 import {makeStyles} from '@material-ui/core/styles';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
@@ -7,10 +8,11 @@ import ListItemText from '@material-ui/core/ListItemText';
 import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
-import FolderIcon from '@material-ui/icons/Folder';
 import DeleteIcon from '@material-ui/icons/Delete';
 import PersonAddIcon from '@material-ui/icons/PersonAdd';
-import GroupAddIcon from '@material-ui/icons/GroupAdd';
+import {deleteEvent, joinEvent} from "../../services/eventApi";
+import InviteDialog from "./InviteDialog";
+import EventIcon from '@material-ui/icons/Event';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -24,19 +26,39 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-const EventListItem = ({name, description, dateTime}) => {
+const EventListItem = ({id, name, description, dateTime}) => {
     const classes = useStyles();
+    const dispatch = useDispatch();
+
+    const handleJoinEvent = (id) => {
+        console.log('Clicked button');
+        console.log(id);
+        dispatch(joinEvent(id));
+    };
+
+    const handleDeleteEvent = (id) => {
+        console.log("delete event");
+        dispatch(deleteEvent(id));
+        window.location.reload();
+    };
+
+    const handleInviteFriends = (id) => {
+        console.log("handleInviteFriends!")
+    };
+
+
     return(
         <ListItem alignItems="flex-start">
             <ListItemAvatar>
                 <Avatar>
-                    <FolderIcon />
+                    <EventIcon />
                 </Avatar>
             </ListItemAvatar>
             <ListItemText
                 primary={name}
                 secondary={
                     <React.Fragment>
+                        {id}
                         <Typography
                             component="span"
                             variant="body2"
@@ -57,13 +79,15 @@ const EventListItem = ({name, description, dateTime}) => {
             >
             </ListItemText>
             <ListItemSecondaryAction>
-                <IconButton edge="end" aria-label="add">
+                <IconButton edge="end"
+                            aria-label="add"
+                            onClick={()=>handleJoinEvent(id)}>
                     <PersonAddIcon/>
                 </IconButton>
-                <IconButton edge="end" aria-label="add group">
-                    <GroupAddIcon/>
-                </IconButton>
-                <IconButton edge="end" aria-label="delete">
+                <InviteDialog id={id}/>
+                <IconButton edge="end"
+                            aria-label="delete"
+                            onClick={()=>handleDeleteEvent(id)}>
 
                     <DeleteIcon />
                 </IconButton>
