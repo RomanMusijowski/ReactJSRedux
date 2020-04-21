@@ -6,10 +6,13 @@ import {
     postLoadFailure,
     commentsLoadRequest,
     commentsLoadSuccess,
-    commentsLoadFailure
+    commentsLoadFailure,
+    postCreateSuccess, 
+    postCreateFailure
 } from "../actions/post/actions";
 import setAuthToken from "../shared/setAuthToken";
-import { withRouter } from "react-router";
+
+
 
 
 /*****
@@ -25,6 +28,27 @@ export const getAllPostFriends = () => async (dispatch) =>{
 };
 
 /*****
+ * Create Post
+ *
+ * @param content
+ * @returns {function(...[*]=)}
+ */
+export const addPost = (content) => async (dispatch) => {
+
+      //const body = JSON.stringify(content);
+
+      const formData = new FormData();
+      formData.append('content',content);
+
+      axios.post(URLS.apiPost, formData)
+          .then(res => {
+              dispatch(postCreateSuccess(res))
+
+          })
+          .catch( error => {dispatch(postCreateFailure(error.response.data.message))})
+};
+
+/*****
  * Return List Post comments
  * id post
  *
@@ -37,3 +61,4 @@ export const getAllComments = (id/*, page = 1*/) => async (dispatch) =>{
         .then((res) => {dispatch(commentsLoadSuccess(res ))})
         .catch((error) => {dispatch(commentsLoadFailure(error))})
 };
+
