@@ -35,6 +35,24 @@ export const fetchEventList = () => async (dispatch) =>{
         .catch(error => {dispatch(eventFetchListFailure(error))})
 };
 
+export const joinEvent = (id) => async  (dispatch) =>{
+    axios.post(URLS.apiEvent + '/' + id + '/join')
+        .then(res => {console.log(res)})
+        .catch(error => { console.log(error)})
+};
+
+export const deleteEvent = (id) => async  (dispatch) =>{
+    axios.delete(URLS.apiEvent + '/' + id)
+        .then(res => {console.log(res)})
+        .catch(error => { console.log(error)})
+};
+
+export const inviteFriendToEvent = (userId, eventId) => async (dispatch) => {
+    axios.post(URLS.apiUser+'/' + userId + '/invite/' + eventId )
+        .then(res => {console.log(res)})
+        .catch(error => {console.log(error)})
+};
+
 
 
 
