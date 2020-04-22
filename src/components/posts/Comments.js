@@ -5,7 +5,7 @@ import CardMedia from "@material-ui/core/CardMedia";
 import CardContent from "@material-ui/core/CardContent";
 import React from "react";
 
-const Comments = (id, userId, content, likes ) => {
+const Comments = ({id, userId, content, likes }) => {
 
     return(
         <CardContent key={id}>
@@ -13,19 +13,13 @@ const Comments = (id, userId, content, likes ) => {
                 <CardHeader
                     avatar={
                         <Avatar aria-label="recipe">
-
                         </Avatar>
                     }
+                    subheader={userId}
+                />
 
-                    subheader=""
-                />
-                <CardMedia
-                    //className={classes.media}
-                    image="https://material-ui.com/static/images/cards/contemplative-reptile.jpg"
-                    title="Contemplative Reptile"
-                />
                 <CardContent>
-                    <p></p>
+                    <p>{content}</p>
                 </CardContent>
             </Card>
         </CardContent>

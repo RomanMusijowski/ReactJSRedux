@@ -1,4 +1,4 @@
-import React ,{Component} from "react";
+import React, {Component, useEffect} from "react";
 import Container from "@material-ui/core/Container";
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
@@ -13,43 +13,69 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
-import CommentList from "../posts/CommentList";
-import postApi from "../../services/postApi";
+import DialogComment from "./DialogComment";
+import PostItem from "./PostItem";
+import CommentList from "./CommentList";
+import Comments from "./Comments";
+import postApi, {getAllPostFriends} from "../../services/postApi";
 import {Message} from "../messageInfo/Message";
+import SendIcon from '@material-ui/icons/Send';
 import { withStyles} from "@material-ui/core/styles";
-import {connect} from "react-redux";
+import {connect, useDispatch, useSelector} from "react-redux";
+import { getUserInfo} from "../../services/postApi";
 import {compose} from "redux";
+import UserNameInfo from "./UserNameInfo";
 //const { classes } = this.props;
 
 
-const Posts = ({id,userId,content,likes,comments}) => {
+const Posts = ({id,userId,content,likes}) => {
     //console.log(props); // it's ok
     //console.log(props.post); // don't work
-    console.log(userId);
-    console.log(comments);
+    //console.log(userId);
+    //console.log(comments);
+    //console.log(comments);
+    //console.log(id);
 
 /*
         if(props === null){
             return (<Message message="No posts yet. Add some friends"/>)
         }
 */
+    const dispatch = useDispatch();
+    /*
+    console.log(userId);
+    useEffect((userId) => {
+        dispatch(getUserInfo(userId))
+    }, [dispatch]);
+    const userinfo = useSelector((state) => state.post);
+    const item = Object.keys(userinfo).map(key =>
+        <UserNameInfo username={userinfo[key].username}
 
-                return(
+        />);
+
+*/
+
+
+        return(
                     <Container maxWidth="sm">
-                        <Card key={id}>
+                        <Card >
                             <CardHeader
                                 avatar={
                                     <Avatar aria-label="recipe" >
 
                                     </Avatar>
+
                                 }
+
                                 action={
                                     <IconButton aria-label="settings">
                                         <MoreVertIcon />
                                     </IconButton>
                                 }
 
-                                subheader="September 14, 2016"
+                                subheader={userId}
+
+
                             />
                             <CardMedia
                                 //className={classes.media}
@@ -70,20 +96,22 @@ const Posts = ({id,userId,content,likes,comments}) => {
                                     aria-label="show more"
                                     //onClick={handleExpandClick}
                                 >
-                                    <ExpandMoreIcon />
+                                    <CommentList postId={id}/>
+
                                 </IconButton>
                             </CardActions>
                             <Container>
-                                <CommentList idPost={id}/>
+
+
                             </Container>
                         </Card>
                         <br/>
                     </Container>
+        )
+}
 
-                )
 
 
-};
 
 export default (withStyles({
     media: {
