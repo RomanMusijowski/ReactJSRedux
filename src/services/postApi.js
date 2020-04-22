@@ -4,12 +4,15 @@ import {
     postLoadRequest,
     postLoadSuccess,
     postLoadFailure,
-    commentsLoadRequest,
-    commentsLoadSuccess,
-    commentsLoadFailure,
-    postCreateSuccess, 
+    postCreateSuccess,
     postCreateFailure
 } from "../actions/post/actions";
+import {
+    commentsLoadSuccess,
+    commentsLoadFailure,
+    userInfoLoadSuccess,
+    userInfoLoadFailure
+} from "../actions/comment/actions";
 import setAuthToken from "../shared/setAuthToken";
 
 
@@ -56,9 +59,14 @@ export const addPost = (content) => async (dispatch) => {
  * @returns {function(...[*]=)}
  */
 export const getAllComments = (id/*, page = 1*/) => async (dispatch) =>{
-    dispatch(commentsLoadRequest('Comments loading have started.'));
     axios.get(URLS.apiPost+'/'+id+'/comment')
         .then((res) => {dispatch(commentsLoadSuccess(res ))})
         .catch((error) => {dispatch(commentsLoadFailure(error))})
+};
+
+export const getUserInfo = (userId) => async (dispatch) =>{
+    axios.get(URLS.apiUser+'/'+userId)
+        .then((res) => {dispatch(userInfoLoadSuccess(res ))})
+        .catch((error) => {dispatch(userInfoLoadFailure(error))})
 };
 
