@@ -55,7 +55,7 @@ npm install
   
   
 ### Built With: 
-  - JavaScript
+  * [JavaScript](https://javascript.info/js)
   * [React](https://reactjs.org/) - Front-end Framework 
   * [Redux](https://redux.js.org/) - React State Manager
   * [Material-UI](https://material-ui.com/) - CSS Framework
