@@ -1,5 +1,67 @@
-Web page for web developers
-  It's front-end part to my back-end (Spring-Boot api).
+## Web page for developers
+  It's a simple front-end project to my back-end (Spring-Boot Rest api).
+
+  The goal of this project is to give a user the opportunity to graphically perform the next actions:
+    
+    Users:
+      - registration
+      - login and logout, perform actions with JWT
+      - edit user information (password, first name, last name)
+      - show profile of a friend
+      - show list of friends of a friend
+      - add a user to friends, delete from friends
+      - invite a friend to an event
+      - join to invited event, delete invite
+    
+    Post:
+      - get list of friends posts
+      - get list of a user post
+      - create, delete, update a post
+      - get list of a post comments
+      - add comment to a post 
+      - delete comment 
+      - like a post
+      - get list of users who liked a post
+      - like a comment
+      
+    Event: 
+      - get list of events
+      - create an event (with a picture)
+      - join an event
+      - delete an event
+  
+  
+## Getting Started
+
+
+### Prerequisites
+
+To run this project, be either in development or production, you'll only need to have the [npm](https://www.npmjs.com/) installed.
+
+### Installing
+  
+Cloning the Repository
+```
+$ git clone https://github.com/musiyowskij/ReactJSRedux.git
+
+$ cd ReactJSRedux
+```
+
+Installing dependency with npm
+
+```
+npm install
+```
+  
+  
+### Built With: 
+  - JavaScript
+  * [React](https://reactjs.org/) - Front-end Framework 
+  * [Redux](https://redux.js.org/) - React State Manager
+  * [Material-UI](https://material-ui.com/) - CSS Framework
+  
+
+  
   
 
 
