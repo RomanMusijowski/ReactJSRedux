@@ -5,54 +5,29 @@ import AccountCircleRoundedIcon from '@material-ui/icons/AccountCircleRounded';
 import Icon from "@material-ui/core/Icon";
 import Button from "@material-ui/core/Button";
 import Avatar from "@material-ui/core/Avatar";
-import {Form, Formik, Field} from "formik";
-import FormikField from "../../shared/components/formatik/FormikField"
-import { withStyles} from "@material-ui/core/styles";
-import {connect} from "react-redux";
-import {compose} from "redux";
 import { useDispatch } from "react-redux";
 import {addPost} from "../../services/postApi";
-import postApi from "../../services/postApi";
-//import {reset} from 'redux-form';
-import * as Yup from 'yup';
-import FormikTextArea from "../../shared/components/formatik/FormikTextArea";
-import {TextareaAutosize} from "@material-ui/core";
-/*
-const postSchema = Yup.object().shape({
-   content: Yup.string()
-       .min(15, 'To short')
-       .required("Required")
-});
-*/
+
 
 const FormPostAdd = (props) =>  {
     const [content, setContent] = React.useState("");
-/*
-    const initState = {
-      content: ''
-    };
-*/
 
     const dispatch = useDispatch();
 
-
     const handleSubmit = (event/*values, actions*/) => {
         event.preventDefault();
-        //
-        //console.log(content);
-        dispatch(addPost(content));
-        //actions.resetForm();
-        //actions.setSubmitting(false);
-        //setContent("");
 
+        dispatch(addPost(content));
+
+        setContent("");
+
+        window.alert("Success create post");
+        window.location.reload();
 
     };
 
-        //const { classes } = this.props;
         return (
             <Container maxWidth="sm">
-
-
                             <form onSubmit={handleSubmit}>
                                 <div className="card light-green lighten-3">
                                     <div className="card-content black-text">
@@ -83,11 +58,7 @@ const FormPostAdd = (props) =>  {
                                     </div>
                                 </div>
                             </form>
-
-
-
             </Container>
-
         );
     }
 export default FormPostAdd
