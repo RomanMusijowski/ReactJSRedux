@@ -10,6 +10,7 @@ import store from './store/reducers/store'
 import {loginSuccess} from "./actions/auth/actions";
 import ProfilePage from "./components/profile/ProfilePage";
 import EventPage from "./components/events/EventPage";
+import CommentList from "./components/posts/CommentList";
 
 const token = localStorage.getItem('token');
 
@@ -30,6 +31,7 @@ class App extends Component{
                     <Route path='/signIn' component={noRequireAuth(SignIn)}/>
                     <Route path='/profile' component={requireAuth(ProfilePage)}/>
                     <Route path='/event' component={requireAuth(EventPage)}/>
+                    <Route path='/post/:id/comments' component={requireAuth(CommentList)}/>
                 </Switch>
               </div>
           </BrowserRouter>

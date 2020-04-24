@@ -1,24 +1,30 @@
 import React, {Component} from 'react';
 import {connect} from "react-redux";
 import userApi from "../../services/userApi";
-import postApi from "../../services/postApi";
+import {getAllPostFriends} from "../../services/postApi";
 import FormPostAdd from "../../components/posts/FormPostAdd";
 import PostList from "../../components/posts/PostList";
-import Posts from "../posts/Posts";
-import {logger} from "redux-logger/src";
+
 
 class Home extends Component {
 
+
     componentDidMount() {
         this.props.fetchLoadUser();
-
+        this.props.getAllPostFriends();
     }
 
+
+
     render() {
+        const {posts, username} = this.props;
+
+
         return (
             <div>
-               <FormPostAdd username={this.props.username} />
-               <PostList/>
+                <FormPostAdd username={username}/>
+                <PostList posts={posts} username={username}/>
+
             </div>
         );
     }
@@ -28,12 +34,12 @@ class Home extends Component {
 
 const mapDispatchToProps = {
     fetchLoadUser: userApi.fetchLoadUser,
+    getAllPostFriends
 
 };
-const mapStateToProps = (state) => {
-    return {
-        username: state.auth.username
-    }
-};
+const mapStateToProps = (state) => ({
+        username: state.auth.username,
+        posts: state.post
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home)
