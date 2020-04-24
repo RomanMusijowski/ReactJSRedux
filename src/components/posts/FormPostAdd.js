@@ -26,54 +26,39 @@ const FormPostAdd = (props) =>  {
 
     };
 
-        return (
-            <Container maxWidth="sm">
-                            <form onSubmit={handleSubmit}>
-                                <div className="card light-green lighten-3">
-                                    <div className="card-content black-text">
-                                        <Button href={"/#"}><Avatar/><label
-                                            className="">{props.username}</label> </Button>
-                                        <span className="card-title">
+    return (
+        <Container maxWidth="sm">
+            <form onSubmit={handleSubmit}>
+                <div className="card light-green lighten-3">
+                    <div className="card-content black-text">
+                        <Button href={"/#"}><Avatar/><label
+                            className="">{props.username}</label> </Button>
+                        <span className="card-title">
                                     <h8>Create post</h8>
                                  </span>
-                                        <div className="row">
+                        <div className="row">
                                             <textarea className="materialize-textarea"
-                                                    name="content"
-                                                    label="Content"
-                                                    onChange={event => setContent(event.target.value)}
-                                                      ></textarea>
-                                        </div>
-                                    </div>
-                                    <div className="card-action">
-                                        <div className="row">
-                                            <Button href={"/#"}><Icon component={AccountCircleRoundedIcon}
-                                                                      color="primary"
-                                                                      fontSize={"large"}></Icon></Button>
-                                            <Button href={"/#"}><Icon component={InsertPhotoRoundedIcon} color="primary"
-                                                                      fontSize={"large"}></Icon></Button>
-                                            <input className="btn light-red accent-1 right"   type="submit"
-                                                   value="Submit" />
+                                                      name="content"
+                                                      label="Content"
+                                                      onChange={event => setContent(event.target.value)}
+                                            ></textarea>
+                        </div>
+                    </div>
+                    <div className="card-action">
+                        <div className="row">
+                            <Button href={"/#"}><Icon component={AccountCircleRoundedIcon}
+                                                      color="primary"
+                                                      fontSize={"large"}></Icon></Button>
+                            <Button href={"/#"}><Icon component={InsertPhotoRoundedIcon} color="primary"
+                                                      fontSize={"large"}></Icon></Button>
+                            <input className="btn light-red accent-1 right"   type="submit"
+                                   value="Submit" />
 
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
-            </Container>
-        );
-    }
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </Container>
+    );
+}
 export default FormPostAdd
-
-/*
-const mapStateToProps = (state) => {
-    return {
-        username: state.auth.username
-    }
-};
-*/
-/*
-export default compose (withStyles({
-    styleLabel: {
-        marginLeft: "20px"
-    }
-}), connect(mapStateToProps))(FormPostAdd);
-*/
