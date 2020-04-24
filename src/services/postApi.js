@@ -8,12 +8,12 @@ import {
     postCreateFailure
 } from "../actions/post/actions";
 import {
+    commentsLoadUnload,
     commentsLoadSuccess,
     commentsLoadFailure,
     userInfoLoadSuccess,
     userInfoLoadFailure
 } from "../actions/comment/actions";
-import setAuthToken from "../shared/setAuthToken";
 
 
 
@@ -46,7 +46,6 @@ export const addPost = (content) => async (dispatch) => {
       axios.post(URLS.apiPost, formData)
           .then(res => {
               dispatch(postCreateSuccess(res))
-
           })
           .catch( error => {dispatch(postCreateFailure(error.response.data.message))})
 };
@@ -60,13 +59,19 @@ export const addPost = (content) => async (dispatch) => {
  */
 export const getAllComments = (id/*, page = 1*/) => async (dispatch) =>{
     axios.get(URLS.apiPost+'/'+id+'/comment')
-        .then((res) => {dispatch(commentsLoadSuccess(res ))})
+        .then((res) => {dispatch(commentsLoadSuccess(res))}) // return data
         .catch((error) => {dispatch(commentsLoadFailure(error))})
 };
 
+export const commentsUnload = () => async (dispatch) =>{
+    dispatch(commentsLoadUnload())
+};
+
+
+/*
 export const getUserInfo = (userId) => async (dispatch) =>{
     axios.get(URLS.apiUser+'/'+userId)
         .then((res) => {dispatch(userInfoLoadSuccess(res ))})
         .catch((error) => {dispatch(userInfoLoadFailure(error))})
 };
-
+*/

@@ -16,6 +16,10 @@ const commentReducer = (state = initState, action) => {
             return {
                 ...state
             };
+        case commentConstants.COMMENT_LOAD_UNLOAD:
+            return{
+
+            };
         case commentConstants.USERINFO_LOAD_SUCCESS:
             return {
                 ...state,
