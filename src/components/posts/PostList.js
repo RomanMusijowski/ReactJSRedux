@@ -11,9 +11,18 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import {Link} from "react-router-dom";
+import {useDispatch} from "react-redux";
+import {postLike} from "../../services/postApi";
 
 
 const PostList = (props) => {
+
+    const dispatch = useDispatch();
+
+    const handlePostLike = (postId) => {
+        dispatch(postLike(postId));
+        window.location.reload();
+    };
 
         return(<div>
             {props.posts && Object.keys(props.posts).map(key => (
@@ -48,7 +57,7 @@ const PostList = (props) => {
                     </CardContent>
                     <CardActions disableSpacing>
                         <IconButton aria-label="add to favorites">
-                            <FavoriteIcon /> {props.posts[key].likes}
+                            <FavoriteIcon onClick={() => handlePostLike(props.posts[key].id)} /> {props.posts[key].likes}
                         </IconButton>
                         <IconButton aria-label="share">
                             <ShareIcon />
@@ -58,7 +67,7 @@ const PostList = (props) => {
                             //onClick={handleExpandClick}
                         >
 
-                            <button /*if comments == null disabled*/><Link to={'/post/'+props.posts[key].id+'/comments'} username={props.username}>Comments</Link></button>
+                            <button><Link to={'/post/'+props.posts[key].id+'/comments'} username={props.username}>Comments</Link></button>
                         </IconButton>
                     </CardActions>
                     <Container>

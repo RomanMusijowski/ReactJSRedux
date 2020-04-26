@@ -67,6 +67,12 @@ export const commentsUnload = () => async (dispatch) =>{
     dispatch(commentsLoadUnload())
 };
 
+export const postLike = (id) => async (dispatch) =>{
+    axios.get(URLS.apiPost+'/'+id+'/like')
+        .then(res => {console.log(res)})
+        .catch(error => {console.log(error)})
+};
+
 
 /*
 export const getUserInfo = (userId) => async (dispatch) =>{
