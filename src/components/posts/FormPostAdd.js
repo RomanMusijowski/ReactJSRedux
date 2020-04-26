@@ -20,10 +20,11 @@ const FormPostAdd = (props) =>  {
         dispatch(addPost(content));
 
         setContent("");
-
-        window.alert("Success create post");
-        window.location.reload();
-
+        if(content.length > 0) {
+            window.alert("Success create post");
+            window.location.reload();
+        }
+        else window.alert("create post is empty");
     };
 
     return (
