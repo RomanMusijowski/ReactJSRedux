@@ -11,8 +11,17 @@ import ShareIcon from "@material-ui/icons/Share";
 import {Link} from "react-router-dom";
 import CardActions from "@material-ui/core/CardActions";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
+import {useDispatch} from "react-redux";
+import {commentLike} from "../../services/postApi";
 
-const Comments = ({id, userId, content, likes }) => {
+const Comments = ({id, userId, content, likes, postId }) => {
+
+    const dispatch = useDispatch();
+
+    const handleCommentLike = (postId, commentId) => {
+        dispatch(commentLike(postId, commentId));
+        window.location.reload();
+    };
 
     return(
         <Container maxWidth="sm">
@@ -46,7 +55,7 @@ const Comments = ({id, userId, content, likes }) => {
                 </CardContent>
                 <CardActions disableSpacing>
                     <IconButton aria-label="add to favorites">
-                        <FavoriteIcon /> {likes}
+                        <FavoriteIcon  onClick={() => handleCommentLike(postId,id)}/> {likes}
                     </IconButton>
                     <IconButton aria-label="share">
                         <ShareIcon />

@@ -73,6 +73,12 @@ export const postLike = (id) => async (dispatch) =>{
         .catch(error => {console.log(error)})
 };
 
+export const commentLike = (postId, commentId) => async (dispatch) =>{
+    axios.get(URLS.apiPost+'/'+postId+'/comment/'+commentId+'/like')
+        .then(res => {console.log(res)})
+        .catch(error => {console.log(error)})
+};
+
 
 /*
 export const getUserInfo = (userId) => async (dispatch) =>{

@@ -28,6 +28,7 @@ const CommentList = (props) => {
                   userId={listComments[key].userId}
                   content={listComments[key].content}
                   likes={listComments[key].likes}
+                  postId={props.match.params.id}
         />
     );
 
