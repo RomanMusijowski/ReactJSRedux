@@ -13,6 +13,7 @@ import PersonAddIcon from '@material-ui/icons/PersonAdd';
 import {deleteEvent, joinEvent} from "../../services/eventApi";
 import InviteDialog from "./InviteDialog";
 import EventIcon from '@material-ui/icons/Event';
+import Grid from '@material-ui/core/Grid';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -49,49 +50,41 @@ const EventListItem = ({id, name, description, dateTime}) => {
 
     return(
         <ListItem alignItems="flex-start">
-            <ListItemAvatar>
-                <Avatar>
-                    <EventIcon />
-                </Avatar>
-            </ListItemAvatar>
-            <ListItemText
-                primary={name}
-                secondary={
-                    <React.Fragment>
-                        {id}
-                        <Typography
-                            component="span"
-                            variant="body2"
-                            className={classes.inline}
-                            color="textPrimary"
-                        >
-                            {description}
-                        </Typography>
-                        <Typography
-                            component="span"
-                            variant="body2"
-                            className={classes.inline}
-                            color="textPrimary">
-                            {dateTime}
-                        </Typography>
-                    </React.Fragment>
-                }
-            >
-            </ListItemText>
-            <ListItemSecondaryAction>
-                <IconButton edge="end"
-                            aria-label="add"
-                            onClick={()=>handleJoinEvent(id)}>
-                    <PersonAddIcon/>
-                </IconButton>
-                <InviteDialog id={id}/>
-                <IconButton edge="end"
-                            aria-label="delete"
-                            onClick={()=>handleDeleteEvent(id)}>
-
-                    <DeleteIcon />
-                </IconButton>
-            </ListItemSecondaryAction>
+            <Grid container spacing={2}>
+                <Grid item>
+                    <Avatar>
+                        <EventIcon />
+                    </Avatar>
+                </Grid>
+                <Grid item xs={12} sm container>
+                    <Grid item xs container direction="column" spacing={2}>
+                        <Grid item md>
+                            <Typography gutterBottom variant="subtitle1">
+                                {id}{name}
+                            </Typography>
+                            <Typography variant="body2" gutterBottom>
+                                {description}
+                            </Typography>
+                            <Typography variant="body2" color="textSecondary">
+                                {dateTime}
+                            </Typography>
+                        </Grid>
+                    </Grid>
+                </Grid>
+                <Grid item>
+                    <IconButton edge="end"
+                                aria-label="add"
+                                onClick={()=>handleJoinEvent(id)}>
+                        <PersonAddIcon/>
+                    </IconButton>
+                    <InviteDialog id={id}/>
+                    <IconButton edge="end"
+                                aria-label="delete"
+                                onClick={()=>handleDeleteEvent(id)}>
+                        <DeleteIcon />
+                    </IconButton>
+                </Grid>
+            </Grid>
         </ListItem>
     )
 };
