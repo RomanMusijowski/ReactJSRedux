@@ -6,6 +6,7 @@ import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import FriendsCount from "./FriendsCount";
 import EventCount from "../events/EventCount"
+import InviteCount from "../events/InviteCount";
 
 class ProfilePage extends Component {
 
@@ -27,6 +28,8 @@ class ProfilePage extends Component {
                         <EventCount events={this.props.userInfo.invitedEvents !== null ?
                             this.props.userInfo.invitedEvents :
                             '0'}/>
+
+                        <InviteCount />
                     </Grid>
                     <Grid item xs={8}>
                         <ProfileWall/>
