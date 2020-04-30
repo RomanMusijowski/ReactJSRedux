@@ -5,7 +5,7 @@ import ProfileWall from "./ProfileWall";
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import FriendsCount from "./FriendsCount";
-import EventCount from "../events/EventCount"
+import EventCount from "../events/EventCount";
 
 class ProfilePage extends Component {
 
@@ -29,7 +29,7 @@ class ProfilePage extends Component {
                             '0'}/>
                     </Grid>
                     <Grid item xs={8}>
-                        <ProfileWall/>
+                        <ProfileWall userId={this.props.userInfo.id}/>
                     </Grid>
                 </Grid>
             </Container>
