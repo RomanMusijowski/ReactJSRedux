@@ -1,6 +1,9 @@
 import axios from 'axios'
 import URLS from "../shared/Urls.constants";
 import {
+    authLoadUserFailure,
+    authLoadUserRequest,
+    authLoadUserSuccess,
     loginFailure,
     loginRequest,
     loginSuccess,
@@ -8,20 +11,31 @@ import {
     registerFailure,
     registerRequest,
     registerSuccess,
-    userLoadFailure,
-    userLoadRequest,
-    userLoadSuccess
 } from "../actions/auth/actions";
 import setAuthToken from "../shared/setAuthToken";
 import {withRouter} from "react-router";
+import {userFriendsIdFailure, userFriendsIdSuccess} from "../actions/user/actions"; 
 
 
 const userApi ={
+    fetchUserFriendsId,
     fetchLoadUser,
     login,
     register,
     logout
 };
+
+function fetchUserFriendsId(userId) {
+    return dispatch => {
+        axios.get(URLS.apiUser + '/' + userId + '/friendsId')
+            .then(res => {
+                dispatch(userFriendsIdSuccess(res));
+            })
+            .catch(error => {
+                dispatch(userFriendsIdFailure(error));
+            })
+    }
+}
 
 function fetchLoadUser() {
 
@@ -30,14 +44,14 @@ function fetchLoadUser() {
     }
 
         return dispatch =>{
-            dispatch(userLoadRequest('User loading have started.'));
+            dispatch(authLoadUserRequest('User loading have started.'));
 
             axios.get(URLS.apiAuth+'/currentUser')
                 .then(
                     (res) => {
-                            dispatch(userLoadSuccess(res))})
+                            dispatch(authLoadUserSuccess(res))})
                 .catch(
-                    (error) => {dispatch(userLoadFailure(error))})
+                    (error) => {dispatch(authLoadUserFailure(error))})
         }
 
 }
