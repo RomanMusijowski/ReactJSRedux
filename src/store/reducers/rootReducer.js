@@ -1,12 +1,16 @@
 import {combineReducers} from "redux";
 import authReducer from "./authReducer";
-import registerReducer from "./registerReducer";
 import postReducer from "./postReducer";
+import registerReducer from "./registerReducer"
+import eventReducer from "./eventReducer"
+
 
 const rootReducer = combineReducers({
     auth: authReducer,
     register: registerReducer,
-    post: postReducer
+    post: postReducer,
+    event: eventReducer,
+
 });
 
 export default rootReducer

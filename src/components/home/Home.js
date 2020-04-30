@@ -1,24 +1,29 @@
 import React, {Component} from 'react';
 import {connect} from "react-redux";
 import userApi from "../../services/userApi";
-import postApi from "../../services/postApi";
 import FormPostAdd from "../../components/posts/FormPostAdd";
 import PostList from "../../components/posts/PostList";
-import Posts from "../posts/Posts";
-import {logger} from "redux-logger/src";
 
 class Home extends Component {
 
-    componentDidMount() {
-        this.props.fetchLoadUser();
 
+    content(){
+        if (this.props.userIdLoaded){
+            return [
+                <FormPostAdd/>,
+                <PostList/>
+            ]
+        }else {
+            return [
+                <p>Please wait</p>
+            ]
+        }
     }
 
     render() {
         return (
             <div>
-               <FormPostAdd/>
-               <PostList/>
+                {this.content()}
             </div>
         );
     }
@@ -31,4 +36,10 @@ const mapDispatchToProps = {
 
 };
 
-export default connect(null, mapDispatchToProps)(Home)
+const mapStateToProps = (state) => {
+    return {
+        userIdLoaded: state.auth.userIsLoaded,
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home)
