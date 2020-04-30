@@ -15,7 +15,7 @@ const EventCount = (props) => {
                     {props.events}
                 </Typography>
                 <Typography variant="h5" component="h2">
-                    Events
+                    Created events
                 </Typography>
             </CardContent>
         </Card>
