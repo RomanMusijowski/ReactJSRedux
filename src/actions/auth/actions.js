@@ -16,6 +16,8 @@ export const userLoadRequest = (data) => createAction(userConstants.USER_LOAD_RE
 export const userLoadSuccess = (data) => createAction(userConstants.USER_LOAD_SUCCESS, data);
 export const userLoadFailure = (error) => createAction(userConstants.USER_LOAD_FAILURE, error);
 
+export const userIdLoadSuccess = (data) => createAction(userConstants.USER_ID_LOAD_SUCCESS, data);
+export const userIdLoadFailure = (error) => createAction(userConstants.USER_ID_LOAD_FAILURE, error);
 
 export const eventCreateRequest = (data) => createAction(eventConstant.CREATE_REQUEST, data);
 export const eventCreateSuccess = (data) => createAction(eventConstant.CREATE_SUCCESS, data);
