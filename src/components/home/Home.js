@@ -14,8 +14,6 @@ class Home extends Component {
         this.props.getAllPostFriends();
     }
 
-
-
     render() {
         const {posts, username} = this.props;
 
@@ -23,8 +21,7 @@ class Home extends Component {
         return (
             <div>
                 <FormPostAdd username={username}/>
-                <PostList posts={posts} username={username}/>
-
+                <PostList posts={posts} />
             </div>
         );
     }
