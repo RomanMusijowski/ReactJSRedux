@@ -14,7 +14,7 @@ import {
 } from "../actions/auth/actions";
 import setAuthToken from "../shared/setAuthToken";
 import {withRouter} from "react-router";
-import {userFriendsIdFailure, userFriendsIdSuccess} from "../actions/user/actions"; 
+import {userFriendsIdFailure, userFriendsIdSuccess} from "../actions/user/actions";
 
 
 const userApi ={

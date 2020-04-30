@@ -7,8 +7,13 @@ import Grid from '@material-ui/core/Grid';
 import FriendsCount from "./FriendsCount";
 import EventCount from "../events/EventCount"
 import InviteCount from "../events/InviteCount";
+import userApi from "../../services/userApi";
 
 class ProfilePage extends Component {
+
+    componentDidMount() {
+        this.props.fetchUserFriendsId(this.props.userInfo.id);
+    }
 
     render() {
         return (
@@ -25,11 +30,14 @@ class ProfilePage extends Component {
                           xs={4}
                           direction="column">
                         <FriendsCount friends={this.props.userInfo.friends.length}/>
+
                         <EventCount events={this.props.userInfo.invitedEvents !== null ?
                             this.props.userInfo.invitedEvents :
                             '0'}/>
 
-                        <InviteCount />
+                            <InviteCount invites={this.props.userInfo.invitedEvents !== null ?
+                            this.props.userInfo.invitedEvents :
+                            '0'}/>
                     </Grid>
                     <Grid item xs={8}>
                         <ProfileWall/>
@@ -46,6 +54,10 @@ const mapStateToProps = (state) => {
     }
 };
 
+const mapDispatchToProps = {
+    fetchUserFriendsId: userApi.fetchUserFriendsId
+}
+
 export default connect(
-    mapStateToProps
+    mapStateToProps, mapDispatchToProps
 )(ProfilePage);
