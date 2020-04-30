@@ -29,7 +29,7 @@ const InviteDialog = ({id}) => {
     };
 
     const classes = useStyles();
-    const [dense, setDense] = React.useState(false);
+    const [dense] = React.useState(false);
 
     const listOfFriends = useSelector((state) => state.auth.userInfo.friends);
     const friends = Object.keys(listOfFriends).map(key =>

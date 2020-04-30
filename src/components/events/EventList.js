@@ -21,7 +21,7 @@ const EventList = (props) => {
     }, [dispatch]);
 
     const classes = useStyles();
-    const [dense, setDense] = React.useState(false);
+    const [dense] = React.useState(false);
 
     const listOfEvents = useSelector((state)=> state.event);
     const items = Object.keys(listOfEvents).map(key =>

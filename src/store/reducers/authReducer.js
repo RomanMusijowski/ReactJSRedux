@@ -1,35 +1,35 @@
-import {userConstants} from "../../constans/userConstans";
+import {authConstants} from "../../constans/authConstans";
 
 
 const authReducer = (state = {}, action) => {
     switch (action.type) {
-        case userConstants.LOGIN_REQUEST:
+        case authConstants.LOGIN_REQUEST:
             return{
                 ...state,
                 userIsLoaded: false,
                 authenticated: false
             };
-        case userConstants.LOGIN_SUCCESS:
+        case authConstants.LOGIN_SUCCESS:
             return{
                 ...state,
                 userIsLoaded: false,
                 authenticated: true
             };
-        case userConstants.LOGIN_FAILURE:
+        case authConstants.LOGIN_FAILURE:
             return {
                 ...state,
                 authenticated: false,
                 userIsLoaded: false,
                 authError: 'Login failure'
             };
-        case userConstants.USER_LOAD_SUCCESS:
+        case authConstants.AUTH_LOAD_USER_SUCCESS:
             return {
                 ...state,
                 userIsLoaded: true,
                 username: action.payload.data.username,
                 userInfo: action.payload.data
             };
-        case userConstants.LOGUOT:
+        case authConstants.LOGUOT:
             localStorage.clear();
             return {
                 ...state,

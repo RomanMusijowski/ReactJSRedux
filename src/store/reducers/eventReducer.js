@@ -7,7 +7,7 @@ const INITIAL_STATE = {
 
 const eventReducer = (state = INITIAL_STATE, action) => {
     switch (action.type) {
-        case eventConstant.FETCH_LIST_OF_POSTS_SUCCESS:
+        case eventConstant.FETCH_LIST_OF_EVENTS_SUCCESS:
             const newEvents = _.mapKeys(action.payload.data.content, 'id');
             return {...state, ...newEvents};
 
