@@ -32,7 +32,7 @@ const authReducer = (state = {}, action) => {
         case userConstants.LOGUOT:
             localStorage.clear();
             return {
-                ...state,
+
                 userInfo: null,
                 authError: null,
                 userIsLoaded: false,
