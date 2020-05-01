@@ -6,39 +6,33 @@ import PostList from "../../components/posts/PostList";
 
 class Home extends Component {
 
-
-    content(){
-        if (this.props.userIdLoaded){
-            return [
-                <FormPostAdd/>,
-                <PostList/>
-            ]
-        }else {
-            return [
-                <p>Please wait</p>
-            ]
-        }
-    }
-
     render() {
+        const {userIsLoaded} = this.props;
+
         return (
             <div>
-                {this.content()}
+                {userIsLoaded ? (
+                        <div>
+                            <FormPostAdd/>
+                            <PostList/>
+                        </div>
+                    ) : (
+                    <p>Please a little bit more</p>
+                    )
+                }
             </div>
         );
     }
 }
 
 
-
 const mapDispatchToProps = {
     fetchLoadUser: userApi.fetchLoadUser,
-
 };
 
 const mapStateToProps = (state) => {
     return {
-        userIdLoaded: state.auth.userIsLoaded,
+        userIsLoaded: state.auth.userIsLoaded,
     }
 }
 
