@@ -1,5 +1,6 @@
 import {eventConstant} from "../../constans/eventConstant";
 import _ from 'lodash';
+import {authConstants} from "../../constans/authConstans";
 
 const INITIAL_STATE = {
 
@@ -14,6 +15,8 @@ const eventReducer = (state = INITIAL_STATE, action) => {
         // case eventConstant.DELETE_POST:
         //     //action.payload === id of a post to delete
         //     return _.omit(state, action.payload);
+        case authConstants.LOGUOT:
+            return { }
         default:
             return state
     }
