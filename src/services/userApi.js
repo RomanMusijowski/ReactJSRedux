@@ -58,7 +58,7 @@ function fetchLoadUser() {
 
 function login(usernameOrEmail, password, history) {
 
-    return dispatch => {
+    return async (dispatch) => {
         const config = {
             headers: {
                 'Content-Type': 'application/json',
@@ -75,6 +75,7 @@ function login(usernameOrEmail, password, history) {
 
                     localStorage.setItem('token', res.data.accessToken);
 
+                    dispatch(fetchLoadUser())
                     history.push('/');
                 })
             .catch(
