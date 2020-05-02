@@ -1,5 +1,4 @@
-import {userAction, userConstants} from "../../constans/userConstans"
-import _ from "lodash";
+import {userConstants} from "../../constans/userConstans"
 
 const INITIAL_STATE = {
 
@@ -10,14 +9,19 @@ const userReducer = (state = INITIAL_STATE, action) => {
         case userConstants.USER_PROFILE_LOAD_SUCCESS:
             return {
                 ...state,
-                [action.payload.id]: action.payload
+                [action.payload.data.id]: action.payload.data
             };
         case userConstants.USER_PROFILE_UPDATE_SECCESS:
-            console.log('Here has to be user object and id of this user')
+            const userId = action.payload.pop();
+            const updatedUser = state[userId];
+            updatedUser.friends = action.payload
             return{
-
+                ...state,
+                    [userId]: updatedUser
             };
         default:
             return state
     }
 }
+
+export default userReducer
