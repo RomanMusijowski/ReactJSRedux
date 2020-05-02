@@ -6,13 +6,12 @@ import SignIn from "./components/auth/SignIn"
 import Home from "./components/home/Home";
 import requireAuth from "./shared/requireAuth/requireAuth";
 import noRequireAuth from "./shared/requireAuth/noRequireAuth";
-import store from './store/reducers/store'
+import {store} from './store/reducers/store'
 import {loginSuccess} from "./actions/auth/actions";
 import ProfilePage from "./components/profile/ProfilePage";
 import EventPage from "./components/events/EventPage";
 
 const token = localStorage.getItem('token');
-
 if(token) {
     store.dispatch(loginSuccess(token));
 }
