@@ -10,7 +10,7 @@ const loggerMiddleware = createLogger();
 const persistConfig = {
     key: 'root',
     storage,
-    whitelist: ['auth', 'event', 'post']
+    whitelist: ['auth', 'event', 'post', 'user', 'register']
 };
 const persistedReducer = persistReducer(
     persistConfig,
