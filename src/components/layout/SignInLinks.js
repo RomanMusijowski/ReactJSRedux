@@ -1,6 +1,6 @@
 import React from 'react'
 import {NavLink, useHistory} from "react-router-dom";
-import userApi, {logout} from '../../services/userApi'
+import userApi, {logout} from '../../services/authApi'
 import {connect, useDispatch} from "react-redux";
 
 const SingInLinks = (props) => {
