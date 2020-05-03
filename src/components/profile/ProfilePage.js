@@ -7,39 +7,38 @@ import Grid from '@material-ui/core/Grid';
 import FriendsCount from "./FriendsCount";
 import InviteCount from "../events/InviteCount";
 import {fetchUserFriends} from "../../services/userApi";
+import EventCount from "../events/EventCount";
+import {fetchUserEvents} from "../../services/userApi";
 
 class ProfilePage extends Component {
 
     componentDidMount() {
-        this.props.fetchUserFriends(this.props.userInfo.id)
+        this.props.fetchUserFriends(this.props.userInfoId)
+        this.props.fetchUserEvents(this.props.userInfoId)
     }
 
     render() {
-        const {userIsLoaded, userInfo, userList} = this.props;
+        const {userIsLoaded, userInfoId, userList} = this.props;
         return (
             <div>
                 { userIsLoaded ? (
                     <Container maxWidth="lg">
-                        <ProfileArea username={userInfo.username}
-                                     email={userInfo.email}
-                                     firstName={userInfo.firstName}
-                                     lastName={userInfo.lastName}
-                                     phoneNumber={userInfo.phoneNumber}
-                                     gender={userInfo.gender}/>
+                        <ProfileArea username={userList[userInfoId].username}
+                                     email={userList[userInfoId].email}
+                                     firstName={userList[userInfoId].firstName}
+                                     lastName={userList[userInfoId].lastName}
+                                     phoneNumber={userList[userInfoId].phoneNumber}
+                                     gender={userList[userInfoId].gender}/>
 
                         <Grid container spacing={2}>
                             <Grid item
                                   xs={4}
                                   direction="column">
-                                <FriendsCount friends={userList[userInfo.id].friends.length}/>
+                                <FriendsCount friends={userList[userInfoId].friends.length}/>
 
-                                {/*<EventCount events={userInfo.invitedEvents !== null ?*/}
-                                {/*    userInfo.invitedEvents :*/}
-                                {/*    '0'}/>*/}
+                                <EventCount events={userList[userInfoId].events.length}/>
 
-                                <InviteCount invites={userInfo.invitedEvents !== null ?
-                                    userInfo.invitedEvents :
-                                    '0'}/>
+                                <InviteCount invites={userList[userInfoId].invitedEvents.length}/>
                             </Grid>
                             <Grid item xs={8}>
                                 <ProfileWall/>
@@ -57,14 +56,15 @@ class ProfilePage extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        userInfo: state.auth.userInfo,
+        userInfoId: state.auth.userInfo.id,
         userIsLoaded: state.auth.userIsLoaded,
         userList: state.user
     }
 };
 
 const mapDispatchToProps = {
-    fetchUserFriends: fetchUserFriends
+    fetchUserFriends: fetchUserFriends,
+    fetchUserEvents: fetchUserEvents
 }
 
 export default connect(
