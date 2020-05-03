@@ -2,9 +2,9 @@ import axios from 'axios'
 import URLS from "../shared/Urls.constants";
 import {
     eventCreateFailure,
-    eventCreateSuccess,
+    eventCreateSuccess, eventDeleteFialure, eventDeleteSuccess,
     eventFetchListFailure,
-    eventFetchListSuccess
+    eventFetchListSuccess, eventInviteFriendFailure, eventInviteFriendSuccess, eventJoinFailure, eventJoinSuccess
 } from "../actions/event/actions";
 
 
@@ -17,40 +17,52 @@ export const addEvent = (name, description, dateTime) => async (dispatch) => {
     formData.append("files", null);
 
     axios.post(URLS.apiEvent, formData)
-        .then(
-            res => {
+        .then(res => {
                 dispatch(eventCreateSuccess(res));
-                console.log(res)
-
             })
-        .catch(
-            error => {
+        .catch(error => {
                 dispatch(eventCreateFailure(error.response.data.message));
             })
 };
 
 export const fetchEventList = () => async (dispatch) =>{
     axios.get(URLS.apiEvent)
-        .then(res => {dispatch(eventFetchListSuccess(res))})
-        .catch(error => {dispatch(eventFetchListFailure(error))})
+        .then(res => {
+            dispatch(eventFetchListSuccess(res))
+        })
+        .catch(error => {
+            dispatch(eventFetchListFailure(error))
+        })
 };
 
 export const joinEvent = (id) => async  (dispatch) =>{
     axios.post(URLS.apiEvent + '/' + id + '/join')
-        .then(res => {console.log(res)})
-        .catch(error => { console.log(error)})
+        .then(res => {
+            dispatch(eventJoinSuccess(res))
+        })
+        .catch(error => {
+            dispatch(eventJoinFailure(error))
+        })
 };
 
 export const deleteEvent = (id) => async  (dispatch) =>{
     axios.delete(URLS.apiEvent + '/' + id)
-        .then(res => {console.log(res)})
-        .catch(error => { console.log(error)})
+        .then(res => {
+            dispatch(eventDeleteSuccess(res))
+        })
+        .catch(error => {
+            dispatch(eventDeleteFialure(error))
+        })
 };
 
 export const inviteFriendToEvent = (userId, eventId) => async (dispatch) => {
     axios.post(URLS.apiUser+'/' + userId + '/invite/' + eventId )
-        .then(res => {console.log(res)})
-        .catch(error => {console.log(error)})
+        .then(res => {
+            dispatch(eventInviteFriendSuccess(res))
+        })
+        .catch(error => {
+            dispatch(eventInviteFriendFailure(error))
+        })
 };
 
 
