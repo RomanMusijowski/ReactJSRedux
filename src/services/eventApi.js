@@ -2,9 +2,15 @@ import axios from 'axios'
 import URLS from "../shared/Urls.constants";
 import {
     eventCreateFailure,
-    eventCreateSuccess, eventDeleteFialure, eventDeleteSuccess,
-    eventFetchListFailure,
-    eventFetchListSuccess, eventInviteFriendFailure, eventInviteFriendSuccess, eventJoinFailure, eventJoinSuccess
+    eventCreateSuccess,
+    eventDeleteFialure,
+    eventDeleteSuccess,
+    eventInviteFriendFailure,
+    eventInviteFriendSuccess,
+    eventJoinFailure,
+    eventJoinSuccess,
+    fetchListFriendsEventsFailure,
+    fetchListFriendsEventsSuccess
 } from "../actions/event/actions";
 
 
@@ -28,10 +34,10 @@ export const addEvent = (name, description, dateTime) => async (dispatch) => {
 export const fetchEventList = () => async (dispatch) =>{
     axios.get(URLS.apiEvent)
         .then(res => {
-            dispatch(eventFetchListSuccess(res))
+            dispatch(fetchListFriendsEventsSuccess(res))
         })
         .catch(error => {
-            dispatch(eventFetchListFailure(error))
+            dispatch(fetchListFriendsEventsFailure(error))
         })
 };
 
