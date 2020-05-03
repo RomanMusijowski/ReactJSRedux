@@ -75,11 +75,11 @@ const EventListItem = ({id, name, description, dateTime}) => {
                         <PersonAddIcon/>
                     </IconButton>
                     <InviteDialog id={id}/>
-                    <IconButton edge="end"
-                                aria-label="delete"
-                                onClick={()=>handleDeleteEvent(id)}>
-                        <DeleteIcon />
-                    </IconButton>
+                    {/*<IconButton edge="end"*/}
+                    {/*            aria-label="delete"*/}
+                    {/*            onClick={()=>handleDeleteEvent(id)}>*/}
+                    {/*    <DeleteIcon />*/}
+                    {/*</IconButton>*/}
                 </Grid>
             </Grid>
         </ListItem>
