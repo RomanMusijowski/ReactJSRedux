@@ -1,4 +1,5 @@
 import {userConstants} from "../../constans/userConstans"
+import {authConstants} from "../../constans/authConstans";
 
 const INITIAL_STATE = {
 
@@ -19,6 +20,8 @@ const userReducer = (state = INITIAL_STATE, action) => {
                 ...state,
                     [userId]: updatedUser
             };
+        case authConstants.LOGUOT:
+            return {};
         default:
             return state
     }
