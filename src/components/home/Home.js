@@ -2,12 +2,13 @@ import React, {Component} from 'react';
 import {connect} from "react-redux";
 import FormPostAdd from "../../components/posts/FormPostAdd";
 import PostList from "../../components/posts/PostList";
-import {fetchUserProfile} from "../../services/userApi";
+import {fetchUserFriends, fetchUserProfile} from "../../services/userApi";
 
 class Home extends Component {
 
-    fetchUserProfile() {
+    fetchUserData() {
         this.props.fetchUserProfile(this.props.userInfo.id);
+        this.props.fetchUserFriends(this.props.userInfo.id);
     }
 
     render() {
@@ -16,7 +17,7 @@ class Home extends Component {
             <div>
                 {userIsLoaded ? (
                         <div>
-                            {this.fetchUserProfile()}
+                            {this.fetchUserData()}
                             <FormPostAdd/>
                             <PostList/>
                         </div>
@@ -32,6 +33,7 @@ class Home extends Component {
 
 const mapDispatchToProps = {
     fetchUserProfile: fetchUserProfile,
+    fetchUserFriends: fetchUserFriends
 };
 
 const mapStateToProps = (state) => {

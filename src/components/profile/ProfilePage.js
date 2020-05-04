@@ -13,7 +13,7 @@ import {fetchUserEvents} from "../../services/userApi";
 class ProfilePage extends Component {
 
     componentDidMount() {
-        this.props.fetchUserFriends(this.props.userInfoId)
+
         this.props.fetchUserEvents(this.props.userInfoId)
     }
 
@@ -63,7 +63,6 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = {
-    fetchUserFriends: fetchUserFriends,
     fetchUserEvents: fetchUserEvents
 }
 
