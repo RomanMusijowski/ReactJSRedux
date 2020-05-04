@@ -60,6 +60,12 @@ Installing dependency with npm
 ```
 npm install
 ```
+
+Running the project
+
+```
+npm start
+```
   
   
 ### Built With: 
