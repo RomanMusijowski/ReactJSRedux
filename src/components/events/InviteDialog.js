@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const InviteDialog = ({id}) => {
+const InviteDialog = ({eventId}) => {
     const [open, setOpen] = React.useState(false);
 
     const handleClickOpen = () => {
@@ -31,9 +31,9 @@ const InviteDialog = ({id}) => {
     const classes = useStyles();
     const [dense] = React.useState(false);
 
-    const listOfFriends = useSelector((state) => state.auth.userInfo.friends);
+    const listOfFriends = useSelector((state) => state.user[state.auth.userInfo.id].friends);
     const friends = Object.keys(listOfFriends).map(key =>
-        <InviteDialogItem eventId={id}
+        <InviteDialogItem eventId={eventId}
                           userId={listOfFriends[key].id}
                           username={listOfFriends[key].username}
                           firstName={listOfFriends[key].firstName}

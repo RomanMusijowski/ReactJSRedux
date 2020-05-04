@@ -5,7 +5,6 @@ import ListItem from '@material-ui/core/ListItem';
 import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
-import DeleteIcon from '@material-ui/icons/Delete';
 import PersonAddIcon from '@material-ui/icons/PersonAdd';
 import {deleteEvent, joinEvent} from "../../services/eventApi";
 import InviteDialog from "./InviteDialog";
@@ -24,23 +23,22 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-const EventListItem = ({id, name, description, dateTime}) => {
+const EventListItem = ({eventId, name, description, dateTime}) => {
     const classes = useStyles();
     const dispatch = useDispatch();
 
-    const handleJoinEvent = (id) => {
+    const handleJoinEvent = (eventId) => {
         console.log('Clicked button');
-        console.log(id);
-        dispatch(joinEvent(id));
+        console.log(eventId);
+        dispatch(joinEvent(eventId));
     };
 
-    const handleDeleteEvent = (id) => {
-        console.log("delete event");
-        dispatch(deleteEvent(id));
+    const handleDeleteEvent = (eventId) => {
+        dispatch(deleteEvent(eventId));
         window.location.reload();
     };
 
-    const handleInviteFriends = (id) => {
+    const handleInviteFriends = (eventId) => {
         console.log("handleInviteFriends!")
     };
 
@@ -57,7 +55,7 @@ const EventListItem = ({id, name, description, dateTime}) => {
                     <Grid item xs container direction="column" spacing={2}>
                         <Grid item md>
                             <Typography gutterBottom variant="subtitle1">
-                                {id}{name}
+                                {eventId}{name}
                             </Typography>
                             <Typography variant="body2" gutterBottom>
                                 {description}
@@ -71,13 +69,13 @@ const EventListItem = ({id, name, description, dateTime}) => {
                 <Grid item>
                     <IconButton edge="end"
                                 aria-label="add"
-                                onClick={()=>handleJoinEvent(id)}>
+                                onClick={()=>handleJoinEvent(eventId)}>
                         <PersonAddIcon/>
                     </IconButton>
-                    <InviteDialog id={id}/>
+                    <InviteDialog eventId={eventId}/>
                     {/*<IconButton edge="end"*/}
                     {/*            aria-label="delete"*/}
-                    {/*            onClick={()=>handleDeleteEvent(id)}>*/}
+                    {/*            onClick={()=>handleDeleteEvent(eventId)}>*/}
                     {/*    <DeleteIcon />*/}
                     {/*</IconButton>*/}
                 </Grid>

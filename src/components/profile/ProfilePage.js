@@ -6,14 +6,12 @@ import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import FriendsCount from "./FriendsCount";
 import InviteCount from "../events/InviteCount";
-import {fetchUserFriends} from "../../services/userApi";
-import EventCount from "../events/EventCount";
 import {fetchUserEvents} from "../../services/userApi";
+import EventCount from "../events/EventCount";
 
 class ProfilePage extends Component {
 
     componentDidMount() {
-
         this.props.fetchUserEvents(this.props.userInfoId)
     }
 

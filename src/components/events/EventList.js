@@ -25,7 +25,7 @@ const EventList = (props) => {
 
     const listOfEvents = useSelector((state)=> state.event);
     const items = Object.keys(listOfEvents).map(key =>
-        <EventListItem id={listOfEvents[key].id}
+        <EventListItem eventId={listOfEvents[key].id}
                        name={listOfEvents[key].name}
                        description={listOfEvents[key].description}
                        dateTime={listOfEvents[key].dateTime}/>);
