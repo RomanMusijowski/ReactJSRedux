@@ -32,7 +32,7 @@ export const fetchUserFriends = (userId) => async (dispatch) => {
 }
 
 export const fetchUserEvents = (userId) => async (dispatch) => {
-    axios.get(URLS.apiEvent+'/' + userId)
+    axios.get(URLS.apiEvent+'/user/' + userId)
         .then(res => {
             dispatch(fetchUserEventsSuccess(res))
         })

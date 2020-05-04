@@ -1,6 +1,5 @@
 import {userConstants} from "../../constans/userConstans"
 import {authConstants} from "../../constans/authConstans";
-import {eventConstant} from "../../constans/eventConstant";
 
 const INITIAL_STATE = {
 
@@ -25,9 +24,9 @@ const userReducer = (state = INITIAL_STATE, action) => {
                     [userId]: updatedUser
             };
         case userConstants.FETCH_USER_EVENTS_SUCCESS:
-            const id = action.payload.data.userId;
+            const id = action.payload.data[0].userId;   //taking userId from an array
             const user = state[id];
-            user.events = [action.payload.data]
+            user.events = action.payload.data
             return{
                 ...state,
                 [id]: user
