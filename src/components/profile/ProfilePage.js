@@ -32,7 +32,7 @@ class ProfilePage extends Component {
                             <Grid item
                                   xs={4}
                                   direction="column">
-                                <FriendsCount friends={userList[userInfoId].friends.length}/>
+                                <FriendsCount friends={userList[userInfoId].friends}/>
                                 <EventCount events={userList[userInfoId].events}/>
                                 <InviteCount invites={userList[userInfoId].invitedEvents}/>
                             </Grid>

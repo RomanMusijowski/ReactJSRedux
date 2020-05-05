@@ -1,20 +1,18 @@
 import {useDispatch} from "react-redux";
 import ListItem from "@material-ui/core/ListItem";
+import Grid from "@material-ui/core/Grid";
 import Avatar from "@material-ui/core/Avatar";
 import FolderIcon from "@material-ui/icons/Folder";
-import React from "react";
 import Typography from "@material-ui/core/Typography";
 import IconButton from "@material-ui/core/IconButton";
-import DeleteIcon from '@material-ui/icons/Delete';
-import {deleteEvent} from "../../services/eventApi";
-import Grid from "@material-ui/core/Grid";
+import DeleteIcon from "@material-ui/icons/Delete";
+import React from "react";
 
-const EventDialogItem = ({eventId, name, description, dateTime}) => {
+const FriendDialogItem = ({friendId, username, firstName, lastName}) => {
     const dispatch = useDispatch();
 
-    const handleDeleteEvent = (eventId) => {
-        dispatch(deleteEvent(eventId));
-        // window.location.reload();
+    const handleDeleteFriend = (friendId) => {
+        console.log('delete a friend')
     };
 
     return(
@@ -29,13 +27,13 @@ const EventDialogItem = ({eventId, name, description, dateTime}) => {
                     <Grid item xs container direction="column" spacing={2}>
                         <Grid item md>
                             <Typography gutterBottom variant="subtitle1">
-                                {name}
+                                {username}
                             </Typography>
                             <Typography variant="body2" gutterBottom>
-                                {description}
+                                {firstName}
                             </Typography>
                             <Typography variant="body2" color="textSecondary">
-                                {dateTime}
+                                {lastName}
                             </Typography>
                         </Grid>
                     </Grid>
@@ -43,7 +41,7 @@ const EventDialogItem = ({eventId, name, description, dateTime}) => {
                 <Grid item>
                     <IconButton edge="end"
                                 aria-label="delete"
-                                onClick={()=>handleDeleteEvent(eventId)}>
+                                onClick={()=>handleDeleteFriend(friendId)}>
                         <DeleteIcon />
                     </IconButton>
                 </Grid>
@@ -52,4 +50,4 @@ const EventDialogItem = ({eventId, name, description, dateTime}) => {
     )
 }
 
-export default EventDialogItem
+export default FriendDialogItem
