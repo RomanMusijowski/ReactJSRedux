@@ -27,7 +27,7 @@ class App extends Component{
                     <Route exact path='/' component={requireAuth(Home)}/>
                     <Route path='/signUp' component={noRequireAuth(SignUp)}/>
                     <Route path='/signIn' component={noRequireAuth(SignIn)}/>
-                    <Route path='/profile' component={requireAuth(ProfilePage)}/>
+                    <Route path='/profile/:id' component={requireAuth(ProfilePage)}/>
                     <Route path='/event' component={requireAuth(EventPage)}/>
                 </Switch>
               </div>

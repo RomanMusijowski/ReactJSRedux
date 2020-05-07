@@ -13,6 +13,8 @@ export const fetchUserProfile = (userId) => async (dispatch) => {
     axios.get(URLS.apiUser + '/' + userId)
         .then(data => {
             dispatch(userProfileLoadSuccess(data))
+            dispatch(fetchUserFriends(userId))
+            dispatch(fetchUserEvents(userId))
         })
         .catch(error => {
             dispatch(userProfileLoadFailure(error))
@@ -32,7 +34,7 @@ export const fetchUserFriends = (userId) => async (dispatch) => {
 }
 
 export const fetchUserEvents = (userId) => async (dispatch) => {
-    axios.get(URLS.apiEvent+'/user/' + userId)
+        axios.get(URLS.apiEvent+'/user/' + userId)
         .then(res => {
             dispatch(fetchUserEventsSuccess(res))
         })

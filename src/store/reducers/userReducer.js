@@ -11,6 +11,7 @@ const userReducer = (state = INITIAL_STATE, action) => {
             const newUserId = action.payload.data.id
             const newUser = action.payload.data
             newUser.events = []
+            newUser.profileLoad = true
             return {
                 ...state,
                 [newUserId]: newUser
@@ -19,6 +20,7 @@ const userReducer = (state = INITIAL_STATE, action) => {
             const userId = action.payload.pop();
             const updatedUser = state[userId];
             updatedUser.friends = action.payload
+            updatedUser.friendsLoad = true
             return{
                 ...state,
                     [userId]: updatedUser
@@ -27,6 +29,7 @@ const userReducer = (state = INITIAL_STATE, action) => {
             const id = action.payload.data[0].userId;   //taking userId from an array
             const user = state[id];
             user.events = action.payload.data
+            user.eventsLoad = true
             return{
                 ...state,
                 [id]: user

@@ -14,6 +14,7 @@ import {
 } from "../actions/auth/actions";
 import setAuthToken from "../shared/setAuthToken";
 import {withRouter} from "react-router";
+import {fetchUserProfile} from "./userApi";
 
 
 const authApi ={
@@ -34,7 +35,9 @@ function fetchLoadUser() {
             axios.get(URLS.apiAuth+'/currentUser')
                 .then(
                     (res) => {
-                            dispatch(authLoadUserSuccess(res))})
+                            dispatch(authLoadUserSuccess(res))
+                            dispatch(fetchUserProfile(res.data.id))
+                    })
                 .catch(
                     (error) => {dispatch(authLoadUserFailure(error))})
         }
