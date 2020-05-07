@@ -13,6 +13,7 @@ const ProfilePage = (props) => {
 
     const dispatch = useDispatch();
 
+
     const userId = props.match.params.id
     const userList = useSelector((state)=> state.user);
     const userInfoId = useSelector((state) => state.auth.userInfo.id)
@@ -55,7 +56,7 @@ const ProfilePage = (props) => {
                             <InviteCount invites={userList[userId].invitedEvents}/>
                         </Grid>
                         <Grid item xs={8}>
-                            <ProfileWall/>
+                            <ProfileWall userId={userId}/>
                         </Grid>
                     </Grid>
                 </Container>
