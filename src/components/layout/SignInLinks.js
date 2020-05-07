@@ -3,7 +3,7 @@ import {NavLink, useHistory} from "react-router-dom";
 import userApi, {logout} from '../../services/authApi'
 import {connect, useDispatch} from "react-redux";
 
-const SingInLinks = (props) => {
+const SingInLinks = ({username, userId}) => {
 
     const dispatch = useDispatch();
     const history = useHistory();
@@ -17,7 +17,7 @@ const SingInLinks = (props) => {
         <div>
             <ul className="right">
                 <li><a onClick={handleLogout}>Log out</a></li>
-                <li><NavLink to='/profile' className="btn btn-floating pink lighten-1">{props.username}</NavLink></li>
+                <li><NavLink to={'/profile/'+ userId} className="btn btn-floating pink lighten-1">{username}</NavLink></li>
                 <li><NavLink to='/event' className="btn btn-floating pink lighten-1">EV</NavLink></li>
             </ul>
         </div>

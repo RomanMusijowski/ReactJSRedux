@@ -7,11 +7,12 @@ import {connect} from "react-redux";
 
 class Navbar extends Component{
 
-
     navbarLinks(){
+        const {userInfo} = this.props
         if(this.props.authenticated && this.props.userIsLoaded){
             return [
-                <SingInLinks username={this.props.userInfo.username}/>
+                <SingInLinks username={userInfo.username}
+                             userId={userInfo.id}/>
             ];
         } else {
             return [
