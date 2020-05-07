@@ -8,11 +8,12 @@ import IconButton from "@material-ui/core/IconButton";
 import DeleteIcon from "@material-ui/icons/Delete";
 import React from "react";
 
-const FriendDialogItem = ({friendId, username, firstName, lastName}) => {
+const FriendDialogItem = ({friendId, username, firstName, lastName, loggedInUser}) => {
     const dispatch = useDispatch();
 
     const handleDeleteFriend = (friendId) => {
         console.log('delete a friend')
+        console.log(loggedInUser)
     };
 
     return(

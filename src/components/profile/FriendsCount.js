@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const FriendsCount = ({friends}) => {
+const FriendsCount = ({friends, loggedInUser}) => {
 
     const [open, setOpen] = React.useState(false);
 
@@ -37,7 +37,8 @@ const FriendsCount = ({friends}) => {
         return <FriendDialogItem friendId={friend.id}
                                  username={friend.username}
                                  firstName={friend.firstName}
-                                 lastName={friend.lastName}/>
+                                 lastName={friend.lastName}
+                                 loggedInUser={loggedInUser}/>
     })
 
     return(
