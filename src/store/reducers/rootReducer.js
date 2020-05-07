@@ -15,7 +15,7 @@ const rootReducer = combineReducers({
     post: postReducer,
     comment: commentReducer,
     userPost: userPostReducer,
-    userProfile: userProfileReducer
+    userProfile: userProfileReducer,
     event: eventReducer,
     user: userReducer
 

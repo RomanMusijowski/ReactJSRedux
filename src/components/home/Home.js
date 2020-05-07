@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from "react-redux";
 
-import userApi from "../../services/userApi";
+import authApi from "../../services/authApi";
 import {getAllPostFriends} from "../../services/postApi";
 import FormPostAdd from "../../components/posts/FormPostAdd";
 import PostList from "../../components/posts/PostList";
@@ -47,7 +47,7 @@ const mapStateToProps = (state) => {
 
 
 const mapDispatchToProps = {
-    fetchLoadUser: userApi.fetchLoadUser,
+    fetchLoadUser: authApi.fetchLoadUser,
     getAllPostFriends
 
 };
