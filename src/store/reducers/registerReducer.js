@@ -1,4 +1,4 @@
-import {userConstants} from "../../constans/userConstans";
+import {authConstants} from "../../constans/authConstans";
 
 const initialState = {
     registerError: null
@@ -6,11 +6,11 @@ const initialState = {
 
 const registerReducer = (state = initialState, action) => {
     switch (action.type) {
-        case userConstants.REGISTER_REQUEST:
+        case authConstants.REGISTER_REQUEST:
             return {};
-        case userConstants.REGISTER_SUCCESS:
+        case authConstants.REGISTER_SUCCESS:
             return {};
-        case userConstants.REGISTER_FAILURE:
+        case authConstants.REGISTER_FAILURE:
             return {
                 ...state,
                 registerError: 'Registration failure'

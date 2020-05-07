@@ -3,7 +3,6 @@ import PeopleIcon from '@material-ui/icons/People';
 import Card from '@material-ui/core/Card'
 import Typography from '@material-ui/core/Typography';
 import CardContent from '@material-ui/core/CardContent';
-import purple from '@material-ui/core/colors/purple';
 import {makeStyles} from "@material-ui/core/styles";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import DialogContent from "@material-ui/core/DialogContent";
@@ -11,7 +10,7 @@ import List from "@material-ui/core/List";
 import DialogActions from "@material-ui/core/DialogActions";
 import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
-import FriendDialogItem from "./FriendDialogItem";
+import EventDialogItem from "./EventDialogItem";
 
 const useStyles = makeStyles((theme) => ({
     demo: {
@@ -19,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const FriendsCount = ({friends}) => {
+const EventCount = ({events}) => {
 
     const [open, setOpen] = React.useState(false);
 
@@ -33,36 +32,35 @@ const FriendsCount = ({friends}) => {
 
     const classes = useStyles();
     const [dense] = React.useState(false);
-    const friendsList = friends.map(function (friend) {
-        return <FriendDialogItem friendId={friend.id}
-                                 username={friend.username}
-                                 firstName={friend.firstName}
-                                 lastName={friend.lastName}/>
-    })
+    const eventsList = events.map(function (item) {
+        return <EventDialogItem eventId={item.id}
+                                name={item.name}
+                                description={item.description}
+                                dateTime={item.dateTime}/>
+    }   )
 
     return(
         <Fragment>
-            <Card style={{backgroundColor: "purple",
-                    marginTop: "15px",
-                    textAlign: "center"}}>
-                <CardContent >
+            <Card style={{marginTop: "15px"}}>
+                <CardContent style={{
+                    backgroundColor: "orange", textAlign: "center"}}>
 
                     <Typography variant={"h5"}>
                         <PeopleIcon onClick={handleClickOpen}/>
-                        {friends.length}
+                        {events.length}
                     </Typography>
                     <Typography variant="h5" component="h2">
-                        Followers
+                        Created events
                     </Typography>
                 </CardContent>
             </Card>
 
             <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
-                <DialogTitle id="form-dialog-title">User followers</DialogTitle>
+                <DialogTitle id="form-dialog-title">User events</DialogTitle>
                 <DialogContent>
                     <div className={classes.demo}>
                         <List dense={dense}>
-                            {friendsList}
+                            {eventsList}
                         </List>
                     </div>
                 </DialogContent>
@@ -76,4 +74,4 @@ const FriendsCount = ({friends}) => {
     )
 };
 
-export default FriendsCount
+export default EventCount;

@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from "react-redux";
+
 import userApi from "../../services/userApi";
 import {getAllPostFriends} from "../../services/postApi";
 import FormPostAdd from "../../components/posts/FormPostAdd";
@@ -16,14 +17,30 @@ class Home extends Component {
 
     render() {
         const {posts, username} = this.props;
-
+        const {userIsLoaded} = this.props;
 
         return (
             <div>
-                <FormPostAdd username={username}/>
-                <PostList posts={posts} />
+                {userIsLoaded ? (
+                        <div>
+                          <FormPostAdd username={username}/>
+                          <PostList posts={posts} />
+                        </div>
+                    ) : (
+                    <p>Please wait a little bit more.</p>
+                    )
+                }
+
             </div>
         );
+    }
+}
+
+const mapStateToProps = (state) => {
+    return {
+        userIsLoaded: state.auth.userIsLoaded,
+        username: state.auth.username,
+        posts: state.post
     }
 }
 
@@ -34,9 +51,7 @@ const mapDispatchToProps = {
     getAllPostFriends
 
 };
-const mapStateToProps = (state) => ({
-        username: state.auth.username,
-        posts: state.post
-});
+
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home)
+

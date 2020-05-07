@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from "react-redux";
-import userApi from "../../services/userApi";
+import userApi from "../../services/authApi";
 
 class SignUp extends Component{
 
