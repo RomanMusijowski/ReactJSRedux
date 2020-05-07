@@ -13,6 +13,7 @@ import MoreVertIcon from '@material-ui/icons/MoreVert';
 import {Link} from "react-router-dom";
 import {useDispatch} from "react-redux";
 import {postLike} from "../../services/postApi";
+import Pagination from '@material-ui/lab/Pagination';
 
 
 const PostList = (props) => {
@@ -76,8 +77,8 @@ const PostList = (props) => {
                     </Container>
                 </Card>
 
-
             </Container>
+
             ))}
             </div>
         )

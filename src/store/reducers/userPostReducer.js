@@ -11,8 +11,8 @@ const userPostReducer = (state = initState, action) => {
     switch (action.type) {
         case postConstants.USER_POST_LOAD_SUCCESS:
             const userPost = _.mapKeys(action.payload.data.content, 'id');
-            const page = action.payload.data;
-            return { ...state, ...userPost, ...page};
+           // const page = action.payload.data;
+            return { ...state, ...userPost, /*...page*/};
         case postConstants.USER_POST_LOAD_FAILURE:
             return {
                 ...state
