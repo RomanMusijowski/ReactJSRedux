@@ -7,13 +7,43 @@ import Typography from "@material-ui/core/Typography";
 import IconButton from "@material-ui/core/IconButton";
 import DeleteIcon from "@material-ui/icons/Delete";
 import React from "react";
+import VisibilityIcon from '@material-ui/icons/Visibility';
+import {useHistory} from "react-router-dom";
 
-const FriendDialogItem = ({friendId, username, firstName, lastName}) => {
+const FriendDialogItem = ({friendId, username, firstName, lastName, loggedInUser}) => {
+
     const dispatch = useDispatch();
+    const history = useHistory();
 
     const handleDeleteFriend = (friendId) => {
         console.log('delete a friend')
+        console.log(friendId)
+    }
+
+    const handleShowProfile = (friendId) => {
+        history.push("/profile/" + friendId);
+        window.location.reload();
+    }
+
+    const showButton = (loggedInUser, friendId) => {
+        if (loggedInUser) {
+            return [
+                <IconButton edge="end"
+                                aria-label="delete"
+                                onClick={()=>handleDeleteFriend(friendId)}>
+                    <DeleteIcon />
+                </IconButton>
+            ]
+        } else {
+            return [
+                <IconButton edge="end"
+                               aria-label="check">
+                    <VisibilityIcon onClick={()=>handleShowProfile(friendId)}/>
+                </IconButton>
+            ]
+        }
     };
+
 
     return(
         <ListItem alignItems="flex-start">
@@ -39,11 +69,7 @@ const FriendDialogItem = ({friendId, username, firstName, lastName}) => {
                     </Grid>
                 </Grid>
                 <Grid item>
-                    <IconButton edge="end"
-                                aria-label="delete"
-                                onClick={()=>handleDeleteFriend(friendId)}>
-                        <DeleteIcon />
-                    </IconButton>
+                    {showButton(loggedInUser, friendId)}
                 </Grid>
             </Grid>
         </ListItem>

@@ -35,7 +35,7 @@ const InviteCount = ({invites}) => {
     const [dense] = React.useState(false);
     const invitesList = invites.map(function (item) {
         return <InviteDialogItem byUser={item.byUser}
-                                eventId={item.eventId}/>
+                                 eventId={item.eventId}/>
     }   )
 
     return(

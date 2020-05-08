@@ -17,10 +17,10 @@ const ProfilePage = (props) => {
     const userId = props.match.params.id
     const userList = useSelector((state)=> state.user);
     const userInfoId = useSelector((state) => state.auth.userInfo.id)
-    const loggedInUser = new Boolean(Number(userId) === Number(userInfoId))
+    const loggedInUser = Boolean(Number(userId) === Number(userInfoId))
 
     useEffect(() => {
-        if (!!loggedInUser){
+        if (!loggedInUser){
             dispatch(fetchUserProfile(userId))
         }
     }, [dispatch]);
@@ -51,9 +51,14 @@ const ProfilePage = (props) => {
                         <Grid item
                               xs={4}
                               direction="column">
-                            <FriendsCount friends={userList[userId].friends}/>
-                            <EventCount events={userList[userId].events}/>
-                            <InviteCount invites={userList[userId].invitedEvents}/>
+                            <FriendsCount friends={userList[userId].friends} loggedInUser={loggedInUser}/>
+                            <EventCount events={userList[userId].events} loggedInUser={loggedInUser}/>
+                            {loggedInUser ? (
+                                <InviteCount invites={userList[userId].invitedEvents}/>
+                            ) : (
+                                <p></p>
+                            )}
+
                         </Grid>
                         <Grid item xs={8}>
                             <ProfileWall userId={userId}/>
