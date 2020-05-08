@@ -16,10 +16,10 @@ const ProfilePage = (props) => {
     const userId = props.match.params.id
     const userList = useSelector((state)=> state.user);
     const userInfoId = useSelector((state) => state.auth.userInfo.id)
-    const loggedInUser = new Boolean(Number(userId) === Number(userInfoId))
+    const loggedInUser = Boolean(Number(userId) === Number(userInfoId))
 
     useEffect(() => {
-        if (!!loggedInUser){
+        if (!loggedInUser){
             dispatch(fetchUserProfile(userId))
         }
     }, [dispatch]);
