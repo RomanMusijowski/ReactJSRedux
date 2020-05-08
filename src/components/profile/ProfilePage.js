@@ -52,7 +52,12 @@ const ProfilePage = (props) => {
                               direction="column">
                             <FriendsCount friends={userList[userId].friends} loggedInUser={loggedInUser}/>
                             <EventCount events={userList[userId].events} loggedInUser={loggedInUser}/>
-                            <InviteCount invites={userList[userId].invitedEvents} loggedInUser={loggedInUser}/>
+                            {loggedInUser ? (
+                                <InviteCount invites={userList[userId].invitedEvents}/>
+                            ) : (
+                                <p></p>
+                            )}
+
                         </Grid>
                         <Grid item xs={8}>
                             <ProfileWall/>

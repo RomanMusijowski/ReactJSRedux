@@ -8,7 +8,7 @@ import IconButton from "@material-ui/core/IconButton";
 import DeleteIcon from "@material-ui/icons/Delete";
 import React from "react";
 import VisibilityIcon from '@material-ui/icons/Visibility';
-import {NavLink, useHistory} from "react-router-dom";
+import {useHistory} from "react-router-dom";
 
 const FriendDialogItem = ({friendId, username, firstName, lastName, loggedInUser}) => {
 
@@ -42,7 +42,6 @@ const FriendDialogItem = ({friendId, username, firstName, lastName, loggedInUser
                 </IconButton>
             ]
         }
-
     };
 
 
