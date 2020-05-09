@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import PostList from "../posts/PostList";
 import {connect, useDispatch} from "react-redux";
-import {getAllPostUser} from "../../services/userPostApi";
+import {getAllPostUser, userPostUnloaded} from "../../services/userPostApi";
 import {render} from "react-dom";
 import UserPostList from "../posts/UserPostList";
 import Pagination from '@material-ui/lab/Pagination';
@@ -17,6 +17,10 @@ class ProfileWall extends Component{
     componentDidMount() {
 
         this.props.getAllPostUser(this.props.userId, this.state.page);
+    }
+
+    componentWillUnmount(){
+        this.props.userPostUnloaded();
     }
 
     handleChangePage = (e) => {
@@ -42,7 +46,8 @@ class ProfileWall extends Component{
 }
 
 const mapDispatchToProps = {
-    getAllPostUser
+    getAllPostUser,
+    userPostUnloaded
 
 };
 const mapStateToProps = (state) => ({
