@@ -6,7 +6,7 @@ const initState = {
 };
 
 const commentReducer = (state = initState, action) => {
-    console.log(action.payload);
+    //console.log(action.payload);
 
     switch (action.type) {
         case commentConstants.COMMENT_LOAD_SUCCESS:
@@ -20,15 +20,7 @@ const commentReducer = (state = initState, action) => {
             return{
 
             };
-        case commentConstants.USERINFO_LOAD_SUCCESS:
-            return {
-                ...state,
-                [action.payload.id]: action.payload.data.username
-            };
-        case commentConstants.USERINFO_LOAD_FAILURE:
-            return {
-                ...state
-            };
+
         default:
             return state
     }

@@ -17,13 +17,12 @@ const userPostReducer = (state = initState, action) => {
             return {
                 ...state
             };
-            /*
         case postConstants.USER_POST_UNLOAD:
             return{
 
             };
 
-             */
+
 
         default:
             return state
