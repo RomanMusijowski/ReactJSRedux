@@ -68,7 +68,7 @@ const PostList = (props) => {
                             //onClick={handleExpandClick}
                         >
 
-                            <button><Link to={'/post/'+props.posts[key].id+'/comments'} username={props.username}>Comments</Link></button>
+                            <button><Link to={'/post/'+props.posts[key].id+'/comments'}>Comments</Link></button>
                         </IconButton>
                     </CardActions>
                     <Container>
