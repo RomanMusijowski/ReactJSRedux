@@ -16,7 +16,7 @@ const userReducer = (state = INITIAL_STATE, action) => {
                 ...state,
                 [newUserId]: newUser
             };
-        case userConstants.USER_PROFILE_UPDATE_SECCESS:
+        case userConstants.USER_FRIENDS_LOAD_SUCCESS:
             const userId = action.payload.pop();
             const updatedUser = state[userId];
             updatedUser.friends = action.payload
@@ -26,14 +26,24 @@ const userReducer = (state = INITIAL_STATE, action) => {
                     [userId]: updatedUser
             };
         case userConstants.FETCH_USER_EVENTS_SUCCESS:
-            const id = action.payload.data[0].userId;   //taking userId from an array
-            const user = state[id];
-            user.events = action.payload.data
-            user.eventsLoad = true
-            return{
-                ...state,
-                [id]: user
-            };
+            if (action.payload.data !== undefined){
+                const id = action.payload.data[0].userId;   //taking userId from an array
+                const user = state[id];
+                user.events = action.payload.data
+                user.eventsLoad = true
+                return{
+                    ...state,
+                    [id]: user
+                };
+            }else {
+                const usr = state[action.payload];
+                usr.eventsLoad = true
+                return {
+                    ...state,
+                    [action.payload]: usr
+                };
+            }
+
         case authConstants.LOGUOT:
             return {};
         default:
