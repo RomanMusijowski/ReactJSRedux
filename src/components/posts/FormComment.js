@@ -8,6 +8,7 @@ import Avatar from "@material-ui/core/Avatar";
 import {useDispatch, useSelector} from "react-redux";
 import {Link} from "react-router-dom";
 import CardHeader from "@material-ui/core/CardHeader";
+import {addComment} from "../../services/postApi";
 
 
 const FormComment = (props) =>  {
@@ -21,7 +22,7 @@ const FormComment = (props) =>  {
     const handleSubmit = (event/*values, actions*/) => {
         event.preventDefault();
 
-        //dispatch(addPost(content));
+        dispatch(addComment(props.postId,content));
 
         setContent("");
 

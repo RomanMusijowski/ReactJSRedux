@@ -12,7 +12,7 @@ import {
     commentsLoadSuccess,
     commentsLoadFailure,
     userInfoLoadSuccess,
-    userInfoLoadFailure
+    userInfoLoadFailure, commentsCreateSuccess, commentsCreateFailure
 } from "../actions/comment/actions";
 
 
@@ -61,6 +61,26 @@ export const getAllComments = (id/*, page = 1*/) => async (dispatch) =>{
     axios.get(URLS.apiPost+'/'+id+'/comment')
         .then((res) => {dispatch(commentsLoadSuccess(res))}) // return data
         .catch((error) => {dispatch(commentsLoadFailure(error))})
+};
+
+export const addComment = (postId ,content) => async (dispatch) => {
+
+    const body = JSON.stringify({content});
+/*
+    const formData = new FormData();
+    formData.append('content',content);
+*/
+    const config = {
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    };
+
+    axios.post(URLS.apiPost+'/'+postId+'/comment', body, config)
+        .then(res => {
+            dispatch(commentsCreateSuccess(res))
+        })
+        .catch( error => {dispatch(commentsCreateFailure(error))})
 };
 
 export const commentsUnload = () => async (dispatch) =>{
