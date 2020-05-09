@@ -11,7 +11,7 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import {Link} from "react-router-dom";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {postLike} from "../../services/postApi";
 import Pagination from '@material-ui/lab/Pagination';
 
@@ -19,6 +19,10 @@ import Pagination from '@material-ui/lab/Pagination';
 const PostList = (props) => {
 
     const dispatch = useDispatch();
+
+    const userList = useSelector((state) => state.user);
+    console.log(userList);
+
 
     const handlePostLike = (postId) => {
         dispatch(postLike(postId));
@@ -44,10 +48,13 @@ const PostList = (props) => {
                             </IconButton>
                         }
 
-                        subheader={props.posts[key].userId}
+                        subheader={
+                            <Link to={'/profile/'+props.posts[key].userId}>{userList[props.posts[key].userId].username}</Link>
+                        }
 
 
                     />
+
                     <CardMedia
                         //className={classes.media}
                         image="https://material-ui.com/static/images/cards/contemplative-reptile.jpg"

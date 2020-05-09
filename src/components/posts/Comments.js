@@ -14,7 +14,7 @@ import MoreVertIcon from "@material-ui/icons/MoreVert";
 import {useDispatch} from "react-redux";
 import {commentLike} from "../../services/postApi";
 
-const Comments = ({id, userId, content, likes, postId }) => {
+const Comments = ({id, userId, content, likes, postId, username }) => {
 
     const dispatch = useDispatch();
 
@@ -41,7 +41,10 @@ const Comments = ({id, userId, content, likes, postId }) => {
                         </IconButton>
                     }
 
-                    subheader={userId}
+                    subheader={
+
+                        <Link to={'/profile/'+userId}>{username}</Link>
+                    }
 
 
                 />

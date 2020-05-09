@@ -5,14 +5,18 @@ import AccountCircleRoundedIcon from '@material-ui/icons/AccountCircleRounded';
 import Icon from "@material-ui/core/Icon";
 import Button from "@material-ui/core/Button";
 import Avatar from "@material-ui/core/Avatar";
-import { useDispatch } from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import {Link} from "react-router-dom";
+import CardHeader from "@material-ui/core/CardHeader";
 
 
 const FormComment = (props) =>  {
     const [content, setContent] = React.useState("");
-
-
+    console.log(props.postId);
     const dispatch = useDispatch();
+
+    const userList = useSelector((state) => state.user);
+    const userInfoId = useSelector((state) => state.auth.userInfo.id)
 
     const handleSubmit = (event/*values, actions*/) => {
         event.preventDefault();
@@ -31,8 +35,17 @@ const FormComment = (props) =>  {
             <form onSubmit={handleSubmit}>
                 <div className="card light-blue lighten-3">
                     <div className="card-content black-text">
-                        <Button href={"/#"}><Avatar/><label
-                            className="">{props.username}</label> </Button>
+                        <CardHeader
+                            avatar={
+                                <Avatar/>
+
+
+
+                            }
+                            subheader={
+                                <Link to={'/profile/'+userInfoId}>{userList[userInfoId].username}</Link>
+                            }
+                        />
                         <span className="card-title">
                                     <h8>Create comment</h8>
                                  </span>

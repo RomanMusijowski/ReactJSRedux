@@ -10,7 +10,7 @@ const CommentList = (props) => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        //userApi.fetchLoadUser()
+
         dispatch(getAllComments(props.match.params.id));
 
         return() => {
@@ -20,8 +20,9 @@ const CommentList = (props) => {
 
 
     const listComments = useSelector((state) =>  state.comment);
+    const userList = useSelector((state) => state.user);
 
-    console.log(Object.keys(listComments));
+    //console.log(Object.keys(listComments));
 
     const item = Object.keys(listComments).map(key =>
         <Comments id={listComments[key].id}
@@ -29,6 +30,7 @@ const CommentList = (props) => {
                   content={listComments[key].content}
                   likes={listComments[key].likes}
                   postId={props.match.params.id}
+                  username={userList[listComments[key].userId].username}
         />
     );
 
@@ -38,7 +40,7 @@ const CommentList = (props) => {
     return(
 
         <div>
-            <FormComment username={props.username}/>
+            <FormComment postId={props.match.params.id} />
             {item}
         </div>
 
@@ -47,7 +49,7 @@ const CommentList = (props) => {
     else{
         return(
             <div align="center">
-                <FormComment username={props.username}/>
+                <FormComment postId={props.match.params.id}/>
                 <h6>this post has no comments</h6>
 
         </div>);

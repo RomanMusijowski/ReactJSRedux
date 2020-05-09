@@ -5,14 +5,19 @@ import AccountCircleRoundedIcon from '@material-ui/icons/AccountCircleRounded';
 import Icon from "@material-ui/core/Icon";
 import Button from "@material-ui/core/Button";
 import Avatar from "@material-ui/core/Avatar";
-import { useDispatch } from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {addPost} from "../../services/postApi";
+import {Link} from "react-router-dom";
+import CardHeader from '@material-ui/core/CardHeader';
 
 
 const FormPostAdd = (props) =>  {
     const [content, setContent] = React.useState("");
 
     const dispatch = useDispatch();
+
+    const userList = useSelector((state) => state.user);
+    const userInfoId = useSelector((state) => state.auth.userInfo.id)
 
     const handleSubmit = (event/*values, actions*/) => {
         event.preventDefault();
@@ -32,8 +37,19 @@ const FormPostAdd = (props) =>  {
             <form onSubmit={handleSubmit}>
                 <div className="card light-green lighten-3">
                     <div className="card-content black-text">
-                        <Button href={"/#"}><Avatar/><label
-                            className="">{props.username}</label> </Button>
+                        <CardHeader
+                            avatar={
+                                <Avatar/>
+
+
+
+                            }
+                            subheader={
+                                <Link to={'/profile/'+userInfoId}>{userList[userInfoId].username}</Link>
+                            }
+                            />
+
+
                         <span className="card-title">
                                     <h8>Create post</h8>
                                  </span>
