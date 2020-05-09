@@ -4,7 +4,7 @@ import {
     userProfileLoadFailure,
     userProfileLoadSuccess,
     userProfileUpdateFailure,
-    userProfileUpdateSuccess
+    userProfileFriendsSuccess
 } from "../actions/user/actions";
 import {fetchUserEventsFailure, fetchUserEventsSuccess} from "../actions/user/actions";
 
@@ -26,7 +26,7 @@ export const fetchUserFriends = (userId) => async (dispatch) => {
         .then(res => {
             var friends = res.data.content
             friends.push(userId)
-            dispatch(userProfileUpdateSuccess(friends));
+            dispatch(userProfileFriendsSuccess(friends));
         })
         .catch(error => {
             dispatch(userProfileUpdateFailure(error));
@@ -36,7 +36,11 @@ export const fetchUserFriends = (userId) => async (dispatch) => {
 export const fetchUserEvents = (userId) => async (dispatch) => {
         axios.get(URLS.apiEvent+'/user/' + userId)
         .then(res => {
-            dispatch(fetchUserEventsSuccess(res))
+            if (res.data[0] === undefined){
+                dispatch(fetchUserEventsSuccess(userId))
+            }else {
+                dispatch(fetchUserEventsSuccess(res))
+            }
         })
         .catch(error => {
             dispatch(fetchUserEventsFailure(error))
