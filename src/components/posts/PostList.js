@@ -22,7 +22,7 @@ const PostList = (props) => {
     const dispatch = useDispatch();
 
     const userList = useSelector((state) => state.user);
-    console.log(userList);
+    //console.log(userList);
 
 
     const handlePostLike = (postId) => {
@@ -74,8 +74,8 @@ const PostList = (props) => {
                             aria-label="show more"
                             //onClick={handleExpandClick}
                         >
-                            <ListUserPostLiked/>
 
+                            <ListUserPostLiked postId={props.posts[key].id}/>
                         </IconButton>
 
                         <IconButton

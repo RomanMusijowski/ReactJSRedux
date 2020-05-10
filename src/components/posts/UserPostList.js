@@ -13,6 +13,7 @@ import MoreVertIcon from '@material-ui/icons/MoreVert';
 import {Link} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {postLike} from "../../services/postApi";
+import ListUserPostLiked from "./ListUserPostLiked";
 
 
 
@@ -68,6 +69,7 @@ const UserPostList = (props) => {
                             <IconButton aria-label="share">
                                 <ShareIcon />
                             </IconButton>
+                            <ListUserPostLiked postId={props.posts[key].id}/>
                             <IconButton
                                 aria-label="show more"
                                 //onClick={handleExpandClick}

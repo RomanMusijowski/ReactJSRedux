@@ -5,7 +5,7 @@ import {
     postLoadSuccess,
     postLoadFailure,
     postCreateSuccess,
-    postCreateFailure
+    postCreateFailure, userPostLikedListLoadSuccess, userPostLikedListLoadFailure
 } from "../actions/post/actions";
 import {
     commentsLoadUnload,
@@ -14,6 +14,7 @@ import {
     userInfoLoadSuccess,
     userInfoLoadFailure, commentsCreateSuccess, commentsCreateFailure
 } from "../actions/comment/actions";
+import {userProfileFriendsSuccess, userProfileUpdateFailure} from "../actions/user/actions";
 
 
 
@@ -49,6 +50,18 @@ export const addPost = (content) => async (dispatch) => {
           })
           .catch( error => {dispatch(postCreateFailure(error.response.data.message))})
 };
+
+export const getAllUserPostLiked = (postId) => async (dispatch) => {
+    axios.get(URLS.apiPost + '/' + postId + '/liked')
+        .then(res => {
+            var userList = res.data.content
+            userList.push(postId)
+            dispatch(userPostLikedListLoadSuccess(userList));
+        })
+        .catch(error => {
+            dispatch(userPostLikedListLoadFailure(error));
+        })
+}
 
 /*****
  * Return List Post comments

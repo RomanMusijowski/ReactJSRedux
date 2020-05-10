@@ -16,3 +16,6 @@ export const userPostLoadFailure = (error) =>createAction(postConstants.USER_POS
 
 export const userPostUnload = () =>createAction(postConstants.USER_POST_UNLOAD, null);
 
+export const userPostLikedListLoadSuccess = (data) =>createAction(postConstants.USER_POST_LIKED_LIST_LOAD_SUCCESS, data);
+export const userPostLikedListLoadFailure = (error) =>createAction(postConstants.USER_POST_LIKED_LIST_LOAD_FAILURE, error);
+
