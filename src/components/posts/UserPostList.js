@@ -8,12 +8,13 @@ import CardActions from '@material-ui/core/CardActions';
 import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
 import FavoriteIcon from '@material-ui/icons/Favorite';
-import ShareIcon from '@material-ui/icons/Share';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import {Link} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {postLike} from "../../services/postApi";
 import ListUserPostLiked from "./ListUserPostLiked";
+import DeleteIcon from "@material-ui/icons/Delete";
+import EditIcon from "@material-ui/icons/Edit";
 
 
 
@@ -23,6 +24,7 @@ const UserPostList = (props) => {
     const dispatch = useDispatch();
 
     const userList = useSelector((state) => state.user);
+    const userInfoId = useSelector((state) => state.auth.userInfo.id)
 
     const handlePostLike = (postId) => {
         dispatch(postLike(postId));
@@ -66,9 +68,7 @@ const UserPostList = (props) => {
                             <IconButton aria-label="add to favorites">
                                 <FavoriteIcon onClick={() => handlePostLike(props.posts[key].id)} /> {props.posts[key].likes}
                             </IconButton>
-                            <IconButton aria-label="share">
-                                <ShareIcon />
-                            </IconButton>
+
                             <ListUserPostLiked postId={props.posts[key].id}/>
                             <IconButton
                                 aria-label="show more"
@@ -76,6 +76,12 @@ const UserPostList = (props) => {
                             >
 
                                 <button><Link to={'/post/'+props.posts[key].id+'/comments'} username={props.username}>Comments</Link></button>
+                            </IconButton>
+                            <IconButton aria-label="share" disabled={props.posts[key].userId !== userInfoId}>
+                                <DeleteIcon/>
+                            </IconButton>
+                            <IconButton aria-label="share" disabled={props.posts[key].userId !== userInfoId}>
+                                <EditIcon/>
                             </IconButton>
                         </CardActions>
                         <Container>
