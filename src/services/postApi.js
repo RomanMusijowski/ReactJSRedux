@@ -5,16 +5,16 @@ import {
     postLoadSuccess,
     postLoadFailure,
     postCreateSuccess,
-    postCreateFailure, userPostLikedListLoadSuccess, userPostLikedListLoadFailure
+    postCreateFailure, userPostLikedListLoadSuccess, userPostLikedListLoadFailure, deletePostSuccess, deletePostFailure
 } from "../actions/post/actions";
 import {
     commentsLoadUnload,
     commentsLoadSuccess,
     commentsLoadFailure,
     userInfoLoadSuccess,
-    userInfoLoadFailure, commentsCreateSuccess, commentsCreateFailure
+    userInfoLoadFailure, commentsCreateSuccess, commentsCreateFailure, deleteCommentSuccess, deleteCommentFailure
 } from "../actions/comment/actions";
-import {userProfileFriendsSuccess, userProfileUpdateFailure} from "../actions/user/actions";
+
 
 
 
@@ -109,6 +109,26 @@ export const commentLike = (postId, commentId) => async (dispatch) =>{
     axios.get(URLS.apiPost+'/'+postId+'/comment/'+commentId+'/like')
         .then(res => {console.log(res)})
         .catch(error => {console.log(error)})
+};
+
+export const deletePost = (id) => async  (dispatch) =>{
+    axios.delete(URLS.apiPost + '/' + id)
+        .then(res => {
+            dispatch(deletePostSuccess(res))
+        })
+        .catch(error => {
+            dispatch(deletePostFailure(error))
+        })
+};
+
+export const deleteComment = (postId, commentId) => async  (dispatch) =>{
+    axios.delete(URLS.apiPost + '/' + postId + '/comment/' +commentId)
+        .then(res => {
+            dispatch(deleteCommentSuccess(res))
+        })
+        .catch(error => {
+            dispatch(deleteCommentFailure(error))
+        })
 };
 
 

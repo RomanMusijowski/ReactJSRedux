@@ -12,7 +12,7 @@ import {Link} from "react-router-dom";
 import CardActions from "@material-ui/core/CardActions";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import {useDispatch, useSelector} from "react-redux";
-import {commentLike} from "../../services/postApi";
+import {commentLike, deleteComment} from "../../services/postApi";
 import DeleteIcon from "@material-ui/icons/Delete";
 import EditIcon from "@material-ui/icons/Edit";
 
@@ -24,6 +24,11 @@ const Comments = ({id, userId, content, likes, postId, username }) => {
 
     const handleCommentLike = (postId, commentId) => {
         dispatch(commentLike(postId, commentId));
+        window.location.reload();
+    };
+
+    const handleCommentDelete = (postId, commentId) => {
+        dispatch(deleteComment(postId, commentId));
         window.location.reload();
     };
 
@@ -73,7 +78,7 @@ const Comments = ({id, userId, content, likes, postId, username }) => {
 
                     </IconButton>
                     <IconButton aria-label="share" disabled={userId !== userInfoId}>
-                        <DeleteIcon/>
+                        <DeleteIcon onClick={() =>{if(window.confirm('Delete this comment ?')){handleCommentDelete(postId, id)} }}/>
                     </IconButton>
                     <IconButton aria-label="share" disabled={userId !== userInfoId}>
                         <EditIcon/>

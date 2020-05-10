@@ -1,5 +1,6 @@
 import createAction from "../action";
 import {commentConstants} from "../../constans/commentConstans";
+import {postConstants} from "../../constans/postConstans";
 
 export const commentsLoadSuccess = (data) =>createAction(commentConstants.COMMENT_LOAD_SUCCESS, data);
 export const commentsLoadFailure = (error) =>createAction(commentConstants.COMMENT_LOAD_FAILURE, error);
@@ -10,3 +11,6 @@ export const commentsCreateFailure = (error) =>createAction(commentConstants.COM
 
 export const userInfoLoadSuccess = (data) =>createAction(commentConstants.USERINFO_LOAD_SUCCESS, data);
 export const userInfoLoadFailure = (error) =>createAction(commentConstants.USERINFO_LOAD_FAILURE, error);
+
+export const deleteCommentSuccess = (data) =>createAction(postConstants.DELETE_COMMENT_SUCCESS, data);
+export const deleteCommentFailure = (error) =>createAction(postConstants.DELETE_COMMENT_FAILURE, error);

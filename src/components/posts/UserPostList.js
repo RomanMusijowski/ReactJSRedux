@@ -11,7 +11,7 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import {Link} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
-import {postLike} from "../../services/postApi";
+import {postLike, deletePost} from "../../services/postApi";
 import ListUserPostLiked from "./ListUserPostLiked";
 import DeleteIcon from "@material-ui/icons/Delete";
 import EditIcon from "@material-ui/icons/Edit";
@@ -29,6 +29,11 @@ const UserPostList = (props) => {
     const handlePostLike = (postId) => {
         dispatch(postLike(postId));
         window.location.reload();
+    };
+
+    const handlePostDelete = (postId) => {
+            dispatch(deletePost(postId));
+            window.location.reload();
     };
 
     return(<div>
@@ -78,7 +83,7 @@ const UserPostList = (props) => {
                                 <button><Link to={'/post/'+props.posts[key].id+'/comments'} username={props.username}>Comments</Link></button>
                             </IconButton>
                             <IconButton aria-label="share" disabled={props.posts[key].userId !== userInfoId}>
-                                <DeleteIcon/>
+                                <DeleteIcon onClick={() =>{if(window.confirm('Delete this post ?')){handlePostDelete(props.posts[key].id)} }}/>
                             </IconButton>
                             <IconButton aria-label="share" disabled={props.posts[key].userId !== userInfoId}>
                                 <EditIcon/>
