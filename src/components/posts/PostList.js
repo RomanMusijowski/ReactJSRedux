@@ -14,6 +14,7 @@ import {Link} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {postLike} from "../../services/postApi";
 import Pagination from '@material-ui/lab/Pagination';
+import ListUserPostLiked from "./ListUserPostLiked";
 
 
 const PostList = (props) => {
@@ -33,7 +34,9 @@ const PostList = (props) => {
             {props.posts && Object.keys(props.posts).map(key => (
             <Container maxWidth="sm">
 
-                <Card >
+                <Card style={{marginTop: 30,
+
+                    }}>
                     <CardHeader
                         avatar={
                             <Avatar aria-label="recipe" >
@@ -67,9 +70,14 @@ const PostList = (props) => {
                         <IconButton aria-label="add to favorites">
                             <FavoriteIcon onClick={() => handlePostLike(props.posts[key].id)} /> {props.posts[key].likes}
                         </IconButton>
-                        <IconButton aria-label="share">
-                            <ShareIcon />
+                        <IconButton
+                            aria-label="show more"
+                            //onClick={handleExpandClick}
+                        >
+                            <ListUserPostLiked/>
+
                         </IconButton>
+
                         <IconButton
                             aria-label="show more"
                             //onClick={handleExpandClick}
@@ -87,6 +95,7 @@ const PostList = (props) => {
             </Container>
 
             ))}
+
             </div>
         )
 }

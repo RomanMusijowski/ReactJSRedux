@@ -32,7 +32,9 @@ const UserPostList = (props) => {
             {props.posts && Object.keys(props.posts).map(key => (
                 <Container maxWidth="sm">
 
-                    <Card >
+                    <Card style={{marginTop: 30,
+
+                    }} >
                         <CardHeader
                             avatar={
                                 <Avatar aria-label="recipe" >
