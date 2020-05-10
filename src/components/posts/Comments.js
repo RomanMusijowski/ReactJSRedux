@@ -11,12 +11,16 @@ import ShareIcon from "@material-ui/icons/Share";
 import {Link} from "react-router-dom";
 import CardActions from "@material-ui/core/CardActions";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {commentLike} from "../../services/postApi";
+import DeleteIcon from "@material-ui/icons/Delete";
+import EditIcon from "@material-ui/icons/Edit";
 
 const Comments = ({id, userId, content, likes, postId, username }) => {
 
     const dispatch = useDispatch();
+
+    const userInfoId = useSelector((state) => state.auth.userInfo.id)
 
     const handleCommentLike = (postId, commentId) => {
         dispatch(commentLike(postId, commentId));
@@ -60,15 +64,19 @@ const Comments = ({id, userId, content, likes, postId, username }) => {
                     <IconButton aria-label="add to favorites">
                         <FavoriteIcon  onClick={() => handleCommentLike(postId,id)}/> {likes}
                     </IconButton>
-                    <IconButton aria-label="share">
-                        <ShareIcon />
-                    </IconButton>
+
                     <IconButton
                         aria-label="show more"
                         //onClick={handleExpandClick}
                     >
 
 
+                    </IconButton>
+                    <IconButton aria-label="share" disabled={userId !== userInfoId}>
+                        <DeleteIcon/>
+                    </IconButton>
+                    <IconButton aria-label="share" disabled={userId !== userInfoId}>
+                        <EditIcon/>
                     </IconButton>
                 </CardActions>
                 <Container>
