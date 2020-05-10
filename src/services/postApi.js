@@ -54,9 +54,8 @@ export const addPost = (content) => async (dispatch) => {
 export const getAllUserPostLiked = (postId) => async (dispatch) => {
     axios.get(URLS.apiPost + '/' + postId + '/liked')
         .then(res => {
-            var userList = res.data.content
-            userList.push(postId)
-            dispatch(userPostLikedListLoadSuccess(userList));
+
+            dispatch(userPostLikedListLoadSuccess(res));
         })
         .catch(error => {
             dispatch(userPostLikedListLoadFailure(error));
