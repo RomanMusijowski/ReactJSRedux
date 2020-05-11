@@ -15,6 +15,7 @@ import {postLike, deletePost} from "../../services/postApi";
 import ListUserPostLiked from "./ListUserPostLiked";
 import DeleteIcon from "@material-ui/icons/Delete";
 import EditIcon from "@material-ui/icons/Edit";
+import FromPostPutDialog from "./FormPostPutDialog";
 
 
 
@@ -86,7 +87,9 @@ const UserPostList = (props) => {
                                 <DeleteIcon onClick={() =>{if(window.confirm('Delete this post ?')){handlePostDelete(props.posts[key].id)} }}/>
                             </IconButton>
                             <IconButton aria-label="share" disabled={props.posts[key].userId !== userInfoId}>
-                                <EditIcon/>
+                                <FromPostPutDialog postId={props.posts[key].id}
+                                                   contentt={props.posts[key].content}
+                                                   />
                             </IconButton>
                         </CardActions>
                         <Container>

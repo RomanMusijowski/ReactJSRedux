@@ -15,6 +15,8 @@ import {useDispatch, useSelector} from "react-redux";
 import {commentLike, deleteComment} from "../../services/postApi";
 import DeleteIcon from "@material-ui/icons/Delete";
 import EditIcon from "@material-ui/icons/Edit";
+import FromPostPutDialog from "./FormPostPutDialog";
+import FormCommentPutDialog from "./FormCommentPutDialog";
 
 const Comments = ({id, userId, content, likes, postId, username }) => {
 
@@ -81,7 +83,10 @@ const Comments = ({id, userId, content, likes, postId, username }) => {
                         <DeleteIcon onClick={() =>{if(window.confirm('Delete this comment ?')){handleCommentDelete(postId, id)} }}/>
                     </IconButton>
                     <IconButton aria-label="share" disabled={userId !== userInfoId}>
-                        <EditIcon/>
+                        <FormCommentPutDialog postId={postId}
+                                              commentId={id}
+                                              contentt={content}
+                        />
                     </IconButton>
                 </CardActions>
                 <Container>
