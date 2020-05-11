@@ -44,13 +44,18 @@ const ProfilePage = (props) => {
                                  firstName={userList[userId].firstName}
                                  lastName={userList[userId].lastName}
                                  phoneNumber={userList[userId].phoneNumber}
-                                 gender={userList[userId].gender}/>
+                                 gender={userList[userId].gender}
+                                 loggedInUserId={userInfoId}
+                                 userId={userId}
+                                 friends={userList[userInfoId].friends}/>
 
                     <Grid container spacing={2}>
                         <Grid item
                               xs={4}
                               direction="column">
-                            <FriendsCount friends={userList[userId].friends} loggedInUser={loggedInUser}/>
+                            <FriendsCount friends={userList[userId].friends}
+                                          loggedInUser={loggedInUser}
+                                          loggedInUserId={userInfoId}/>
                             <EventCount events={userList[userId].events} loggedInUser={loggedInUser}/>
                             {loggedInUser ? (
                                 <InviteCount invites={userList[userId].invitedEvents}/>
