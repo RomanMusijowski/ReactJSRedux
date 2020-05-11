@@ -4,7 +4,7 @@ import {
     userProfileLoadFailure,
     userProfileLoadSuccess,
     userProfileUpdateFailure,
-    userProfileFriendsSuccess
+    userProfileFriendsSuccess, addFriendSuccess, addFriendFailure, deleteFriendSuccess, deleteFriendFailure
 } from "../actions/user/actions";
 import {fetchUserEventsFailure, fetchUserEventsSuccess} from "../actions/user/actions";
 
@@ -47,3 +47,23 @@ export const fetchUserEvents = (userId) => async (dispatch) => {
         })
 }
 
+export const addFriend = (friendId) => async (dispatch) => {
+    axios.put(URLS.apiUser+'/friend/' + friendId)
+        .then(res => {
+           dispatch(addFriendSuccess(res))
+        })
+        .catch(error => {
+            dispatch(addFriendFailure(error))
+        })
+}
+
+export const deleteFriend = (friendId, loggedInUserId) => async (dispatch) => {
+    axios.delete(URLS.apiUser+'/friend/' + friendId)
+        .then(res => {
+            dispatch(deleteFriendSuccess(res))
+            dispatch(fetchUserFriends(loggedInUserId))
+        })
+        .catch(error => {
+            dispatch(deleteFriendFailure(error))
+        })
+}
