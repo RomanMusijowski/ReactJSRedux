@@ -5,14 +5,24 @@ import {
     postLoadSuccess,
     postLoadFailure,
     postCreateSuccess,
-    postCreateFailure, userPostLikedListLoadSuccess, userPostLikedListLoadFailure, deletePostSuccess, deletePostFailure
+    postCreateFailure,
+    userPostLikedListLoadSuccess,
+    userPostLikedListLoadFailure,
+    deletePostSuccess,
+    deletePostFailure,
+    putPostSuccess, putPostFailure
 } from "../actions/post/actions";
 import {
     commentsLoadUnload,
     commentsLoadSuccess,
     commentsLoadFailure,
     userInfoLoadSuccess,
-    userInfoLoadFailure, commentsCreateSuccess, commentsCreateFailure, deleteCommentSuccess, deleteCommentFailure
+    userInfoLoadFailure,
+    commentsCreateSuccess,
+    commentsCreateFailure,
+    deleteCommentSuccess,
+    deleteCommentFailure,
+    putCommentSuccess, putCommentFailure
 } from "../actions/comment/actions";
 
 
@@ -128,6 +138,42 @@ export const deleteComment = (postId, commentId) => async  (dispatch) =>{
         })
         .catch(error => {
             dispatch(deleteCommentFailure(error))
+        })
+};
+
+export const putPost = (id, content) => async  (dispatch) =>{
+
+    const formData = new FormData();
+    formData.append('content',content);
+
+    axios.put(URLS.apiPost + '/' + id, formData)
+        .then(res => {
+            dispatch(putPostSuccess(res))
+        })
+        .catch(error => {
+            dispatch(putPostFailure(error))
+        })
+};
+
+export const putComment = (postId, commentId, content) => async  (dispatch) =>{
+
+    const body = JSON.stringify({content});
+    /*
+        const formData = new FormData();
+        formData.append('content',content);
+    */
+    const config = {
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    };
+
+    axios.put(URLS.apiPost + '/' + postId + '/comment/' +commentId, body, config)
+        .then(res => {
+            dispatch(putCommentSuccess(res))
+        })
+        .catch(error => {
+            dispatch(putCommentFailure(error))
         })
 };
 

@@ -22,3 +22,6 @@ export const userPostLikedListLoadFailure = (error) =>createAction(postConstants
 export const deletePostSuccess = (data) =>createAction(postConstants.DELETE_POST_SUCCESS, data);
 export const deletePostFailure = (error) =>createAction(postConstants.DELETE_POST_FAILURE, error);
 
+export const putPostSuccess = (data) =>createAction(postConstants.UPDATE_POST_SUCCESS, data);
+export const putPostFailure = (error) =>createAction(postConstants.UPDATE_POST_FAILURE, error);
+

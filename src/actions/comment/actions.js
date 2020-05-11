@@ -14,3 +14,6 @@ export const userInfoLoadFailure = (error) =>createAction(commentConstants.USERI
 
 export const deleteCommentSuccess = (data) =>createAction(postConstants.DELETE_COMMENT_SUCCESS, data);
 export const deleteCommentFailure = (error) =>createAction(postConstants.DELETE_COMMENT_FAILURE, error);
+
+export const putCommentSuccess = (data) =>createAction(postConstants.UPDATE_COMMENT_SUCCESS, data);
+export const putCommentFailure = (error) =>createAction(postConstants.UPDATE_COMMENT_FAILURE, error);

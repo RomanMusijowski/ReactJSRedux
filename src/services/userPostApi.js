@@ -16,9 +16,9 @@ import {
 } from "../actions/auth/actions";
 
 
-export const getAllPostUser = (userId, page = 1) => async (dispatch) =>{
+export const getAllPostUser = (userId, page = 1) => async (dispatch) =>{ // "page" do dobrej paginacji
     //dispatch(userPostLoadRequest('User oosts loading have started.'));
-    axios.get(URLS.apiPost+'/user/'+userId+'?pages='+page)
+    axios.get(URLS.apiPost+'/user/'+userId+'?page='+page)
         .then((res) => {dispatch(userPostLoadSuccess(res ))})
         .catch((error) => {dispatch(userPostLoadFailure(error))})
 };
