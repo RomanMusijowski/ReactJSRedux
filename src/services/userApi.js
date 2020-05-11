@@ -1,12 +1,21 @@
 import axios from 'axios'
 import URLS from "../shared/Urls.constants";
 import {
+    acceptInviteFailure,
+    acceptInviteSuccess,
+    addFriendFailure,
+    addFriendSuccess,
+    deleteFriendFailure,
+    deleteFriendSuccess,
+    deleteInviteFailure,
+    deleteInviteSuccess,
+    fetchUserEventsFailure,
+    fetchUserEventsSuccess,
+    userProfileFriendsSuccess,
     userProfileLoadFailure,
     userProfileLoadSuccess,
-    userProfileUpdateFailure,
-    userProfileFriendsSuccess, addFriendSuccess, addFriendFailure, deleteFriendSuccess, deleteFriendFailure
+    userProfileUpdateFailure
 } from "../actions/user/actions";
-import {fetchUserEventsFailure, fetchUserEventsSuccess} from "../actions/user/actions";
 
 
 export const fetchUserProfile = (userId) => async (dispatch) => {
@@ -67,3 +76,26 @@ export const deleteFriend = (friendId, loggedInUserId) => async (dispatch) => {
             dispatch(deleteFriendFailure(error))
         })
 }
+
+export const deleteInvite = (eventId, userId) => async (dispatch) => {
+    axios.delete(URLS.apiUser+'/event/' + eventId)
+        .then(res => {
+            dispatch(deleteInviteSuccess(res))
+            dispatch(fetchUserProfile(userId))
+        })
+        .catch(error => {
+            dispatch(deleteInviteFailure(error))
+        })
+}
+
+export const acceptInvite = (eventId, userId) => async (dispatch) => {
+    axios.post(URLS.apiEvent+'/' + eventId + '/join')
+        .then(res => {
+            dispatch(acceptInviteSuccess(res))
+            dispatch(fetchUserProfile(userId))
+        })
+        .catch(error => {
+            dispatch(acceptInviteFailure(error))
+        })
+}
+

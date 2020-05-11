@@ -15,3 +15,9 @@ export const addFriendFailure = (error) => createAction(userConstants.ADD_FRIEND
 
 export const deleteFriendSuccess =(data) => createAction(userConstants.DELETE_FRIEND_SUCCESS, data)
 export const deleteFriendFailure = (error) => createAction(userConstants.DELETE_FRIEND_FAILURE, error)
+
+export const deleteInviteSuccess =(data) => createAction(userConstants.DELETE_INVITE_SUCCESS, data)
+export const deleteInviteFailure = (error) => createAction(userConstants.DELETE_INVITE_FAILURE, error)
+
+export const acceptInviteSuccess =(data) => createAction(userConstants.ACCEPT_INVITE_SUCCESS, data)
+export const acceptInviteFailure = (error) => createAction(userConstants.ACCEPT_INVITE_FAILURE, error)
