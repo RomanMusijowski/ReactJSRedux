@@ -1,4 +1,3 @@
-import {makeStyles} from "@material-ui/core/styles";
 import {useDispatch} from "react-redux";
 import ListItem from "@material-ui/core/ListItem";
 import Grid from "@material-ui/core/Grid";
@@ -9,32 +8,18 @@ import IconButton from "@material-ui/core/IconButton";
 import React from "react";
 import EventAvailableIcon from '@material-ui/icons/EventAvailable';
 import EventBusyIcon from '@material-ui/icons/EventBusy';
+import {acceptInvite, deleteInvite} from "../../services/userApi";
 
-const useStyles = makeStyles((theme) => ({
-    root: {
-        width: '100%',
-        maxWidth: '36ch',
-        backgroundColor: theme.palette.background.paper,
-    },
-    inline: {
-        display: 'inline',
-    },
-}));
 
-const InviteDialogItem = ({byUser, eventId}) => {
-    const classes = useStyles();
+const InviteDialogItem = ({byUser, eventId, loggedInUserId}) => {
     const dispatch = useDispatch();
 
-    const handleDeleteInvite = (eventId) => {
-        console.log(eventId)
-        // dispatch(deleteEvent(inviteId));
-        // window.location.reload();
+    const handleDeleteInvite = (eventId, userId) => {
+        dispatch(deleteInvite(eventId, userId));
     };
 
-    const handleJoinInvite = (eventId) => {
-        console.log(eventId)
-        // dispatch(deleteEvent(inviteId));
-        // window.location.reload();
+    const handleJoinInvite = (eventId, userId) => {
+        dispatch(acceptInvite(eventId, userId, ));
     };
 
     return(
@@ -59,13 +44,13 @@ const InviteDialogItem = ({byUser, eventId}) => {
                 </Grid>
                 <Grid item>
                     <IconButton edge="end"
-                                aria-label="delete"
-                                onClick={()=>handleJoinInvite(eventId)}>
+                                aria-label="join"
+                                onClick={()=>handleJoinInvite(eventId, loggedInUserId)}>
                         <EventBusyIcon />
                     </IconButton>
                     <IconButton edge="end"
                                 aria-label="delete"
-                                onClick={()=>handleDeleteInvite(eventId)}>
+                                onClick={()=>handleDeleteInvite(eventId, loggedInUserId)}>
                         <EventAvailableIcon />
                     </IconButton>
                 </Grid>
