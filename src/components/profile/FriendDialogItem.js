@@ -9,15 +9,15 @@ import DeleteIcon from "@material-ui/icons/Delete";
 import React from "react";
 import VisibilityIcon from '@material-ui/icons/Visibility';
 import {useHistory} from "react-router-dom";
+import {deleteFriend} from "../../services/userApi";
 
-const FriendDialogItem = ({friendId, username, firstName, lastName, loggedInUser}) => {
+const FriendDialogItem = ({friendId, username, firstName, lastName, loggedInUser, loggedInUserId}) => {
 
     const dispatch = useDispatch();
     const history = useHistory();
 
     const handleDeleteFriend = (friendId) => {
-        console.log('delete a friend')
-        console.log(friendId)
+        dispatch(deleteFriend(friendId, loggedInUserId))
     }
 
     const handleShowProfile = (friendId) => {

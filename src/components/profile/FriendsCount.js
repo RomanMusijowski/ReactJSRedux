@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const FriendsCount = ({friends, loggedInUser}) => {
+const FriendsCount = ({friends, loggedInUser, loggedInUserId}) => {
 
     const [open, setOpen] = React.useState(false);
 
@@ -38,7 +38,8 @@ const FriendsCount = ({friends, loggedInUser}) => {
                                  username={friend.username}
                                  firstName={friend.firstName}
                                  lastName={friend.lastName}
-                                 loggedInUser={loggedInUser}/>
+                                 loggedInUser={loggedInUser}
+                                 loggedInUserId={loggedInUserId}/>
     })
 
     return(

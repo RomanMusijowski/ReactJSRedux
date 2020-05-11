@@ -1,4 +1,5 @@
 import React from 'react';
+import {useDispatch} from "react-redux";
 import BackgroundImage from '../../images/user-profile-bg.jpg'
 import AvatarImage from '../../images/avatar.jpg'
 import Avatar from "@material-ui/core/Avatar";
@@ -7,8 +8,32 @@ import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
+import PersonAddIcon from "@material-ui/icons/PersonAdd";
+import IconButton from "@material-ui/core/IconButton";
+import {addFriend, fetchUserProfile} from "../../services/userApi";
 
-const ProfileArea = (props) => {
+const ProfileArea = ({username, email, firstName, lastName,
+                         phoneNumber, gender, loggedInUserId, userId, friends}) => {
+
+    const dispatch = useDispatch();
+
+    const handleAddFriend = (friendId) => {
+        dispatch(addFriend(friendId))
+        dispatch(fetchUserProfile(loggedInUserId))
+    }
+
+    const showAddFriendIcon = function () {
+        const userIdNumber = parseInt(userId, 10)
+        if (loggedInUserId === userIdNumber){
+            return false
+        }
+        if (friends.filter(fr => fr.id === userIdNumber).length > 0){
+            return false
+        } else {
+            return true
+        }
+    }
+
     return(
         <Card style={{marginTop: "15px"}}>
             <CardMedia
@@ -32,18 +57,29 @@ const ProfileArea = (props) => {
                     <Grid item xs={12} sm container>
                         <Grid item xs>
                             <Typography variant="body2" gutterBottom>
-                                 {props.username}
+                                 {username}
                             </Typography>
                             <Typography gutterBottom variant="subtitle1">
-                                {props.firstName} {props.lastName}
+                                {firstName} {lastName}
                             </Typography>
                             <Typography variant="body2" gutterBottom>
-                                {props.phoneNumber}
+                                {phoneNumber}
                             </Typography>
                             <Typography variant="body2" color="textSecondary">
-                                {props.email}
+                                {email}
                             </Typography>
                         </Grid>
+                        {showAddFriendIcon() ? (
+                            <Grid item>
+                                <IconButton edge="end"
+                                            aria-label="add"
+                                onClick={()=> handleAddFriend(userId)}>
+                                    <PersonAddIcon/>
+                                </IconButton>
+                            </Grid>
+                        ) : (
+                            <p></p>
+                        )}
                     </Grid>
                 </Grid>
             </CardContent>
