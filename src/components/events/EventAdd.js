@@ -6,16 +6,27 @@ import CardActions from '@material-ui/core/CardActions';
 import Button from '@material-ui/core/Button';
 import {Form, Formik} from "formik";
 import * as Yup from 'yup'
-import SaveIcon from '@material-ui/icons/Save';
 import FormikField from "../../shared/components/formatik/FormikField"
 import FormikDateTime from "../../shared/components/formatik/FormikDateTime"
 import {addEvent} from "../../services/eventApi";
 import Grid from "@material-ui/core/Grid";
+import makeStyles from "@material-ui/core/styles/makeStyles";
+import Thumb from './Thumb'
 
 const min = new Date();
 min.setHours(min.getHours()+2);
 min.toISOString().slice(0, 16).replace('T', ' ');
 
+const useStyles = makeStyles((theme) => ({
+    root: {
+        '& > *': {
+            margin: theme.spacing(1),
+        },
+    },
+    input: {
+        display: 'none',
+    },
+}));
 
 const eventSchema = Yup.object().shape({
    name: Yup.string()
@@ -28,7 +39,9 @@ const eventSchema = Yup.object().shape({
        .required("Required"),
     dateTime: Yup.date().min(
         min, "Date and time have to be in the future."
-    )
+    ),
+    file: Yup.mixed()
+        .required()
 });
 
 const EventAdd = (props) => {
@@ -36,19 +49,32 @@ const EventAdd = (props) => {
     const initState = {
         name: '',
         description: '',
-        dateTime: null
+        dateTime: null,
+        file: null
     };
 
     const dispatch = useDispatch();
+    const classes = useStyles();
 
     const handleSubmit = (values, actions) => {
+
+        // alert(JSON.stringify(
+        //     {
+        //         fileName: values.file.name,
+        //         type: values.file.type,
+        //         size: `${values.file.size} bytes`
+        //     },
+        //     null,
+        //     2
+        // ))
         actions.setSubmitting(false);
         actions.resetForm();
 
         dispatch(addEvent(
             values.name,
             values.description,
-            values.dateTime.toISOString().slice(0, 16).replace('T', ' ')));
+            values.dateTime.toISOString().slice(0, 16).replace('T', ' '),
+            values.file))
     };
 
     return(
@@ -56,7 +82,7 @@ const EventAdd = (props) => {
             <Formik initialValues={initState}
                     onSubmit={handleSubmit}
             validationSchema={eventSchema}>
-                {({dirty, isValid, setFieldValue}) => {
+                {({values, dirty, isValid, setFieldValue}) => {
                     return(
                         <Form>
                             <CardContent>
@@ -72,16 +98,30 @@ const EventAdd = (props) => {
                                     container
                                     spacing={24}
                                 >
-                                    <Button variant="contained"
-                                            color="primary"
-                                            startIcon={<SaveIcon />}>
-                                        Upload pictures
-                                    </Button>
+                                    <Grid item>
+                                    <input
+                                        accept="image/*"
+                                        className={classes.input}
+                                        id="contained-button-file"
+                                        multiple
+                                        type="file"
+                                        onChange={(event) => {
+                                            setFieldValue("file", event.currentTarget.files[0]);
+                                        }}/>
+                                    <label htmlFor="contained-button-file">
+                                        <Button variant="contained" color="primary" component="span">
+                                            Upload
+                                        </Button>
+                                    </label>
+                                    <Thumb file={values.file} />
+                                    </Grid>
+                                    <Grid item>
                                     <Button variant="contained" color="primary"
                                             disabled={!dirty || !isValid}
                                             type="submit">
                                         Save
                                     </Button>
+                                    </Grid>
                                 </Grid>
                             </CardActions>
                         </Form>
