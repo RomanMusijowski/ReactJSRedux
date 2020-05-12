@@ -57,7 +57,8 @@ const ProfilePage = (props) => {
                                           loggedInUser={loggedInUser}
                                           loggedInUserId={userInfoId}/>
                             <EventCount events={userList[userId].events}
-                                        loggedInUser={loggedInUser}/>
+                                        loggedInUser={loggedInUser}
+                                        loggedInUserId={userInfoId}/>
                             {loggedInUser ? (
                                 <InviteCount invites={userList[userId].invitedEvents}
                                              loggedInUserId={userInfoId}/>

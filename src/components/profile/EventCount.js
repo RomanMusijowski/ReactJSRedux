@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const EventCount = ({events, loggedInUser, userInfoId}) => {
+const EventCount = ({events, loggedInUser, loggedInUserId}) => {
 
     const [open, setOpen] = React.useState(false);
 
@@ -38,7 +38,7 @@ const EventCount = ({events, loggedInUser, userInfoId}) => {
                                 description={item.description}
                                 dateTime={item.dateTime}
                                 loggedInUser={loggedInUser}
-                                userInfoId={userInfoId}/>
+                                loggedInUserId={loggedInUserId}/>
     }   )
 
     return(

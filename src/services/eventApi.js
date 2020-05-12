@@ -42,8 +42,8 @@ export const fetchEventList = () => async (dispatch) =>{
         })
 };
 
-export const joinEvent = (id) => async  (dispatch) =>{
-    axios.post(URLS.apiEvent + '/' + id + '/join')
+export const joinEvent = (eventId) => async  (dispatch) =>{
+    axios.post(URLS.apiEvent + '/' + eventId + '/join')
         .then(res => {
             dispatch(eventJoinSuccess(res))
         })
