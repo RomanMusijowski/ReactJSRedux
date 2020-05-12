@@ -1,47 +1,21 @@
 import React from 'react';
 import {useDispatch} from "react-redux";
-import {makeStyles} from '@material-ui/core/styles';
 import ListItem from '@material-ui/core/ListItem';
 import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import PersonAddIcon from '@material-ui/icons/PersonAdd';
-import {deleteEvent, joinEvent} from "../../services/eventApi";
+import {joinEvent} from "../../services/eventApi";
 import InviteDialog from "./InviteDialog";
 import EventIcon from '@material-ui/icons/Event';
 import Grid from '@material-ui/core/Grid';
 
-const useStyles = makeStyles((theme) => ({
-    root: {
-        width: '100%',
-        maxWidth: '36ch',
-        backgroundColor: theme.palette.background.paper,
-    },
-    inline: {
-        display: 'inline',
-    },
-}));
-
-
 const EventListItem = ({eventId, name, description, dateTime}) => {
-    const classes = useStyles();
     const dispatch = useDispatch();
 
     const handleJoinEvent = (eventId) => {
-        console.log('Clicked button');
-        console.log(eventId);
         dispatch(joinEvent(eventId));
     };
-
-    const handleDeleteEvent = (eventId) => {
-        dispatch(deleteEvent(eventId));
-        window.location.reload();
-    };
-
-    const handleInviteFriends = (eventId) => {
-        console.log("handleInviteFriends!")
-    };
-
 
     return(
         <ListItem alignItems="flex-start">
