@@ -28,11 +28,17 @@ const FriendDialogItem = ({friendId, username, firstName, lastName, loggedInUser
     const showButton = (loggedInUser, friendId) => {
         if (loggedInUser) {
             return [
-                <IconButton edge="end"
-                                aria-label="delete"
-                                onClick={()=>handleDeleteFriend(friendId)}>
-                    <DeleteIcon />
-                </IconButton>
+                <Grid item>
+                    <IconButton edge="end"
+                                    aria-label="delete"
+                                    onClick={()=>handleDeleteFriend(friendId)}>
+                        <DeleteIcon />
+                    </IconButton>
+                    <IconButton edge="end"
+                                aria-label="check">
+                        <VisibilityIcon onClick={()=>handleShowProfile(friendId)}/>
+                    </IconButton>
+                </Grid>
             ]
         } else {
             return [

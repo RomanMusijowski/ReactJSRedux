@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const InviteCount = ({invites}) => {
+const InviteCount = ({invites, loggedInUserId}) => {
 
     const [open, setOpen] = React.useState(false);
 
@@ -35,7 +35,8 @@ const InviteCount = ({invites}) => {
     const [dense] = React.useState(false);
     const invitesList = invites.map(function (item) {
         return <InviteDialogItem byUser={item.byUser}
-                                 eventId={item.eventId}/>
+                                 eventId={item.eventId}
+                                 loggedInUserId={loggedInUserId}/>
     }   )
 
     return(

@@ -1,20 +1,34 @@
 import axios from 'axios'
 import URLS from "../shared/Urls.constants";
 import {
+    acceptInviteFailure,
+    acceptInviteSuccess,
+    addFriendFailure,
+    addFriendSuccess,
+    deleteFriendFailure,
+    deleteFriendSuccess,
+    deleteInviteFailure,
+    deleteInviteSuccess,
+    fetchInvitedEventsFailure,
+    fetchInvitedEventsSuccess,
+    fetchUserEventsFailure,
+    fetchUserEventsSuccess,
+    userProfileFriendsSuccess,
     userProfileLoadFailure,
     userProfileLoadSuccess,
-    userProfileUpdateFailure,
-    userProfileFriendsSuccess, addFriendSuccess, addFriendFailure, deleteFriendSuccess, deleteFriendFailure
+    userProfileUpdateFailure
 } from "../actions/user/actions";
-import {fetchUserEventsFailure, fetchUserEventsSuccess} from "../actions/user/actions";
 
 
 export const fetchUserProfile = (userId) => async (dispatch) => {
     axios.get(URLS.apiUser + '/' + userId)
-        .then(data => {
-            dispatch(userProfileLoadSuccess(data))
+        .then(res => {
+            dispatch(userProfileLoadSuccess(res))
             dispatch(fetchUserFriends(userId))
             dispatch(fetchUserEvents(userId))
+
+            let eventIds = res.data.invitedEvents.map(e => e.eventId)
+            dispatch(fetchInvitedEvents(eventIds))
         })
         .catch(error => {
             dispatch(userProfileLoadFailure(error))
@@ -65,5 +79,44 @@ export const deleteFriend = (friendId, loggedInUserId) => async (dispatch) => {
         })
         .catch(error => {
             dispatch(deleteFriendFailure(error))
+        })
+}
+
+export const deleteInvite = (eventId, userId) => async (dispatch) => {
+    axios.delete(URLS.apiUser+'/event/' + eventId)
+        .then(res => {
+            dispatch(deleteInviteSuccess(res))
+            dispatch(fetchUserProfile(userId))
+        })
+        .catch(error => {
+            dispatch(deleteInviteFailure(error))
+        })
+}
+
+export const acceptInvite = (eventId, userId) => async (dispatch) => {
+    axios.post(URLS.apiEvent+'/' + eventId + '/join')
+        .then(res => {
+            dispatch(acceptInviteSuccess(res))
+            dispatch(fetchUserProfile(userId))
+        })
+        .catch(error => {
+            dispatch(acceptInviteFailure(error))
+        })
+}
+
+export const fetchInvitedEvents = (eventIds) => async (dispatch) => {
+    let message = eventIds.map(String).toString();
+    let request = {
+        params: {
+            'eventIDs': message
+        }
+    }
+
+    axios.get(URLS.apiEvent+'/infos', request)
+        .then(res => {
+            dispatch(fetchInvitedEventsSuccess(res))
+        })
+        .catch(error => {
+            dispatch(fetchInvitedEventsFailure(error))
         })
 }

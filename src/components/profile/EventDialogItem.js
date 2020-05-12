@@ -6,29 +6,27 @@ import React from "react";
 import Typography from "@material-ui/core/Typography";
 import IconButton from "@material-ui/core/IconButton";
 import DeleteIcon from '@material-ui/icons/Delete';
-import {deleteEvent} from "../../services/eventApi";
+import {deleteEvent, joinEvent} from "../../services/eventApi";
 import Grid from "@material-ui/core/Grid";
 import PersonAddIcon from '@material-ui/icons/PersonAdd';
 
-const EventDialogItem = ({eventId, name, description, dateTime, loggedInUser}) => {
+const EventDialogItem = ({eventId, name, description, dateTime, loggedInUser, loggedInUserId}) => {
     const dispatch = useDispatch();
 
-    const handleDeleteEvent = (eventId) => {
-        dispatch(deleteEvent(eventId));
-        // window.location.reload();
+    const handleDeleteEvent = (eventId, userInfoId) => {
+        dispatch(deleteEvent(eventId, userInfoId));
     };
 
     const handleJoinEvent = (eventId) => {
-        dispatch(deleteEvent(eventId));
-        // window.location.reload();
+        dispatch(joinEvent(eventId));
     };
 
-    const showButton = (loggedInUser, eventId) => {
+    const showButton = (loggedInUser, eventId, loggedInUserId) => {
         if (loggedInUser) {
             return [
                 <IconButton edge="end"
                             aria-label="delete"
-                            onClick={()=>handleDeleteEvent(eventId)}>
+                            onClick={()=>handleDeleteEvent(eventId, loggedInUserId)}>
                     <DeleteIcon />
                 </IconButton>
             ]
@@ -67,7 +65,7 @@ const EventDialogItem = ({eventId, name, description, dateTime, loggedInUser}) =
                     </Grid>
                 </Grid>
                 <Grid item>
-                    {showButton(loggedInUser, eventId)}
+                    {showButton(loggedInUser, eventId, loggedInUserId)}
                 </Grid>
             </Grid>
         </ListItem>
