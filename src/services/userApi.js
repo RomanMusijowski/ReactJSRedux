@@ -9,6 +9,8 @@ import {
     deleteFriendSuccess,
     deleteInviteFailure,
     deleteInviteSuccess,
+    fetchInvitedEventsFailure,
+    fetchInvitedEventsSuccess,
     fetchUserEventsFailure,
     fetchUserEventsSuccess,
     userProfileFriendsSuccess,
@@ -20,10 +22,13 @@ import {
 
 export const fetchUserProfile = (userId) => async (dispatch) => {
     axios.get(URLS.apiUser + '/' + userId)
-        .then(data => {
-            dispatch(userProfileLoadSuccess(data))
+        .then(res => {
+            dispatch(userProfileLoadSuccess(res))
             dispatch(fetchUserFriends(userId))
             dispatch(fetchUserEvents(userId))
+
+            let eventIds = res.data.invitedEvents.map(e => e.eventId)
+            dispatch(fetchInvitedEvents(eventIds))
         })
         .catch(error => {
             dispatch(userProfileLoadFailure(error))
@@ -99,3 +104,19 @@ export const acceptInvite = (eventId, userId) => async (dispatch) => {
         })
 }
 
+export const fetchInvitedEvents = (eventIds) => async (dispatch) => {
+    let message = eventIds.map(String).toString();
+    let request = {
+        params: {
+            'eventIDs': message
+        }
+    }
+
+    axios.get(URLS.apiEvent+'/infos', request)
+        .then(res => {
+            dispatch(fetchInvitedEventsSuccess(res))
+        })
+        .catch(error => {
+            dispatch(fetchInvitedEventsFailure(error))
+        })
+}

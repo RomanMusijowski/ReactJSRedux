@@ -21,3 +21,6 @@ export const deleteInviteFailure = (error) => createAction(userConstants.DELETE_
 
 export const acceptInviteSuccess =(data) => createAction(userConstants.ACCEPT_INVITE_SUCCESS, data)
 export const acceptInviteFailure = (error) => createAction(userConstants.ACCEPT_INVITE_FAILURE, error)
+
+export const fetchInvitedEventsSuccess =(data) => createAction(userConstants.FETCH_INVITED_EVENTS_SUCCESS, data)
+export const fetchInvitedEventsFailure = (error) => createAction(userConstants.FETCH_INVITED_EVENTS_FAILURE, error)

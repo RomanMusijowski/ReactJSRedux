@@ -12,6 +12,7 @@ import {
     fetchListFriendsEventsFailure,
     fetchListFriendsEventsSuccess
 } from "../actions/event/actions";
+import {fetchUserProfile} from "./userApi";
 
 
 export const addEvent = (name, description, dateTime) => async (dispatch) => {
@@ -51,10 +52,11 @@ export const joinEvent = (id) => async  (dispatch) =>{
         })
 };
 
-export const deleteEvent = (id) => async  (dispatch) =>{
-    axios.delete(URLS.apiEvent + '/' + id)
+export const deleteEvent = (eventId, userId) => async  (dispatch) =>{
+    axios.delete(URLS.apiEvent + '/' + eventId)
         .then(res => {
             dispatch(eventDeleteSuccess(res))
+            dispatch(fetchUserProfile(userId))
         })
         .catch(error => {
             dispatch(eventDeleteFialure(error))
