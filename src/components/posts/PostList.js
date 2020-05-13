@@ -52,7 +52,7 @@ const PostList = (props) => {
                         }
 
                         subheader={
-                            <Link to={'/profile/'+props.posts[key].userId}></Link>
+                            <Link to={'/profile/'+props.posts[key].userId}>{props.posts[key].userId}</Link>
                         }
 
 

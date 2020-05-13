@@ -10,7 +10,7 @@ import Pagination from '@material-ui/lab/Pagination';
 class ProfileWall extends Component{
 
     state = {
-        page: 1
+        page: 0
     };
 
 

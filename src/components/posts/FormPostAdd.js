@@ -45,7 +45,7 @@ const FormPostAdd = (props) =>  {
 
                             }
                             subheader={
-                                <Link to={'/profile/'+userInfoId}>{userList[userInfoId].username}</Link>
+                                <Link to={'/profile/'+userInfoId}>{userInfoId}</Link>
                             }
                             />
 

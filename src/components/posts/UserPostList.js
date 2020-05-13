@@ -71,7 +71,7 @@ const UserPostList = (props) => {
                             <p>{props.posts[key].content}</p>
                         </CardContent>
                         <CardActions disableSpacing>
-                            <IconButton aria-label="add to favorites">
+                            <IconButton aria-label="add to favorites" disabled={props.posts[key].userId === userInfoId}>
                                 <FavoriteIcon onClick={() => handlePostLike(props.posts[key].id)} /> {props.posts[key].likes}
                             </IconButton>
 

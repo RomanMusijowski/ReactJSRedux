@@ -68,7 +68,7 @@ const Comments = ({id, userId, content, likes, postId, username }) => {
                     <p>{content}</p>
                 </CardContent>
                 <CardActions disableSpacing>
-                    <IconButton aria-label="add to favorites">
+                    <IconButton aria-label="add to favorites" disabled={userId === userInfoId}>
                         <FavoriteIcon  onClick={() => handleCommentLike(postId,id)}/> {likes}
                     </IconButton>
 
