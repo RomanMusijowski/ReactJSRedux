@@ -20,7 +20,8 @@ import {fetchUserProfile} from "./userApi";
 const authApi ={
     login,
     register,
-    logout
+    logout,
+    fetchLoadUser
 };
 
 function fetchLoadUser() {

@@ -1,29 +1,103 @@
-import React, {useEffect} from "react";
+import React from "react";
+import Container from "@material-ui/core/Container";
+import Card from '@material-ui/core/Card';
+import CardHeader from '@material-ui/core/CardHeader';
+import CardMedia from '@material-ui/core/CardMedia';
+import CardContent from '@material-ui/core/CardContent';
+import CardActions from '@material-ui/core/CardActions';
+import Avatar from '@material-ui/core/Avatar';
+import IconButton from '@material-ui/core/IconButton';
+import FavoriteIcon from '@material-ui/icons/Favorite';
+import ShareIcon from '@material-ui/icons/Share';
+import MoreVertIcon from '@material-ui/icons/MoreVert';
+import {Link} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
-import {getAllPostFriends} from "../../services/postApi";
-import Posts from "./Posts";
+import {postLike} from "../../services/postApi";
+import Pagination from '@material-ui/lab/Pagination';
+import ListUserPostLiked from "./ListUserPostLiked";
+
 
 const PostList = (props) => {
 
     const dispatch = useDispatch();
 
-    useEffect(() => {
-       dispatch(getAllPostFriends())
-    }, [dispatch]);
-
-    const listPosts = useSelector((state) => state.post);
-    console.log(Object.keys(listPosts));
-
-    const item = Object.keys(listPosts).map(key =>
-    <Posts id={listPosts[key].id}
-           content={listPosts[key].content}
-           likes={listPosts[key].likes}
-    />);
+    const userList = useSelector((state) => state.user);
+    //console.log(userList);
 
 
-    return(
-        <div>{item}</div>
-    )
-};
+    const handlePostLike = (postId) => {
+        dispatch(postLike(postId));
+        window.location.reload();
+    };
 
-export default PostList
+        return(<div>
+            {props.posts && Object.keys(props.posts).map(key => (
+            <Container maxWidth="sm">
+
+                <Card style={{marginTop: 30,
+
+                    }}>
+                    <CardHeader
+                        avatar={
+                            <Avatar aria-label="recipe" >
+
+                            </Avatar>
+
+                        }
+
+                        action={
+                            <IconButton aria-label="settings">
+                                <MoreVertIcon />
+                            </IconButton>
+                        }
+
+                        subheader={
+                            <Link to={'/profile/'+props.posts[key].userId}></Link>
+                        }
+
+
+                    />
+
+                    <CardMedia
+                        //className={classes.media}
+                        image="https://material-ui.com/static/images/cards/contemplative-reptile.jpg"
+                        title="Contemplative Reptile"
+                    />
+                    <CardContent>
+                        <p>{props.posts[key].content}</p>
+                    </CardContent>
+                    <CardActions disableSpacing>
+                        <IconButton aria-label="add to favorites">
+                            <FavoriteIcon onClick={() => handlePostLike(props.posts[key].id)} /> {props.posts[key].likes}
+                        </IconButton>
+                        <IconButton
+                            aria-label="show more"
+                            //onClick={handleExpandClick}
+                        >
+
+                            <ListUserPostLiked postId={props.posts[key].id}/>
+                        </IconButton>
+
+                        <IconButton
+                            aria-label="show more"
+                            //onClick={handleExpandClick}
+                        >
+
+                            <button><Link to={'/post/'+props.posts[key].id+'/comments'}>Comments</Link></button>
+                        </IconButton>
+                    </CardActions>
+                    <Container>
+
+
+                    </Container>
+                </Card>
+
+            </Container>
+
+            ))}
+
+            </div>
+        )
+}
+
+export default PostList;

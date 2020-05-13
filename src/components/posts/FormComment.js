@@ -6,14 +6,14 @@ import Icon from "@material-ui/core/Icon";
 import Button from "@material-ui/core/Button";
 import Avatar from "@material-ui/core/Avatar";
 import {useDispatch, useSelector} from "react-redux";
-import {addPost} from "../../services/postApi";
 import {Link} from "react-router-dom";
-import CardHeader from '@material-ui/core/CardHeader';
+import CardHeader from "@material-ui/core/CardHeader";
+import {addComment} from "../../services/postApi";
 
 
-const FormPostAdd = (props) =>  {
+const FormComment = (props) =>  {
     const [content, setContent] = React.useState("");
-
+    console.log(props.postId);
     const dispatch = useDispatch();
 
     const userList = useSelector((state) => state.user);
@@ -22,20 +22,19 @@ const FormPostAdd = (props) =>  {
     const handleSubmit = (event/*values, actions*/) => {
         event.preventDefault();
 
-        dispatch(addPost(content));
+        dispatch(addComment(props.postId,content));
 
         setContent("");
-        if(content.length > 0) {
-            window.alert("Success create post");
-            window.location.reload();
-        }
-        else window.alert("create post is empty");
+
+        window.alert("Success create comment");
+        window.location.reload();
+
     };
 
     return (
         <Container maxWidth="sm">
             <form onSubmit={handleSubmit}>
-                <div className="card light-green lighten-3">
+                <div className="card light-blue lighten-3">
                     <div className="card-content black-text">
                         <CardHeader
                             avatar={
@@ -47,11 +46,9 @@ const FormPostAdd = (props) =>  {
                             subheader={
                                 <Link to={'/profile/'+userInfoId}>{userList[userInfoId].username}</Link>
                             }
-                            />
-
-
+                        />
                         <span className="card-title">
-                                    <h8>Create post</h8>
+                                    <h8>Create comment</h8>
                                  </span>
                         <div className="row">
                                             <textarea className="materialize-textarea"
@@ -63,13 +60,9 @@ const FormPostAdd = (props) =>  {
                     </div>
                     <div className="card-action">
                         <div className="row">
-                            <Button href={"/#"}><Icon component={AccountCircleRoundedIcon}
-                                                      color="primary"
-                                                      fontSize={"large"}></Icon></Button>
-                            <Button href={"/#"}><Icon component={InsertPhotoRoundedIcon} color="primary"
-                                                      fontSize={"large"}></Icon></Button>
+
                             <input className="btn light-red accent-1 right"   type="submit"
-                                   value="Submit" />
+                                   value="Comment create" />
 
                         </div>
                     </div>
@@ -78,4 +71,4 @@ const FormPostAdd = (props) =>  {
         </Container>
     );
 }
-export default FormPostAdd
+export default FormComment
