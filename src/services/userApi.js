@@ -1,5 +1,4 @@
 import axios from 'axios'
-import URLS from "../shared/Urls.constants";
 import {
     acceptInviteFailure,
     acceptInviteSuccess,
@@ -18,6 +17,7 @@ import {
     userProfileLoadSuccess,
     userProfileUpdateFailure
 } from "../actions/user/actions";
+import URLS from "../shared/Urls.constants";
 
 
 export const fetchUserProfile = (userId) => async (dispatch) => {
@@ -111,8 +111,7 @@ export const fetchInvitedEvents = (eventIds) => async (dispatch) => {
             'eventIDs': message
         }
     }
-
-    axios.get(URLS.apiEvent+'/infos', request)
+    axios.get(URLS.apiEvent + '/infos', request)
         .then(res => {
             dispatch(fetchInvitedEventsSuccess(res))
         })

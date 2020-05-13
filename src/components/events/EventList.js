@@ -15,6 +15,7 @@ const useStyles = makeStyles((theme) => ({
 const EventList = (props) => {
 
     const dispatch = useDispatch();
+    const listOfEvents = useSelector((state)=> state.event);
 
     useEffect(()=> {
         dispatch(fetchEventList())
@@ -22,13 +23,13 @@ const EventList = (props) => {
 
     const classes = useStyles();
     const [dense] = React.useState(false);
-
-    const listOfEvents = useSelector((state)=> state.event);
     const items = Object.keys(listOfEvents).map(key =>
         <EventListItem eventId={listOfEvents[key].id}
                        name={listOfEvents[key].name}
                        description={listOfEvents[key].description}
-                       dateTime={listOfEvents[key].dateTime}/>);
+                       dateTime={listOfEvents[key].dateTime}
+                       photo={listOfEvents[key].photos[0].url}
+            />);
 
     return (
         <Grid item lg={12}

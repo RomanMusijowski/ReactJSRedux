@@ -1,7 +1,6 @@
 import {useDispatch} from "react-redux";
 import ListItem from "@material-ui/core/ListItem";
 import Avatar from "@material-ui/core/Avatar";
-import FolderIcon from "@material-ui/icons/Folder";
 import React from "react";
 import Typography from "@material-ui/core/Typography";
 import IconButton from "@material-ui/core/IconButton";
@@ -10,7 +9,7 @@ import {deleteEvent, joinEvent} from "../../services/eventApi";
 import Grid from "@material-ui/core/Grid";
 import PersonAddIcon from '@material-ui/icons/PersonAdd';
 
-const EventDialogItem = ({eventId, name, description, dateTime, loggedInUser, loggedInUserId}) => {
+const EventDialogItem = ({eventId, name, description, dateTime, loggedInUser, loggedInUserId, photo}) => {
     const dispatch = useDispatch();
 
     const handleDeleteEvent = (eventId, userInfoId) => {
@@ -46,7 +45,7 @@ const EventDialogItem = ({eventId, name, description, dateTime, loggedInUser, lo
             <Grid container spacing={2}>
                 <Grid item>
                     <Avatar>
-                        <FolderIcon />
+                        <img src={photo}/>
                     </Avatar>
                 </Grid>
                 <Grid item xs={12} sm container>

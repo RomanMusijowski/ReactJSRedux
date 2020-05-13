@@ -1,12 +1,6 @@
 import axios from 'axios';
 import URLS from "../shared/Urls.constants";
-import {
-    postLoadRequest,
-    postLoadSuccess,
-    postLoadFailure
-} from "../actions/post/actions";
-import setAuthToken from "../shared/setAuthToken";
-import { withRouter } from "react-router";
+import {postLoadFailure, postLoadRequest, postLoadSuccess} from "../actions/post/actions";
 
 
 /*****
