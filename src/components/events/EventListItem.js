@@ -7,22 +7,20 @@ import Typography from '@material-ui/core/Typography';
 import PersonAddIcon from '@material-ui/icons/PersonAdd';
 import {joinEvent} from "../../services/eventApi";
 import InviteDialog from "./InviteDialog";
-import EventIcon from '@material-ui/icons/Event';
 import Grid from '@material-ui/core/Grid';
 
-const EventListItem = ({eventId, name, description, dateTime}) => {
+const EventListItem = ({eventId, name, description, dateTime, photo}) => {
     const dispatch = useDispatch();
 
     const handleJoinEvent = (eventId) => {
         dispatch(joinEvent(eventId));
     };
-
     return(
         <ListItem alignItems="flex-start">
             <Grid container spacing={2}>
                 <Grid item>
                     <Avatar>
-                        <EventIcon />
+                        <img src={photo}/>
                     </Avatar>
                 </Grid>
                 <Grid item xs={12} sm container>

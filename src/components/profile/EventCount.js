@@ -38,7 +38,8 @@ const EventCount = ({events, loggedInUser, loggedInUserId}) => {
                                 description={item.description}
                                 dateTime={item.dateTime}
                                 loggedInUser={loggedInUser}
-                                loggedInUserId={loggedInUserId}/>
+                                loggedInUserId={loggedInUserId}
+                                photo={item.photos[0].url}/>
     }   )
 
     return(

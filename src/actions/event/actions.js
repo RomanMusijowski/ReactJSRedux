@@ -16,3 +16,6 @@ export const eventDeleteFialure = (error) => createAction(eventConstant.EVENT_DE
 
 export const eventInviteFriendSuccess = (data) => createAction(eventConstant.EVENT_INVITE_FRIEND_SUCCESS, data);
 export const eventInviteFriendFailure = (error) => createAction(eventConstant.EVENT_INVITE_FRIEND_FAILURE, error);
+
+export const eventFetchPhotoSuccess = (data) => createAction(eventConstant.EVENT_FETCH_PHOTO_SUCCESS, data);
+export const eventFetchPhotoFailure = (error) => createAction(eventConstant.EVENT_FETCH_PHOTO_FAILURE, error);

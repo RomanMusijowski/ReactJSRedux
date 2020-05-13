@@ -2,7 +2,6 @@ import {useDispatch, useSelector} from "react-redux";
 import ListItem from "@material-ui/core/ListItem";
 import Grid from "@material-ui/core/Grid";
 import Avatar from "@material-ui/core/Avatar";
-import FolderIcon from "@material-ui/icons/Folder";
 import Typography from "@material-ui/core/Typography";
 import IconButton from "@material-ui/core/IconButton";
 import React, {useEffect} from "react";
@@ -47,7 +46,7 @@ const InviteDialogItem = ({byUser, eventId, loggedInUserId}) => {
             <Grid container spacing={2}>
                 <Grid item>
                     <Avatar>
-                        <FolderIcon />
+                        <img src={listOfEvents[eventId].photos[0].url}/>
                     </Avatar>
                 </Grid>
                 <Grid item xs={12} sm container>
