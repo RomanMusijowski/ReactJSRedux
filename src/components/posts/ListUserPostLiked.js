@@ -65,20 +65,15 @@ const ListUserPostLiked = ({postId}) => {
 */
     return(
         <Fragment>
-            <Card style={{backgroundColor: "powderblue",
-                            height: 30
-                }}>
-                <CardContent >
 
-                    <Typography variant={"h6"}>
+
+
+
                         <PeopleIcon style={{
 
                         }} onClick={handleClickOpen}/>
 
-                    </Typography>
 
-                </CardContent>
-            </Card>
 
             <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
                 <DialogTitle id="form-dialog-title">User liked this post</DialogTitle>
