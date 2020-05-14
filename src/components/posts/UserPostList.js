@@ -27,7 +27,7 @@ const UserPostList = (props) => {
     const userList = useSelector((state) => state.user);
     const userInfoId = useSelector((state) => state.auth.userInfo.id);
 
-    var date, date1;
+    var createDate, lastUpdateDate, date1, date2;
 
     const handlePostLike = (postId) => {
         dispatch(postLike(postId));
@@ -41,8 +41,10 @@ const UserPostList = (props) => {
 
     return(<div>
             {props.posts && Object.keys(props.posts).map(key => (
-                date = (props.posts[key].lastModifiedDate).toString(),
-                    date1 = date.split(","),
+                createDate = (props.posts[key].createdDate).toString(),
+                    lastUpdateDate = (props.posts[key].lastModifiedDate).toString(),
+                    date1 = createDate.split(","),
+                    date2 = lastUpdateDate.split(","),
                 <Container maxWidth="sm">
 
                     <Card style={{marginTop: 30,
@@ -62,7 +64,7 @@ const UserPostList = (props) => {
 
                             subheader={
 
-                                date1[0]+"/"+date1[1]+"/"+date1[2]+" "+" --- "+date1[3]+" hour "+date1[4]+" min "+date1[5]+" sec"
+                                date1[0]+"/"+date1[1]+"/"+date1[2]
                             }
 
 
@@ -96,6 +98,7 @@ const UserPostList = (props) => {
                                                    contentt={props.posts[key].content}
                                                    />
                             </IconButton>
+                            <label>{"Last update: "+date2[0]+"/"+date2[1]+"/"+date2[2]+" --- "+date2[3]+":"+date2[4]}</label>
                         </CardActions>
                         <Container>
 

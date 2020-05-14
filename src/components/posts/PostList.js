@@ -24,7 +24,7 @@ const PostList = (props) => {
 
     const userList = useSelector((state) => state.user);
 
-    var date, date1;
+    var createDate, lastUpdateDate, date1, date2;
 
     const handlePostLike = (postId) => {
         dispatch(postLike(postId));
@@ -33,8 +33,10 @@ const PostList = (props) => {
 
         return(<div>
             {props.posts && Object.keys(props.posts).map(key => (
-                date = (props.posts[key].lastModifiedDate).toString(),
-                    date1 = date.split(","),
+                createDate = (props.posts[key].createdDate).toString(),
+                    lastUpdateDate = (props.posts[key].lastModifiedDate).toString(),
+                    date1 = createDate.split(","),
+                    date2 = lastUpdateDate.split(","),
             <Container maxWidth="sm">
 
                 <Card style={{marginTop: 30,
@@ -55,11 +57,12 @@ const PostList = (props) => {
                         subheader={
                             //console.log(Intl.DateTimeFormat('en-US').format( props.posts[key].lastModifiedDate))
                             //console.log(date1[1]);
-                            date1[0]+"/"+date1[1]+"/"+date1[2]+" "+" --- "+date1[3]+" hour "+date1[4]+" min "+date1[5]+" sec"
+                            date1[0]+"/"+date1[1]+"/"+date1[2]
 
                             //<Moment date={props.posts[key].lastModifiedDate}/>
                             //Moment(props.posts[key].lastModifiedDate).format("lll")
                         }
+
 
 
                     />
@@ -91,6 +94,7 @@ const PostList = (props) => {
 
                             <button><Link to={'/post/'+props.posts[key].id+'/comments'}>Comments</Link></button>
                         </IconButton>
+                        <label>{"Last update: "+date2[0]+"/"+date2[1]+"/"+date2[2]+" --- "+date2[3]+" hour "+date2[4]+" min "+date2[5]+" sec"}</label>
                     </CardActions>
                     <Container>
 
