@@ -91,14 +91,14 @@ const FormCommentPutDialog = ({postId, commentId, contentt}) => {
 
 
             <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
-                <DialogTitle id="form-dialog-title">Update your post</DialogTitle>
+                <DialogTitle id="form-dialog-title">Update your comment</DialogTitle>
                 <DialogContent>
                     <div className={classes.demo}>
                         <List dense={dense}>
                             {console.log([postId, contentt, username])}
 
                             <form onSubmit={handleSubmit}>
-                                <div className="card light-green lighten-3">
+                                <div className="card light-blue lighten-3">
                                     <div className="card-content black-text">
                                         <CardHeader
                                             avatar={
@@ -130,7 +130,7 @@ const FormCommentPutDialog = ({postId, commentId, contentt}) => {
 
 
                                             <input className="btn light-red accent-1 right"   type="submit"
-                                                   value="Submit" />
+                                                   value="Update" />
 
                                         </div>
                                     </div>

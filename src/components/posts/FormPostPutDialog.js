@@ -130,7 +130,7 @@ const FromPostPutDialog = ({postId, contentt}) => {
                                         <Button href={"/#"}><Icon component={InsertPhotoRoundedIcon} color="primary"
                                                                   fontSize={"large"}></Icon></Button>
                                         <input className="btn light-red accent-1 right"   type="submit"
-                                               value="Submit" />
+                                               value="Update" />
 
                                     </div>
                                 </div>

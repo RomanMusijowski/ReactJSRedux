@@ -62,7 +62,7 @@ const UserPostList = (props) => {
 
                             subheader={
 
-                                date1[0]+" Year "+date1[1]+" Month "+date1[2]+" Day, "+"Time: "+date1[3]+" hour "+date1[4]+" min"
+                                date1[0]+"/"+date1[1]+"/"+date1[2]+" "+" --- "+date1[3]+" hour "+date1[4]+" min "+date1[5]+" sec"
                             }
 
 

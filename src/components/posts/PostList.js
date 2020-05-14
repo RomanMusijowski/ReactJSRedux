@@ -55,7 +55,7 @@ const PostList = (props) => {
                         subheader={
                             //console.log(Intl.DateTimeFormat('en-US').format( props.posts[key].lastModifiedDate))
                             //console.log(date1[1]);
-                            date1[0]+" Year "+date1[1]+" Month "+date1[2]+" Day, "+"Time: "+date1[3]+" hour "+date1[4]+" min"
+                            date1[0]+"/"+date1[1]+"/"+date1[2]+" "+" --- "+date1[3]+" hour "+date1[4]+" min "+date1[5]+" sec"
 
                             //<Moment date={props.posts[key].lastModifiedDate}/>
                             //Moment(props.posts[key].lastModifiedDate).format("lll")
