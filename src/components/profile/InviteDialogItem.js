@@ -45,8 +45,10 @@ const InviteDialogItem = ({byUser, eventId, loggedInUserId}) => {
             {showInvites() ? (
             <Grid container spacing={2}>
                 <Grid item>
-                    <Avatar>
-                        <img src={listOfEvents[eventId].photos[0].url}/>
+                    <Avatar
+                        src={listOfEvents[eventId].photos[0].url}
+                        style={{width: '100px',
+                            height: '100px'}}>/>
                     </Avatar>
                 </Grid>
                 <Grid item xs={12} sm container>

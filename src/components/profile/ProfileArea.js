@@ -1,7 +1,6 @@
 import React from 'react';
 import {useDispatch} from "react-redux";
 import BackgroundImage from '../../images/user-profile-bg.jpg'
-import AvatarImage from '../../images/avatar.jpg'
 import Avatar from "@material-ui/core/Avatar";
 import Card from '@material-ui/core/Card'
 import CardMedia from '@material-ui/core/CardMedia';
@@ -13,7 +12,7 @@ import IconButton from "@material-ui/core/IconButton";
 import {addFriend, fetchUserProfile} from "../../services/userApi";
 
 const ProfileArea = ({username, email, firstName, lastName,
-                         phoneNumber, gender, loggedInUserId, userId, friends}) => {
+                         phoneNumber, gender, photo, loggedInUserId, userId, friends}) => {
 
     const dispatch = useDispatch();
 
@@ -50,7 +49,7 @@ const ProfileArea = ({username, email, firstName, lastName,
                     spacing={2}>
                     <Grid item>
                         <Avatar alt="Carlos"
-                                src={AvatarImage}
+                                src={photo}
                                 style={{width: '100px',
                                     height: '100px'}}/>
                     </Grid>

@@ -38,6 +38,7 @@ const FriendsCount = ({friends, loggedInUser, loggedInUserId}) => {
                                  username={friend.username}
                                  firstName={friend.firstName}
                                  lastName={friend.lastName}
+                                 photo={friend.photos[0].url}
                                  loggedInUser={loggedInUser}
                                  loggedInUserId={loggedInUserId}/>
     })

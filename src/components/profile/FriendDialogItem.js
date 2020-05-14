@@ -2,7 +2,6 @@ import {useDispatch} from "react-redux";
 import ListItem from "@material-ui/core/ListItem";
 import Grid from "@material-ui/core/Grid";
 import Avatar from "@material-ui/core/Avatar";
-import FolderIcon from "@material-ui/icons/Folder";
 import Typography from "@material-ui/core/Typography";
 import IconButton from "@material-ui/core/IconButton";
 import DeleteIcon from "@material-ui/icons/Delete";
@@ -11,7 +10,7 @@ import VisibilityIcon from '@material-ui/icons/Visibility';
 import {useHistory} from "react-router-dom";
 import {deleteFriend} from "../../services/userApi";
 
-const FriendDialogItem = ({friendId, username, firstName, lastName, loggedInUser, loggedInUserId}) => {
+const FriendDialogItem = ({friendId, username, firstName, lastName, photo, loggedInUser, loggedInUserId}) => {
 
     const dispatch = useDispatch();
     const history = useHistory();
@@ -55,8 +54,10 @@ const FriendDialogItem = ({friendId, username, firstName, lastName, loggedInUser
         <ListItem alignItems="flex-start">
             <Grid container spacing={2}>
                 <Grid item>
-                    <Avatar>
-                        <FolderIcon />
+                    <Avatar
+                        src={photo}
+                        style={{width: '100px',
+                            height: '100px'}}>/>
                     </Avatar>
                 </Grid>
                 <Grid item xs={12} sm container>
