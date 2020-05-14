@@ -25,7 +25,9 @@ const UserPostList = (props) => {
     const dispatch = useDispatch();
 
     const userList = useSelector((state) => state.user);
-    const userInfoId = useSelector((state) => state.auth.userInfo.id)
+    const userInfoId = useSelector((state) => state.auth.userInfo.id);
+
+    var date, date1;
 
     const handlePostLike = (postId) => {
         dispatch(postLike(postId));
@@ -39,6 +41,8 @@ const UserPostList = (props) => {
 
     return(<div>
             {props.posts && Object.keys(props.posts).map(key => (
+                date = (props.posts[key].lastModifiedDate).toString(),
+                    date1 = date.split(","),
                 <Container maxWidth="sm">
 
                     <Card style={{marginTop: 30,
@@ -52,13 +56,14 @@ const UserPostList = (props) => {
 
                             }
 
-                            action={
-                                <IconButton aria-label="settings">
-                                    <MoreVertIcon />
-                                </IconButton>
-                            }
+                            title={<Link to={'/profile/'+props.posts[key].userId}>{userList[props.posts[key].userId].username}</Link>}
 
-                            subheader={<Link to={'/profile/'+props.posts[key].userId}>{userList[props.posts[key].userId].username}</Link>}
+
+
+                            subheader={
+
+                                date1[0]+" Year "+date1[1]+" Month "+date1[2]+" Day, "+"Time: "+date1[3]+" hour "+date1[4]+" min"
+                            }
 
 
                         />

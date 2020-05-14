@@ -17,13 +17,14 @@ import Pagination from '@material-ui/lab/Pagination';
 import ListUserPostLiked from "./ListUserPostLiked";
 
 
+
 const PostList = (props) => {
 
     const dispatch = useDispatch();
 
     const userList = useSelector((state) => state.user);
-    //console.log(userList);
 
+    var date, date1;
 
     const handlePostLike = (postId) => {
         dispatch(postLike(postId));
@@ -32,6 +33,8 @@ const PostList = (props) => {
 
         return(<div>
             {props.posts && Object.keys(props.posts).map(key => (
+                date = (props.posts[key].lastModifiedDate).toString(),
+                    date1 = date.split(","),
             <Container maxWidth="sm">
 
                 <Card style={{marginTop: 30,
@@ -45,14 +48,17 @@ const PostList = (props) => {
 
                         }
 
-                        action={
-                            <IconButton aria-label="settings">
-                                <MoreVertIcon />
-                            </IconButton>
-                        }
+                        title={<Link to={'/profile/'+props.posts[key].userId}>{props.posts[key].userId}</Link>}
+
+
 
                         subheader={
-                            <Link to={'/profile/'+props.posts[key].userId}>{props.posts[key].userId}</Link>
+                            //console.log(Intl.DateTimeFormat('en-US').format( props.posts[key].lastModifiedDate))
+                            //console.log(date1[1]);
+                            date1[0]+" Year "+date1[1]+" Month "+date1[2]+" Day, "+"Time: "+date1[3]+" hour "+date1[4]+" min"
+
+                            //<Moment date={props.posts[key].lastModifiedDate}/>
+                            //Moment(props.posts[key].lastModifiedDate).format("lll")
                         }
 
 
