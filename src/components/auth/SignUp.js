@@ -14,6 +14,7 @@ class SignUp extends Component{
             phoneNumber: '',
             gender: '',
         },
+        file: null,
         submitted: false
     };
 
@@ -23,11 +24,12 @@ class SignUp extends Component{
         this.setState({
             submitted: true
         });
-        const {user} = this.state;
+        const {user, file} = this.state;
         if (user.email && user.username && user.firstName && user.lastName
-            && user.phoneNumber && user.gender && user.password) {
+            && user.phoneNumber && user.gender && user.password && file) {
 
-            this.props.register(user, this.props.history);
+            this.props.register(user.email, user.username, user.firstName, user.lastName, user.phoneNumber,
+                user.gender, user.password, file, this.props.history);
         }
     };
 
@@ -41,9 +43,16 @@ class SignUp extends Component{
         });
     };
 
+    handleFileChange = (e) => {
+        console.log(e.target.files[0])
+        this.setState({
+            file: e.target.files[0]
+        })
+    }
+
     render() {
         const {registerError} = this.props;
-        const {user, submitted} = this.state;
+        const {user, file, submitted} = this.state;
 
         return (
             <div className="container">
@@ -105,6 +114,16 @@ class SignUp extends Component{
                             <div className="help-block red-text">password is required</div>
                         }
                     </div>
+                    <div className={'input-field' + (submitted && ! file ? ' has-error' : '')}>
+                        <label htmlFor="file">Photo</label>
+                        <input accept="image/*" type="file" onChange={this.handleFileChange}/>
+                        {
+                            submitted && !file &&
+                            <div className="help-block red-text">Photo is required</div>
+                        }
+                    </div>
+
+
                     <div className="input-field">
                         <button className="btn pink lighten-1 z-depth-0">Register</button>
                         <div className="red-text center">

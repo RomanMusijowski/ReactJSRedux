@@ -72,18 +72,24 @@ function login(usernameOrEmail, password, history) {
     }
 }
 
-function register(user, history){
+function register( email, username, firstName, lastName, phoneNumber,
+                   gender, password, file, history){
     return dispatch => {
-        const config = {
-            headers: {
-                'Content-Type': 'application/json'
-            },
-        };
 
-        const body = JSON.stringify(user);
-        dispatch(registerRequest(body));
 
-        axios.post(URLS.apiAuth+'/signup', body, config)
+        const formData = new FormData();
+        formData.append('email', email);
+        formData.append('username', username);
+        formData.append('firstName', firstName);
+        formData.append('lastName', lastName);
+        formData.append('phoneNumber', phoneNumber);
+        formData.append('gender', gender);
+        formData.append('password', password);
+        formData.append('files', file);
+
+
+        dispatch(registerRequest(formData));
+        axios.post(URLS.apiAuth+'/signup', formData)
             .then(
                 (res) => {
                     dispatch(registerSuccess(res));
