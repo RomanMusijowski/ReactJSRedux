@@ -44,8 +44,10 @@ const EventDialogItem = ({eventId, name, description, dateTime, loggedInUser, lo
         <ListItem alignItems="flex-start">
             <Grid container spacing={2}>
                 <Grid item>
-                    <Avatar>
-                        <img src={photo}/>
+                    <Avatar
+                        src={photo}
+                        style={{width: '100px',
+                            height: '100px'}}>/>
                     </Avatar>
                 </Grid>
                 <Grid item xs={12} sm container>

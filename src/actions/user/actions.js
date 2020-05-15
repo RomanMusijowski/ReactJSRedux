@@ -24,3 +24,6 @@ export const acceptInviteFailure = (error) => createAction(userConstants.ACCEPT_
 
 export const fetchInvitedEventsSuccess =(data) => createAction(userConstants.FETCH_INVITED_EVENTS_SUCCESS, data)
 export const fetchInvitedEventsFailure = (error) => createAction(userConstants.FETCH_INVITED_EVENTS_FAILURE, error)
+
+export const userUpdateSuccess =(data) => createAction(userConstants.USER_UPDATE_SUCCESS, data)
+export const userUpdateFailure = (error) => createAction(userConstants.USER_UPDATE_FAILURE, error)

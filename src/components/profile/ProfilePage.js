@@ -46,6 +46,7 @@ const ProfilePage = (props) => {
                                  lastName={userList[userId].lastName}
                                  phoneNumber={userList[userId].phoneNumber}
                                  gender={userList[userId].gender}
+                                 photo={userList[userId].photos[0].url}
                                  loggedInUserId={userInfoId}
                                  userId={userId}
                                  friends={userList[userInfoId].friends}/>
