@@ -10,6 +10,7 @@ import Typography from '@material-ui/core/Typography';
 import PersonAddIcon from "@material-ui/icons/PersonAdd";
 import IconButton from "@material-ui/core/IconButton";
 import {addFriend, fetchUserProfile} from "../../services/userApi";
+import EditUser from "./EditUser";
 
 const ProfileArea = ({username, email, firstName, lastName,
                          phoneNumber, gender, photo, loggedInUserId, userId, friends}) => {
@@ -68,6 +69,15 @@ const ProfileArea = ({username, email, firstName, lastName,
                                 {email}
                             </Typography>
                         </Grid>
+                        <Grid item>
+                            <EditUser userId={userId}
+                                      email={email}
+                                      firstName={firstName}
+                                      lastName={lastName}
+                                      phoneNumber={phoneNumber}
+                                      gender={gender}/>
+                        </Grid>
+
                         {showAddFriendIcon() ? (
                             <Grid item>
                                 <IconButton edge="end"

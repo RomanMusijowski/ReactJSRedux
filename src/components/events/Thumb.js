@@ -28,11 +28,13 @@ class Thumb extends Component {
 
         if (loading) { return <p>loading...</p>; }
 
-        return (<img src={thumb}
+        return (
+            <img src={thumb}
                      alt={file.name}
                      className="img-thumbnail mt-2"
                      height={200}
-                     width={200} />);
+                     width={200} />
+                     )
     }
 }
 export default Thumb
