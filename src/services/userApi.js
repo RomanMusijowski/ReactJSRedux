@@ -15,7 +15,9 @@ import {
     userProfileFriendsSuccess,
     userProfileLoadFailure,
     userProfileLoadSuccess,
-    userProfileUpdateFailure
+    userProfileUpdateFailure,
+    userUpdateFailure,
+    userUpdateSuccess
 } from "../actions/user/actions";
 import URLS from "../shared/Urls.constants";
 
@@ -33,6 +35,28 @@ export const fetchUserProfile = (userId) => async (dispatch) => {
         .catch(error => {
             dispatch(userProfileLoadFailure(error))
         })
+}
+
+export const editUser = (userId, email, firstName, lastName, phoneNumber,
+                         gender, password, file) => async (dispatch) => {
+    const formData = new FormData();
+    formData.append('email', email);
+    formData.append('firstName', firstName);
+    formData.append('lastName', lastName);
+    formData.append('phoneNumber', phoneNumber);
+    formData.append('gender', gender);
+    formData.append('password', password);
+    formData.append('files', file);
+
+    axios.put(URLS.apiUser + '/' + userId, formData)
+        .then(res => {
+            dispatch(userUpdateSuccess(userId))
+            dispatch(fetchUserProfile(userId))
+        })
+        .catch(error => {
+            dispatch(userUpdateFailure(error))
+        })
+
 }
 
 export const fetchUserFriends = (userId) => async (dispatch) => {
