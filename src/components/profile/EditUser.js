@@ -20,6 +20,9 @@ const useStyles = makeStyles((theme) => ({
     demo: {
         backgroundColor: theme.palette.background.paper,
     },
+    input: {
+        display: 'none',
+    },
 }));
 
 const userSchema = Yup.object().shape({

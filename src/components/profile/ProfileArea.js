@@ -34,6 +34,14 @@ const ProfileArea = ({username, email, firstName, lastName,
         }
     }
 
+    const showEditIcon = function () {
+        const userIdNumber = parseInt(userId, 10)
+        if (loggedInUserId === userIdNumber){
+            return true
+        }
+        return false
+    }
+
     return(
         <Card style={{marginTop: "15px"}}>
             <CardMedia
@@ -69,26 +77,32 @@ const ProfileArea = ({username, email, firstName, lastName,
                                 {email}
                             </Typography>
                         </Grid>
-                        <Grid item>
-                            <EditUser userId={userId}
-                                      email={email}
-                                      firstName={firstName}
-                                      lastName={lastName}
-                                      phoneNumber={phoneNumber}
-                                      gender={gender}/>
-                        </Grid>
 
-                        {showAddFriendIcon() ? (
-                            <Grid item>
-                                <IconButton edge="end"
-                                            aria-label="add"
-                                onClick={()=> handleAddFriend(userId)}>
-                                    <PersonAddIcon/>
-                                </IconButton>
-                            </Grid>
-                        ) : (
-                            <p></p>
-                        )}
+                            {showAddFriendIcon() ? (
+                                <Grid item>
+                                    <IconButton edge="end"
+                                                aria-label="add"
+                                                onClick={()=> handleAddFriend(userId)}>
+                                        <PersonAddIcon/>
+                                    </IconButton>
+                                </Grid>
+                            ) : (
+                                <p></p>
+                            )}
+
+
+                            {showEditIcon() ? (
+                                <Grid item>
+                                    <EditUser userId={userId}
+                                              email={email}
+                                              firstName={firstName}
+                                              lastName={lastName}
+                                              phoneNumber={phoneNumber}
+                                              gender={gender}/>
+                                </Grid>
+                            ) : (
+                                <p></p>
+                            )}
                     </Grid>
                 </Grid>
             </CardContent>
