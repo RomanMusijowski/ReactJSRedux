@@ -16,14 +16,19 @@ import ListUserPostLiked from "./ListUserPostLiked";
 import DeleteIcon from "@material-ui/icons/Delete";
 import EditIcon from "@material-ui/icons/Edit";
 import FromPostPutDialog from "./FormPostPutDialog";
+import {makeStyles} from "@material-ui/core/styles";
 
-
+const useStyles = makeStyles( {
+    photo: {
+        height: 300,
+    },
+});
 
 
 const UserPostList = (props) => {
 
     const dispatch = useDispatch();
-
+    const classes = useStyles();
     const userList = useSelector((state) => state.user);
     const userInfoId = useSelector((state) => state.auth.userInfo.id);
 
@@ -52,9 +57,9 @@ const UserPostList = (props) => {
                     }} >
                         <CardHeader
                             avatar={
-                                <Avatar aria-label="recipe" >
-
-                                </Avatar>
+                                <Avatar alt="Carlos"
+                                        src={props.avatar}
+                                        />
 
                             }
 
@@ -70,9 +75,11 @@ const UserPostList = (props) => {
 
                         />
                         <CardMedia
-                            //className={classes.media}
-                            image="https://material-ui.com/static/images/cards/contemplative-reptile.jpg"
-                            title="Contemplative Reptile"
+                            className={classes.photo}
+                            image={Object.keys(props.posts[key].photos).map(key2 =>
+                                    props.posts[key].photos[key2].url
+                            )}
+
                         />
                         <CardContent>
                             <p>{props.posts[key].content}</p>

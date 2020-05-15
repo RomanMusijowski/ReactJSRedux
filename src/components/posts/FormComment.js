@@ -17,7 +17,8 @@ const FormComment = (props) =>  {
     const dispatch = useDispatch();
 
     const userList = useSelector((state) => state.user);
-    const userInfoId = useSelector((state) => state.auth.userInfo.id)
+    const userInfoId = useSelector((state) => state.auth.userInfo.id);
+    const username = useSelector((state) => state.auth.userInfo.username);
 
     const handleSubmit = (event/*values, actions*/) => {
         event.preventDefault();
@@ -44,7 +45,7 @@ const FormComment = (props) =>  {
 
                             }
                             subheader={
-                                <Link to={'/profile/'+userInfoId}>{userList[userInfoId].username}</Link>
+                                <Link to={'/profile/'+userInfoId}>{username}</Link>
                             }
                         />
                         <span className="card-title">

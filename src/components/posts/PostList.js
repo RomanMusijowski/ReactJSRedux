@@ -15,15 +15,20 @@ import {useDispatch, useSelector} from "react-redux";
 import {postLike} from "../../services/postApi";
 import Pagination from '@material-ui/lab/Pagination';
 import ListUserPostLiked from "./ListUserPostLiked";
+import {makeStyles} from "@material-ui/core/styles";
 
-
+const useStyles = makeStyles( {
+    photo: {
+        height: 300,
+    },
+});
 
 const PostList = (props) => {
 
     const dispatch = useDispatch();
 
     const userList = useSelector((state) => state.user);
-
+    const classes = useStyles();
     var createDate, lastUpdateDate, date1, date2;
 
     const handlePostLike = (postId) => {
@@ -68,9 +73,11 @@ const PostList = (props) => {
                     />
 
                     <CardMedia
-                        //className={classes.media}
-                        image="https://material-ui.com/static/images/cards/contemplative-reptile.jpg"
-                        title="Contemplative Reptile"
+                        className={classes.photo}
+                        image={Object.keys(props.posts[key].photos).map(key2 =>
+                            props.posts[key].photos[key2].url
+                        )}
+
                     />
                     <CardContent>
                         <p>{props.posts[key].content}</p>

@@ -8,14 +8,18 @@ import FriendsCount from "./FriendsCount";
 import InviteCount from "./InviteCount";
 import {fetchUserProfile} from "../../services/userApi";
 import EventCount from "./EventCount";
+import Typography from "@material-ui/core/Typography";
+import Pagination from "@material-ui/lab/Pagination";
 
 const ProfilePage = (props) => {
 
     const dispatch = useDispatch();
+    const [page, setPage] = React.useState(0);
 
 
     const userId = props.match.params.id
     const userList = useSelector((state)=> state.user);
+    console.log(userList);
     const userInfoId = useSelector((state) => state.auth.userInfo.id)
     const loggedInUser = Boolean(Number(userId) === Number(userInfoId))
 
@@ -35,6 +39,11 @@ const ProfilePage = (props) => {
             return false
         }
     }
+
+    const handleChange = (event, value) => {
+        setPage(value);
+        window.location.reload();
+    };
 
     return (
         <div>
@@ -70,7 +79,9 @@ const ProfilePage = (props) => {
 
                         </Grid>
                         <Grid item xs={8}>
-                            <ProfileWall userId={userId}/>
+                            <ProfileWall userId={userId} page={page} avatar={userList[userId].photos[0].url}/>
+                            <Typography>Page: {page}</Typography>
+                            <Pagination defaultPage={0} count={3} page={page} onChange={handleChange}  />
                         </Grid>
                     </Grid>
                 </Container>

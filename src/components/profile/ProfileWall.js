@@ -5,23 +5,43 @@ import {getAllPostUser, userPostUnloaded} from "../../services/userPostApi";
 import {render} from "react-dom";
 import UserPostList from "../posts/UserPostList";
 import Pagination from '@material-ui/lab/Pagination';
+import Typography from "@material-ui/core/Typography";
 
 
 class ProfileWall extends Component{
 
     state = {
-        page: 0
+        //page: 0,
+        currentPage: 0
     };
+
 
 
     componentDidMount() {
 
-        this.props.getAllPostUser(this.props.userId, this.state.page);
+        this.props.getAllPostUser(this.props.userId, this.props.page);
     }
 
     componentWillUnmount(){
         this.props.userPostUnloaded();
     }
+
+    componentDidUpdate(prevProps) {
+        console.log([this.props.page, prevProps.page])
+        if(this.props.page !== prevProps.page){
+            this.props.getAllPostUser(this.props.userId, this.props.page);
+        }
+    }
+
+    getQueryParamPage() {
+        return Number(this.state.currentPage) || 0;
+    }
+
+
+    handleChangeCurrentPage = (event, value) =>{
+        console.log(value);
+        this.setState({currentPage: value})
+    };
 
     handleChangePage = (e) => {
         const { page } = this.state;
@@ -32,14 +52,16 @@ class ProfileWall extends Component{
     };
 
     render(){
-        const {posts} = this.props;
-        const {page} = this.state;
-        console.log(posts);
+        console.log(this.props.avatar);
+        //const {currentPage} = this.state;
+        const {posts, avatar} = this.props;
+        //const {page} = this.state;
+        //console.log(posts);
         //console.log(page);
         return (
             <div>
-                <UserPostList posts={posts}/>
-                <Pagination count={3} page={page} onChange={this.handleChangePage}/>
+                <UserPostList posts={posts} avatar={avatar}/>
+
             </div>
         )
     }

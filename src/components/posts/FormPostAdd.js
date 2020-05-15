@@ -17,7 +17,10 @@ const FormPostAdd = (props) =>  {
     const dispatch = useDispatch();
 
     const userList = useSelector((state) => state.user);
-    const userInfoId = useSelector((state) => state.auth.userInfo.id)
+    const userInfoId = useSelector((state) => state.auth.userInfo.id);
+    const username = useSelector((state) => state.auth.userInfo.username);
+    const photo = useSelector((state) => state.auth.userInfo);
+    console.log(photo);
 
     const handleSubmit = (event/*values, actions*/) => {
         event.preventDefault();
@@ -45,7 +48,7 @@ const FormPostAdd = (props) =>  {
 
                             }
                             subheader={
-                                <Link to={'/profile/'+userInfoId}>{userInfoId}</Link>
+                                <Link to={'/profile/'+userInfoId}>{username}</Link>
                             }
                             />
 
