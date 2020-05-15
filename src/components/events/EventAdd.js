@@ -57,16 +57,6 @@ const EventAdd = (props) => {
     const classes = useStyles();
 
     const handleSubmit = (values, actions) => {
-
-        // alert(JSON.stringify(
-        //     {
-        //         fileName: values.file.name,
-        //         type: values.file.type,
-        //         size: `${values.file.size} bytes`
-        //     },
-        //     null,
-        //     2
-        // ))
         actions.setSubmitting(false);
         actions.resetForm();
 
@@ -116,11 +106,11 @@ const EventAdd = (props) => {
                                     <Thumb file={values.file} />
                                     </Grid>
                                     <Grid item>
-                                    <Button variant="contained" color="primary"
-                                            disabled={!dirty || !isValid}
-                                            type="submit">
-                                        Save
-                                    </Button>
+                                        <Button variant="contained" color="primary"
+                                                disabled={!dirty || !isValid}
+                                                type="submit">
+                                            Save
+                                        </Button>
                                     </Grid>
                                 </Grid>
                             </CardActions>
