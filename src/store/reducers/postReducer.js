@@ -1,10 +1,10 @@
 import { postConstants } from "../../constans/postConstans";
 import _ from 'lodash';
+import {authConstants} from "../../constans/authConstans";
 
-const initState = {}
+const initState = {
 
-
-
+}
 
 const postReducer = (state = initState, action) => {
     //console.log(action.payload);
@@ -21,6 +21,12 @@ const postReducer = (state = initState, action) => {
           return {
               ...state
           };
+      case postConstants.POST_UNLOAD:
+          return {
+
+          };
+      case authConstants.LOGUOT:
+          return {};
 
       default:
           return state

@@ -10,7 +10,7 @@ import {
     userPostLikedListLoadFailure,
     deletePostSuccess,
     deletePostFailure,
-    putPostSuccess, putPostFailure
+    putPostSuccess, putPostFailure, postUnload
 } from "../actions/post/actions";
 import {
     commentsLoadUnload,
@@ -105,6 +105,10 @@ export const addComment = (postId ,content) => async (dispatch) => {
 
 export const commentsUnload = () => async (dispatch) =>{
     dispatch(commentsLoadUnload())
+};
+
+export const postsFriendsUnload = () => async (dispatch) =>{
+    dispatch(postUnload())
 };
 
 export const postLike = (id) => async (dispatch) =>{

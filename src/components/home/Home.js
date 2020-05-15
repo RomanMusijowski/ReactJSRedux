@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from "react-redux";
 
 import authApi from "../../services/authApi";
-import {getAllPostFriends} from "../../services/postApi";
+import {getAllPostFriends, postsFriendsUnload} from "../../services/postApi";
 import FormPostAdd from "../../components/posts/FormPostAdd";
 import PostList from "../../components/posts/PostList";
 
@@ -15,15 +15,19 @@ class Home extends Component {
         this.props.getAllPostFriends();
     }
 
+    componentWillUnmount() {
+        this.props.postsFriendsUnload();
+    }
+
     render() {
-        const {posts, username} = this.props;
+        const {posts} = this.props;
         const {userIsLoaded} = this.props;
 
         return (
             <div>
                 {userIsLoaded ? (
                         <div>
-                          <FormPostAdd username={username}/>
+                          <FormPostAdd />
                           <PostList posts={posts} />
                         </div>
                     ) : (
@@ -48,7 +52,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = {
     fetchLoadUser: authApi.fetchLoadUser,
-    getAllPostFriends
+    getAllPostFriends,
+    postsFriendsUnload
 
 };
 
