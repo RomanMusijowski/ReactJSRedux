@@ -143,7 +143,7 @@ const EditUser = ({userId, email, firstName, lastName, phoneNumber, gender}) => 
                                                 <Grid item>
                                                     <Button variant="contained" color="primary"
                                                                 type="submit">
-                                                            Update
+                                                            Save
                                                     </Button>
                                                 </Grid>
                                             </Grid>
