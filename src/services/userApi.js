@@ -10,6 +10,8 @@ import {
     deleteInviteSuccess,
     fetchInvitedEventsFailure,
     fetchInvitedEventsSuccess,
+    fetchLastCreatedUsersFailure,
+    fetchLastCreatedUsersSuccess,
     fetchUserEventsFailure,
     fetchUserEventsSuccess,
     userProfileFriendsSuccess,
@@ -143,3 +145,20 @@ export const fetchInvitedEvents = (eventIds) => async (dispatch) => {
             dispatch(fetchInvitedEventsFailure(error))
         })
 }
+
+
+export const fetchLastCreatedUsers = (loggedInUserId) => async (dispatch) => {
+    axios.get(URLS.apiUser+'/last')
+        .then(res => {
+            console.log(res.data)
+            const list = res.data.filter(function( obj ) {
+                return obj.id !== loggedInUserId;
+            });
+            console.log(list)
+            dispatch(fetchLastCreatedUsersSuccess(list))
+        })
+        .catch(error => {
+            dispatch(fetchLastCreatedUsersFailure(error))
+        })
+}
+

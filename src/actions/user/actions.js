@@ -27,3 +27,6 @@ export const fetchInvitedEventsFailure = (error) => createAction(userConstants.F
 
 export const userUpdateSuccess =(data) => createAction(userConstants.USER_UPDATE_SUCCESS, data)
 export const userUpdateFailure = (error) => createAction(userConstants.USER_UPDATE_FAILURE, error)
+
+export const fetchLastCreatedUsersSuccess =(data) => createAction(userConstants.FETCH_LAST_CREATED_USERS_SUCCESS, data)
+export const fetchLastCreatedUsersFailure = (error) => createAction(userConstants.FETCH_LAST_CREATED_USERS_FAILURE, error)
