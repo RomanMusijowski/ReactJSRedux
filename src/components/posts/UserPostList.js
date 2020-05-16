@@ -103,6 +103,7 @@ const UserPostList = (props) => {
                             <IconButton aria-label="share" disabled={props.posts[key].userId !== userInfoId}>
                                 <FromPostPutDialog postId={props.posts[key].id}
                                                    contentt={props.posts[key].content}
+                                                   avatar={props.avatar}
                                                    />
                             </IconButton>
                             <label>{"Last update: "+date2[0]+"/"+date2[1]+"/"+date2[2]+" --- "+date2[3]+":"+date2[4]}</label>

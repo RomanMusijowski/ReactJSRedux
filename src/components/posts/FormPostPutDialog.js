@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const FromPostPutDialog = ({postId, contentt}) => {
+const FromPostPutDialog = ({postId, contentt, avatar}) => {
 
     const [open, setOpen] = React.useState(false);
     const [content, setContent] = React.useState(contentt);
@@ -101,7 +101,9 @@ const FromPostPutDialog = ({postId, contentt}) => {
                                 <div className="card-content black-text">
                                     <CardHeader
                                         avatar={
-                                            <Avatar/>
+                                            <Avatar alt="Carlos"
+                                                    src={avatar}
+                                            />
 
 
 
@@ -112,9 +114,7 @@ const FromPostPutDialog = ({postId, contentt}) => {
                                     />
 
 
-                                    <span className="card-title">
-                                    <h8>Update post</h8>
-                                 </span>
+
                                     <div className="row">
                                             <textarea className="materialize-textarea"
                                                       name="content"
