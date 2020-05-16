@@ -1,5 +1,6 @@
 import {userConstants} from "../../constans/userConstans"
 import {authConstants} from "../../constans/authConstans";
+import _ from "lodash";
 
 const INITIAL_STATE = {
 
@@ -43,7 +44,12 @@ const userReducer = (state = INITIAL_STATE, action) => {
                     [action.payload]: usr
                 };
             }
-
+            case userConstants.FETCH_LAST_CREATED_USERS_SUCCESS:
+                const newUsers = _.mapKeys(action.payload, 'id');
+                return {
+                    ...state,
+                    ...newUsers
+                };
         case authConstants.LOGUOT:
             return {};
         default:

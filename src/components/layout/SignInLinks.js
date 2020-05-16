@@ -19,6 +19,7 @@ const SingInLinks = ({username, userId}) => {
                 <li><a onClick={handleLogout}>Log out</a></li>
                 <li><NavLink to={'/profile/'+ userId} className="btn btn-floating pink lighten-1">{username}</NavLink></li>
                 <li><NavLink to='/event' className="btn btn-floating pink lighten-1">EV</NavLink></li>
+                <li><NavLink to='/community' className="btn btn-floating pink lighten-1">COM</NavLink></li>
             </ul>
         </div>
     )

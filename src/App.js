@@ -11,6 +11,7 @@ import {loginSuccess} from "./actions/auth/actions";
 import ProfilePage from "./components/profile/ProfilePage";
 import EventPage from "./components/events/EventPage";
 import CommentList from "./components/posts/CommentList";
+import Community from "./components/community/Community";
 
 const token = localStorage.getItem('token');
 if(token) {
@@ -30,6 +31,7 @@ class App extends Component{
                     <Route path='/signIn' component={noRequireAuth(SignIn)}/>
                     <Route path='/profile/:id' component={requireAuth(ProfilePage)}/>
                     <Route path='/event' component={requireAuth(EventPage)}/>
+                    <Route path='/community' component={requireAuth(Community)}/>
                     <Route path='/post/:id/comments' component={requireAuth(CommentList)}/>
                 </Switch>
               </div>
