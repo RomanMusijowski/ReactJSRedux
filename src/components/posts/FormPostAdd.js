@@ -9,23 +9,34 @@ import {useDispatch, useSelector} from "react-redux";
 import {addPost} from "../../services/postApi";
 import {Link} from "react-router-dom";
 import CardHeader from '@material-ui/core/CardHeader';
+import Thumb from "../events/Thumb";
+import Grid from "@material-ui/core/Grid";
+import {makeStyles} from "@material-ui/core/styles";
 
+const useStyles = makeStyles((theme) => ({
+
+    input: {
+        display: 'none',
+    },
+}));
 
 const FormPostAdd = (props) =>  {
     const [content, setContent] = React.useState("");
+    const [file, setFile] = React.useState(null);
 
     const dispatch = useDispatch();
+    const classes = useStyles();
 
     const userList = useSelector((state) => state.user);
     const userInfoId = useSelector((state) => state.auth.userInfo.id);
     const username = useSelector((state) => state.auth.userInfo.username);
     const photo = useSelector((state) => state.auth.userInfo);
-    console.log(photo);
+    //console.log(userList[userInfoId].photos[0].url);
 
     const handleSubmit = (event/*values, actions*/) => {
         event.preventDefault();
 
-        dispatch(addPost(content));
+        dispatch(addPost(content, file));
 
         setContent("");
         if(content.length > 0) {
@@ -42,7 +53,9 @@ const FormPostAdd = (props) =>  {
                     <div className="card-content black-text">
                         <CardHeader
                             avatar={
-                                <Avatar/>
+                                <Avatar alt="Carlos"
+                                       /* src={userList[userInfoId].photos[0].url}*/
+                                />
 
 
 
@@ -53,9 +66,7 @@ const FormPostAdd = (props) =>  {
                             />
 
 
-                        <span className="card-title">
-                                    <h8>Create post</h8>
-                                 </span>
+
                         <div className="row">
                                             <textarea className="materialize-textarea"
                                                       name="content"
@@ -66,13 +77,25 @@ const FormPostAdd = (props) =>  {
                     </div>
                     <div className="card-action">
                         <div className="row">
-                            <Button href={"/#"}><Icon component={AccountCircleRoundedIcon}
-                                                      color="primary"
-                                                      fontSize={"large"}></Icon></Button>
-                            <Button href={"/#"}><Icon component={InsertPhotoRoundedIcon} color="primary"
-                                                      fontSize={"large"}></Icon></Button>
+                            <input
+                                accept="image/*"
+                                className={classes.input}
+                                id="contained-button-file"
+                                multiple
+                                type="file"
+                                onChange={(event) => {
+                                    setFile( event.currentTarget.files[0]);
+                                }}/>
+                            <label htmlFor="contained-button-file">
+                                <Button variant="contained" color="primary" component="span">
+                                    Upload photo
+                                </Button>
+                            </label>
+                            <Thumb file={file} />
+
+
                             <input className="btn light-red accent-1 right"   type="submit"
-                                   value="Submit" />
+                                   value="Create Post" />
 
                         </div>
                     </div>

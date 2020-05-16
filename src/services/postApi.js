@@ -45,12 +45,13 @@ export const getAllPostFriends = () => async (dispatch) =>{
  * @param content
  * @returns {function(...[*]=)}
  */
-export const addPost = (content) => async (dispatch) => {
+export const addPost = (content, file) => async (dispatch) => {
 
       //const body = JSON.stringify(content);
 
       const formData = new FormData();
       formData.append('content',content);
+      formData.append('files',file);
 
       axios.post(URLS.apiPost, formData)
           .then(res => {
