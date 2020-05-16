@@ -25,7 +25,7 @@ class Navbar extends Component{
          return (
             <nav className="nav-wrapper grey darken-3">
                 <div className="container">
-                    <Link to="/" className="brand-logo">TheBest</Link>
+                    <Link to="/" className="brand-logo">Web Developers Site</Link>
                     {this.navbarLinks()}
                 </div>
             </nav>
