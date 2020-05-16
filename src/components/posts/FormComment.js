@@ -48,9 +48,7 @@ const FormComment = (props) =>  {
                                 <Link to={'/profile/'+userInfoId}>{username}</Link>
                             }
                         />
-                        <span className="card-title">
-                                    <h8>Create comment</h8>
-                                 </span>
+
                         <div className="row">
                                             <textarea className="materialize-textarea"
                                                       name="content"
@@ -63,7 +61,7 @@ const FormComment = (props) =>  {
                         <div className="row">
 
                             <input className="btn light-red accent-1 right"   type="submit"
-                                   value="Comment create" />
+                                   value="Create comment" />
 
                         </div>
                     </div>

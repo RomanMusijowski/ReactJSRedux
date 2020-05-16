@@ -54,7 +54,7 @@ const Comments = ({id, userId, content, likes, postId, username }) => {
 
                     subheader={
 
-                        <Link to={'/profile/'+userId}>{username}</Link>
+                        <Link to={'/profile/'+userId}>{userId}</Link>
                     }
 
 

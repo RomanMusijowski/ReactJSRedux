@@ -113,9 +113,7 @@ const FormCommentPutDialog = ({postId, commentId, contentt}) => {
                                         />
 
 
-                                        <span className="card-title">
-                                    <h8>Update post</h8>
-                                 </span>
+
                                         <div className="row">
                                             <textarea className="materialize-textarea"
                                                       name="content"

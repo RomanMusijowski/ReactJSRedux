@@ -30,7 +30,7 @@ const CommentList = (props) => {
                   content={listComments[key].content}
                   likes={listComments[key].likes}
                   postId={props.match.params.id}
-                  username={userList[listComments[key].userId].username}
+                  /*username={userList[listComments[key].userId].username}*/
         />
     );
 
@@ -48,9 +48,9 @@ const CommentList = (props) => {
     )}
     else{
         return(
-            <div align="center">
+            <div >
                 <FormComment postId={props.match.params.id}/>
-                <h6>this post has no comments</h6>
+                <h6 align="center">this post has no comments</h6>
 
         </div>);
 

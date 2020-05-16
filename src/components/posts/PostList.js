@@ -28,6 +28,7 @@ const PostList = (props) => {
     const dispatch = useDispatch();
 
     const userList = useSelector((state) => state.user);
+    //console.log(userList[2].photos[0].url);
     const classes = useStyles();
     var createDate, lastUpdateDate, date1, date2;
 
@@ -49,20 +50,20 @@ const PostList = (props) => {
                     }}>
                     <CardHeader
                         avatar={
-                            <Avatar aria-label="recipe" >
-
-                            </Avatar>
+                            <Avatar alt="Carlos"
+                                    /*src={userList[props.posts[key].userId].photos[0].url}*/
+                            />
 
                         }
 
-                        title={<Link to={'/profile/'+props.posts[key].userId}>{props.posts[key].userId}</Link>}
+                        title={<Link to={'/profile/'+props.posts[key].userId}>{/*userList[props.posts[key].userId].username*/ props.posts[key].userId}</Link>}
 
 
 
                         subheader={
                             //console.log(Intl.DateTimeFormat('en-US').format( props.posts[key].lastModifiedDate))
                             //console.log(date1[1]);
-                            date1[0]+"/"+date1[1]+"/"+date1[2]
+                            "Created: "+date1[0]+"/"+date1[1]+"/"+date1[2]
 
                             //<Moment date={props.posts[key].lastModifiedDate}/>
                             //Moment(props.posts[key].lastModifiedDate).format("lll")
