@@ -16,7 +16,9 @@ const postReducer = (state = initState, action) => {
           };
       case postConstants.POST_LOAD_SUCCESS:
           const posts = _.mapKeys(action.payload.data, 'id');
-          return { ...state, ...posts};
+          //const posts = _.chunk(action.payload.data, 2);
+
+          return { ...state, ...posts/*, numberPage: posts.length*/};
       case postConstants.POST_LOAD_FAILURE:
           return {
               ...state

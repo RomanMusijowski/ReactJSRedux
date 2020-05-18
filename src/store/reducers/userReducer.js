@@ -1,6 +1,7 @@
 import {userConstants} from "../../constans/userConstans"
 import {authConstants} from "../../constans/authConstans";
 import _ from "lodash";
+import {postConstants} from "../../constans/postConstans";
 
 const INITIAL_STATE = {
 
@@ -12,6 +13,7 @@ const userReducer = (state = INITIAL_STATE, action) => {
             const newUserId = action.payload.data.id
             const newUser = action.payload.data
             newUser.events = []
+            newUser.posts = []
             newUser.profileLoad = true
             return {
                 ...state,
@@ -50,6 +52,19 @@ const userReducer = (state = INITIAL_STATE, action) => {
                     ...state,
                     ...newUsers
                 };
+        case postConstants.USER_POST_LOAD_SUCCESS:
+            const userrId = action.payload.pop();
+            const updateedUser = state[userrId];
+            updateedUser.posts = action.payload
+            updateedUser.postsLoad = true
+            return{
+                ...state,
+                [userrId]: updateedUser
+            };
+
+
+            // console.log(action.payload.data)
+            // return {...state};
         case authConstants.LOGUOT:
             return {};
         default:
