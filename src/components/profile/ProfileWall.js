@@ -19,7 +19,7 @@ class ProfileWall extends Component{
 
     componentDidMount() {
 
-        this.props.getAllPostUser(this.props.userId, this.props.page);
+        this.props.getAllPostUser(this.props.userId);
     }
 
     componentWillUnmount(){

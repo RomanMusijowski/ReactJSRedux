@@ -10,6 +10,7 @@ import {fetchUserProfile} from "../../services/userApi";
 import EventCount from "./EventCount";
 import Typography from "@material-ui/core/Typography";
 import Pagination from "@material-ui/lab/Pagination";
+import UserPostList from "../posts/UserPostList";
 
 const ProfilePage = (props) => {
 
@@ -32,7 +33,7 @@ const ProfilePage = (props) => {
     const showProfilePage = function() {
         const user = userList[userId]
         if (user !== undefined ){
-            if (user.profileLoad && user.friendsLoad && user.eventsLoad){
+            if (user.profileLoad && user.friendsLoad && user.eventsLoad ){
                 return true
             }
         }else {
@@ -79,7 +80,8 @@ const ProfilePage = (props) => {
 
                         </Grid>
                         <Grid item xs={8}>
-                            <ProfileWall userId={userId} page={page} avatar={userList[userId].photos[0].url}/>
+                            {/*<ProfileWall userId={userId} page={page} avatar={userList[userId].photos[0].url}/>*/}
+                            <UserPostList posts={userList[userId].posts} userId={userId} />
                             <Typography>Page: {page}</Typography>
                             <Pagination defaultPage={0} count={3} page={page} onChange={handleChange}  />
                         </Grid>
