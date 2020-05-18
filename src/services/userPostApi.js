@@ -16,10 +16,18 @@ import {
 } from "../actions/auth/actions";
 
 
-export const getAllPostUser = (userId, page = 1) => async (dispatch) =>{ // "page" do dobrej paginacji
+export const getAllPostUser = (userId) => async (dispatch) =>{ // "page" do dobrej paginacji
     //dispatch(userPostLoadRequest('User oosts loading have started.'));
-    axios.get(URLS.apiPost+'/user/'+userId+'?page='+page)
-        .then((res) => {dispatch(userPostLoadSuccess(res ))})
+    axios.get(URLS.apiPost+'/user/'+userId)
+        .then(res =>
+        {
+            //res.data.push(userId)
+            var userPosts = res.data
+            userPosts.push(userId)
+            console.log(userPosts)
+            dispatch(userPostLoadSuccess(userPosts  ))
+        }
+        )
         .catch((error) => {dispatch(userPostLoadFailure(error))})
 };
 

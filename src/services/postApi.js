@@ -24,6 +24,7 @@ import {
     deleteCommentFailure,
     putCommentSuccess, putCommentFailure
 } from "../actions/comment/actions";
+import {getAllPostUser} from "./userPostApi";
 
 
 
@@ -124,10 +125,11 @@ export const commentLike = (postId, commentId) => async (dispatch) =>{
         .catch(error => {console.log(error)})
 };
 
-export const deletePost = (id) => async  (dispatch) =>{
-    axios.delete(URLS.apiPost + '/' + id)
+export const deletePost = (postId, userId ) => async  (dispatch) =>{
+    axios.delete(URLS.apiPost + '/' + postId)
         .then(res => {
             dispatch(deletePostSuccess(res))
+            dispatch(getAllPostUser(userId))
         })
         .catch(error => {
             dispatch(deletePostFailure(error))

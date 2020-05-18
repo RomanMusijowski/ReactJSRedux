@@ -22,6 +22,7 @@ import {
     userUpdateSuccess
 } from "../actions/user/actions";
 import URLS from "../shared/Urls.constants";
+import {getAllPostUser} from "./userPostApi";
 
 
 export const fetchUserProfile = (userId) => async (dispatch) => {
@@ -30,7 +31,7 @@ export const fetchUserProfile = (userId) => async (dispatch) => {
             dispatch(userProfileLoadSuccess(res))
             dispatch(fetchUserFriends(userId))
             dispatch(fetchUserEvents(userId))
-
+            dispatch(getAllPostUser(userId))
             let eventIds = res.data.invitedEvents.map(e => e.eventId)
             dispatch(fetchInvitedEvents(eventIds))
         })
