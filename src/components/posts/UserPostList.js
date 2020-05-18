@@ -32,6 +32,7 @@ const UserPostList = (props) => {
     const userList = useSelector((state) => state.user);
     const userInfoId = useSelector((state) => state.auth.userInfo.id);
 
+
     var createDate, lastUpdateDate, date1, date2;
 
     const handlePostLike = (postId) => {
@@ -39,9 +40,9 @@ const UserPostList = (props) => {
         window.location.reload();
     };
 
-    const handlePostDelete = (postId) => {
-            dispatch(deletePost(postId));
-            window.location.reload();
+    const handlePostDelete = (postId, userId ) => {
+            dispatch(deletePost(postId, userId));
+            //window.location.reload();
     };
 
     return(<div>
@@ -89,7 +90,7 @@ const UserPostList = (props) => {
                                 <FavoriteIcon onClick={() => handlePostLike(props.posts[key].id)} /> {props.posts[key].likes}
                             </IconButton>
 
-                            <ListUserPostLiked postId={props.posts[key].id}/>
+
                             <IconButton
                                 aria-label="show more"
                                 //onClick={handleExpandClick}
@@ -98,7 +99,7 @@ const UserPostList = (props) => {
                                 <button><Link to={'/post/'+props.posts[key].id+'/comments'} username={props.username}>Comments</Link></button>
                             </IconButton>
                             <IconButton aria-label="share" disabled={props.posts[key].userId !== userInfoId}>
-                                <DeleteIcon onClick={() =>{if(window.confirm('Delete this post ?')){handlePostDelete(props.posts[key].id)} }}/>
+                                <DeleteIcon onClick={() =>{if(window.confirm('Delete this post ?')){handlePostDelete(props.posts[key].id, props.userId)} }}/>
                             </IconButton>
                             <IconButton aria-label="share" disabled={props.posts[key].userId !== userInfoId}>
                                 <FromPostPutDialog postId={props.posts[key].id}
