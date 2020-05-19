@@ -54,7 +54,7 @@ const FormPostAdd = (props) =>  {
                         <CardHeader
                             avatar={
                                 <Avatar alt="Carlos"
-                                       /* src={userList[userInfoId].photos[0].url}*/
+                                        // src={userList[userInfoId].photos[0].url}
                                 />
 
 
