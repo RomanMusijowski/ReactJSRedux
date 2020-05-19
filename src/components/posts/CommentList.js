@@ -30,6 +30,8 @@ const CommentList = (props) => {
                   content={listComments[key].content}
                   likes={listComments[key].likes}
                   postId={props.match.params.id}
+                  createDate={listComments[key].createdDate}
+                  lastModifiedDate={listComments[key].lastModifiedDate}
                   /*username={userList[listComments[key].userId].username}*/
         />
     );

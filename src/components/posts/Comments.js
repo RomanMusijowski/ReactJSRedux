@@ -18,12 +18,19 @@ import EditIcon from "@material-ui/icons/Edit";
 import FromPostPutDialog from "./FormPostPutDialog";
 import FormCommentPutDialog from "./FormCommentPutDialog";
 
-const Comments = ({id, userId, content, likes, postId, username }) => {
+const Comments = ({id, userId, content, likes, postId, createDate, lastModifiedDate }) => {
 
     const dispatch = useDispatch();
 
-    const userInfoId = useSelector((state) => state.auth.userInfo.id)
+    //var createDate, lastUpdateDate, date1, date2;
 
+     var   createDate = (createDate).toString();
+     var   lastUpdateDate = (lastModifiedDate).toString();
+     var   date1 = createDate.split(",");
+     var   date2 = lastUpdateDate.split(",");
+
+    const userInfoId = useSelector((state) => state.auth.userInfo.id)
+    //console.log([createDate,lastModifiedDate])
     const handleCommentLike = (postId, commentId) => {
         dispatch(commentLike(postId, commentId));
         window.location.reload();
@@ -46,15 +53,11 @@ const Comments = ({id, userId, content, likes, postId, username }) => {
 
                     }
 
-                    action={
-                        <IconButton aria-label="settings">
-                            <MoreVertIcon />
-                        </IconButton>
-                    }
+                    title={<Link to={'/profile/'+userId}>{userId}</Link>}
 
                     subheader={
 
-                        <Link to={'/profile/'+userId}>{userId}</Link>
+                        "Created: "+date1[0]+"/"+date1[1]+"/"+date1[2]
                     }
 
 
@@ -88,6 +91,7 @@ const Comments = ({id, userId, content, likes, postId, username }) => {
                                               contentt={content}
                         />
                     </IconButton>
+                    <label>{"Last update: "+date2[0]+"/"+date2[1]+"/"+date2[2]+" --- "+date2[3]+" hour "+date2[4]+" min "+date2[5]+" sec"}</label>
                 </CardActions>
                 <Container>
 
