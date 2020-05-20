@@ -47,7 +47,7 @@ const FormPostAdd = (props) =>  {
         else window.alert("create post is empty");
     };
 
-    console.log(userList[userInfoId].photos[0].url)
+    //console.log(userList[userInfoId].photos[0].url)
     const showAvatar = function () {
         if (userList[userInfoId] !== undefined ){
             return [

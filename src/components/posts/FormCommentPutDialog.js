@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const FormCommentPutDialog = ({postId, commentId, contentt}) => {
+const FormCommentPutDialog = ({postId, commentId, contentt, avatar}) => {
 
     const [open, setOpen] = React.useState(false);
     const [content, setContent] = React.useState(contentt);
@@ -67,28 +67,13 @@ const FormCommentPutDialog = ({postId, commentId, contentt}) => {
 
     const classes = useStyles();
     const [dense] = React.useState(false);
-    /*
-    const UserPostLikedList = friends.map(function (friend) {
 
-        return <FriendDialogItem friendId={friend.id}
-                                 username={friend.username}
-                                 firstName={friend.firstName}
-                                 lastName={friend.lastName}
-                                 loggedInUser={loggedInUser}/>
-
-
-    })
-*/
     return(
         <Fragment>
-
-
 
             <EditIcon style={{
 
             }} onClick={handleClickOpen}/>
-
-
 
             <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
                 <DialogTitle id="form-dialog-title">Update your comment</DialogTitle>
@@ -102,7 +87,7 @@ const FormCommentPutDialog = ({postId, commentId, contentt}) => {
                                     <div className="card-content black-text">
                                         <CardHeader
                                             avatar={
-                                                <Avatar/>
+                                                avatar
 
 
 

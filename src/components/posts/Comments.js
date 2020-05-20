@@ -18,7 +18,7 @@ import EditIcon from "@material-ui/icons/Edit";
 import FromPostPutDialog from "./FormPostPutDialog";
 import FormCommentPutDialog from "./FormCommentPutDialog";
 
-const Comments = ({id, userId, content, likes, postId, createDate, lastModifiedDate }) => {
+const Comments = ({id, userId, content, likes, postId, createDate, lastModifiedDate, username, avatar }) => {
 
     const dispatch = useDispatch();
 
@@ -41,19 +41,19 @@ const Comments = ({id, userId, content, likes, postId, createDate, lastModifiedD
         window.location.reload();
     };
 
+
+
     return(
         <Container maxWidth="sm">
             <br/>
             <Card >
                 <CardHeader
                     avatar={
-                        <Avatar aria-label="recipe" >
-
-                        </Avatar>
+                        avatar
 
                     }
 
-                    title={<Link to={'/profile/'+userId}>{userId}</Link>}
+                    title={<Link to={'/profile/'+userId}>{username}</Link>}
 
                     subheader={
 
@@ -89,6 +89,7 @@ const Comments = ({id, userId, content, likes, postId, createDate, lastModifiedD
                         <FormCommentPutDialog postId={postId}
                                               commentId={id}
                                               contentt={content}
+                                              avatar={avatar}
                         />
                     </IconButton>
                     <label>{"Last update: "+date2[0]+"/"+date2[1]+"/"+date2[2]+" --- "+date2[3]+" hour "+date2[4]+" min "+date2[5]+" sec"}</label>

@@ -4,6 +4,7 @@ import {getAllComments, commentsUnload} from "../../services/postApi";
 import userApi from "../../services/userApi";
 import Comments from "./Comments";
 import FormComment from "./FormComment";
+import Avatar from "@material-ui/core/Avatar";
 
 const CommentList = (props) => {
 
@@ -22,7 +23,22 @@ const CommentList = (props) => {
     const listComments = useSelector((state) =>  state.comment);
     const userList = useSelector((state) => state.user);
 
-    //console.log(Object.keys(listComments));
+    const showAvatar = function (key) {
+        if (userList[key] !== undefined ){
+            return [
+                <Avatar alt="Carlos"
+                        src={userList[key].photos[0].url}
+                />
+            ];
+        }else {
+            return [
+                <Avatar alt="Carlos"
+                    // src={userList[userInfoId].photos[0].url}
+                />
+            ];
+        }
+
+    }
 
     const item = Object.keys(listComments).map(key =>
         <Comments id={listComments[key].id}
@@ -32,7 +48,8 @@ const CommentList = (props) => {
                   postId={props.match.params.id}
                   createDate={listComments[key].createdDate}
                   lastModifiedDate={listComments[key].lastModifiedDate}
-                  /*username={userList[listComments[key].userId].username}*/
+                  username={userList[listComments[key].userId].username}
+                  avatar={showAvatar(listComments[key].userId)}
         />
     );
 

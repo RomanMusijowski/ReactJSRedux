@@ -127,8 +127,7 @@ const FromPostPutDialog = ({postId, contentt, avatar}) => {
                                 <div className="card-action">
                                     <div className="row">
 
-                                        <Button href={"/#"}><Icon component={InsertPhotoRoundedIcon} color="primary"
-                                                                  fontSize={"large"}></Icon></Button>
+
                                         <input className="btn light-red accent-1 right"   type="submit"
                                                value="Update" />
 

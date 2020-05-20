@@ -80,10 +80,7 @@ const ProfilePage = (props) => {
 
                         </Grid>
                         <Grid item xs={8}>
-                            {/*<ProfileWall userId={userId} page={page} avatar={userList[userId].photos[0].url}/>*/}
-                            <UserPostList posts={userList[userId].posts} userId={userId} />
-                            <Typography>Page: {page}</Typography>
-                            <Pagination defaultPage={0} count={3} page={page} onChange={handleChange}  />
+                            <UserPostList posts={userList[userId].posts} userId={userId} avatar={userList[userId].photos[0].url} />
                         </Grid>
                     </Grid>
                 </Container>

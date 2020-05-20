@@ -32,21 +32,38 @@ const FormComment = (props) =>  {
 
     };
 
+    const showAvatar = function () {
+        if (userList[userInfoId] !== undefined ){
+            return [
+                <Avatar alt="Carlos"
+                        src={userList[userInfoId].photos[0].url}
+                />
+            ];
+        }else {
+            return [
+                <Avatar alt="Carlos"
+                    // src={userList[userInfoId].photos[0].url}
+                />
+            ];
+        }
+
+    }
+
     return (
         <Container maxWidth="sm">
             <form onSubmit={handleSubmit}>
                 <div className="card light-blue lighten-3">
                     <div className="card-content black-text">
                         <CardHeader
+
                             avatar={
-                                <Avatar/>
-
-
-
+                                showAvatar()
                             }
+
                             subheader={
                                 <Link to={'/profile/'+userInfoId}>{username}</Link>
                             }
+
                         />
 
                         <div className="row">

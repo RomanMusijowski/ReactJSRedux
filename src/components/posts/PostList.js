@@ -38,21 +38,43 @@ const PostList = (props) => {
         window.location.reload();
     };
 
+    const showAvatar = function (key) {
+        if (userList[key] !== undefined ){
+            return [
+                <Avatar alt="Carlos"
+                        src={userList[key].photos[0].url}
+                />
+            ];
+        }else {
+            return [
+                <Avatar alt="Carlos"
+                    // src={userList[userInfoId].photos[0].url}
+                />
+            ];
+        }
+
+    }
+
+    const showUsername = function (key) {
+        if (userList[key] !== undefined ){
+            return [
+                userList[key ].username
+            ];
+        }else {
+            return [
+
+            ];
+        }
+
+    }
+
     return(<div>
             {props.posts && props.posts.map(key => (
                 console.log(key.createdDate),
                     createDate = (key.createdDate),
                     lastUpdateDate = (key.lastModifiedDate),
-                    console.log(createDate[0]),
-                //console.log(props.posts[key].createdDate),
-                // createDate = (props.posts[key].createdDate),
-                //     lastUpdateDate = (props.posts[key].lastModifiedDate),
-                //     console.log(Object(createDate)),
-                    //date1 = createDate,
-                    // date2 = lastUpdateDate,
 
-                    // date1 = createDate.split(","),
-                    // date2 = lastUpdateDate.split(","),
+
                     <Container maxWidth="sm">
 
                         <Card style={{marginTop: 30,
@@ -60,13 +82,11 @@ const PostList = (props) => {
                         }}>
                             <CardHeader
                                 avatar={
-                                    <Avatar alt="Carlos"
-                                        // src={userList[props.posts[key].userId].photos[0].url}
-                                    />
+                                    showAvatar(key.userId)
 
                                 }
 
-                                title={<Link to={'/profile/'+key.userId}>{/*userList[props.posts[key].userId].username*/ key.userId  }</Link>}
+                                title={<Link to={'/profile/'+key.userId}>{ showUsername(key.userId) }</Link>}
 
 
 
