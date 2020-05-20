@@ -12,6 +12,7 @@ import CardHeader from '@material-ui/core/CardHeader';
 import Thumb from "../events/Thumb";
 import Grid from "@material-ui/core/Grid";
 import {makeStyles} from "@material-ui/core/styles";
+import {fetchLastCreatedUsers} from "../../services/userApi";
 
 const useStyles = makeStyles((theme) => ({
 
@@ -46,6 +47,24 @@ const FormPostAdd = (props) =>  {
         else window.alert("create post is empty");
     };
 
+    console.log(userList[userInfoId].photos[0].url)
+    const showAvatar = function () {
+        if (userList[userInfoId] !== undefined ){
+            return [
+            <Avatar alt="Carlos"
+                    src={userList[userInfoId].photos[0].url}
+            />
+           ];
+        }else {
+            return [
+                <Avatar alt="Carlos"
+                        // src={userList[userInfoId].photos[0].url}
+                />
+            ];
+        }
+
+    }
+
     return (
         <Container maxWidth="sm">
             <form onSubmit={handleSubmit}>
@@ -53,13 +72,13 @@ const FormPostAdd = (props) =>  {
                     <div className="card-content black-text">
                         <CardHeader
                             avatar={
-                                <Avatar alt="Carlos"
-                                        // src={userList[userInfoId].photos[0].url}
-                                />
+                                showAvatar()
+
 
 
 
                             }
+
                             subheader={
                                 <Link to={'/profile/'+userInfoId}>{username}</Link>
                             }

@@ -20,9 +20,11 @@ const Home = () => {
     useEffect(() => {
 
         dispatch(getAllPostFriends());
-        if (userInfo !== undefined && userInfo !== null){
-            dispatch(fetchLastCreatedUsers(userInfo.id))
-        }
+        // if (userInfo !== undefined && userInfo !== null){
+        //
+        //     dispatch(fetchLastCreatedUsers(userInfo.id))
+        //
+        // }
 
     }, []);
 
@@ -39,29 +41,36 @@ const Home = () => {
     console.log(currentPosts)
 
     const paginate = (pageNumber) => setCurrentPage(pageNumber);
-
-        return (
-            <div>
-                {userIsLoaded ? (
-                        <div>
-
-                          <FormPostAdd />
-                          <PostList posts={currentPosts} />
-                            <Container maxWidth="sm">
-                                <Pagination postsPerPage={postsPerPage}
-                                            totalPosts={postss.length}
-                                            paginate={paginate}/>
-
-                            </Container>
-                        </div>
-                    ) : (
-                    <p>Please wait a little bit more.</p>
-                    )
-                }
-
-            </div>
-        );
+    const showHome = function () {
+        if (userInfo !== undefined){
+            dispatch(fetchLastCreatedUsers(userInfo.id));
+            return true
+        }else {
+            return false
+        }
     }
 
-export default Home
+    return (
+        <div>
+            {(userIsLoaded && showHome()) ? (
+                <div>
 
+                    <FormPostAdd />
+                    <PostList posts={currentPosts} />
+                    <Container maxWidth="sm">
+                        <Pagination postsPerPage={postsPerPage}
+                                    totalPosts={postss.length}
+                                    paginate={paginate}/>
+
+                    </Container>
+                </div>
+            ) : (
+                <p>Please wait a little bit more.</p>
+            )
+            }
+
+        </div>
+    );
+}
+
+export default Home
