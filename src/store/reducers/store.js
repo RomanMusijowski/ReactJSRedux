@@ -1,16 +1,25 @@
-import { createStore, applyMiddleware } from 'redux';
+import {applyMiddleware, createStore} from 'redux';
 import thunkMiddleware from 'redux-thunk';
-import { createLogger } from 'redux-logger';
+import {createLogger} from 'redux-logger';
 import rootReducer from "./rootReducer";
+import {persistReducer, persistStore} from "redux-persist";
+import storage from 'redux-persist/lib/storage'
 
 const loggerMiddleware = createLogger();
 
-const store = createStore(
-    rootReducer,
-    applyMiddleware(
-        thunkMiddleware,
-        loggerMiddleware
-    )
-);
+const persistConfig = {
+    key: 'root',
+    storage,
+    whitelist: ['auth', 'event', 'user', 'register']
+};
+const persistedReducer = persistReducer(
+    persistConfig,
+    rootReducer)
 
-export default store
+const store = createStore(
+    persistedReducer,
+    applyMiddleware(thunkMiddleware, loggerMiddleware));
+const persistor = persistStore(store);
+
+
+export { store, persistor };

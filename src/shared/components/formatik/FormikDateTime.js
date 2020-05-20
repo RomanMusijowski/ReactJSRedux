@@ -15,10 +15,10 @@ const FormikDateTime = ({name, label, onChange}) => {
                 onChange={val => {
                     onChange(name, val);
                 }}
-                helperText={<ErrorMessage name={name}/>}/>
+                minDateMessage={<ErrorMessage name={name}/>}/>
             </MuiPickersUtilsProvider>
         </div>
     )
-}
+};
 
 export default FormikDateTime

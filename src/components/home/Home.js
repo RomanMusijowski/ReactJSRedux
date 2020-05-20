@@ -1,34 +1,76 @@
-import React, {Component} from 'react';
-import {connect} from "react-redux";
-import userApi from "../../services/userApi";
-import postApi from "../../services/postApi";
+import React, {useEffect} from 'react';
+import {useDispatch, useSelector} from "react-redux";
+import {getAllPostFriends} from "../../services/postApi";
 import FormPostAdd from "../../components/posts/FormPostAdd";
 import PostList from "../../components/posts/PostList";
-import Posts from "../posts/Posts";
-import {logger} from "redux-logger/src";
+//import Pagination from "@material-ui/lab/Pagination";
+import Pagination from "../posts/Pagination";
+import Container from "@material-ui/core/Container";
+import {fetchLastCreatedUsers} from "../../services/userApi";
 
-class Home extends Component {
 
-    componentDidMount() {
-        this.props.fetchLoadUser();
+const Home = () => {
 
+    const [currentPage, setCurrentPage] = React.useState(1);
+    const [postsPerPage] = React.useState(3);
+    const userInfo = useSelector((state) => state.auth.userInfo);
+
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+
+        dispatch(getAllPostFriends());
+        // if (userInfo !== undefined && userInfo !== null){
+        //
+        //     dispatch(fetchLastCreatedUsers(userInfo.id))
+        //
+        // }
+
+    }, []);
+
+
+
+    const userIsLoaded = useSelector((state) => state.auth.userIsLoaded);
+    const posts = useSelector((state) => state.post);
+    console.log(Object.values(posts));
+    const postss = Object.values(posts);
+    //const numberPages = useSelector((state) => state.post.numberPage);
+    const indexOfLastPost = currentPage * postsPerPage;
+    const indexOfFirstPost = indexOfLastPost - postsPerPage;
+    const currentPosts = postss.slice(indexOfFirstPost, indexOfLastPost);
+    console.log(currentPosts)
+
+    const paginate = (pageNumber) => setCurrentPage(pageNumber);
+    const showHome = function () {
+        if (userInfo !== undefined){
+            dispatch(fetchLastCreatedUsers(userInfo.id));
+            return true
+        }else {
+            return false
+        }
     }
 
-    render() {
-        return (
-            <div>
-               <FormPostAdd/>
-               <PostList/>
-            </div>
-        );
-    }
+    return (
+        <div>
+            {(userIsLoaded && showHome()) ? (
+                <div>
+
+                    <FormPostAdd />
+                    <PostList posts={currentPosts} />
+                    <Container maxWidth="sm">
+                        <Pagination postsPerPage={postsPerPage}
+                                    totalPosts={postss.length}
+                                    paginate={paginate}/>
+
+                    </Container>
+                </div>
+            ) : (
+                <p>Please wait a little bit more.</p>
+            )
+            }
+
+        </div>
+    );
 }
 
-
-
-const mapDispatchToProps = {
-    fetchLoadUser: userApi.fetchLoadUser,
-
-};
-
-export default connect(null, mapDispatchToProps)(Home)
+export default Home

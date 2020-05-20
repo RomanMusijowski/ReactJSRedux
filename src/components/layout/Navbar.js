@@ -7,11 +7,12 @@ import {connect} from "react-redux";
 
 class Navbar extends Component{
 
-
     navbarLinks(){
+        const {userInfo} = this.props
         if(this.props.authenticated && this.props.userIsLoaded){
             return [
-                <SingInLinks username={this.props.userInfo.username}/>
+                <SingInLinks username={userInfo.username}
+                             userId={userInfo.id}/>
             ];
         } else {
             return [
@@ -24,7 +25,7 @@ class Navbar extends Component{
          return (
             <nav className="nav-wrapper grey darken-3">
                 <div className="container">
-                    <Link to="/" className="brand-logo">TheBest</Link>
+                    <Link to="/" className="brand-logo">Web Developers Site</Link>
                     {this.navbarLinks()}
                 </div>
             </nav>

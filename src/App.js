@@ -6,13 +6,14 @@ import SignIn from "./components/auth/SignIn"
 import Home from "./components/home/Home";
 import requireAuth from "./shared/requireAuth/requireAuth";
 import noRequireAuth from "./shared/requireAuth/noRequireAuth";
-import store from './store/reducers/store'
+import {store} from './store/reducers/store'
 import {loginSuccess} from "./actions/auth/actions";
 import ProfilePage from "./components/profile/ProfilePage";
 import EventPage from "./components/events/EventPage";
+import CommentList from "./components/posts/CommentList";
+import Community from "./components/community/Community";
 
 const token = localStorage.getItem('token');
-
 if(token) {
     store.dispatch(loginSuccess(token));
 }
@@ -28,8 +29,10 @@ class App extends Component{
                     <Route exact path='/' component={requireAuth(Home)}/>
                     <Route path='/signUp' component={noRequireAuth(SignUp)}/>
                     <Route path='/signIn' component={noRequireAuth(SignIn)}/>
-                    <Route path='/profile' component={requireAuth(ProfilePage)}/>
+                    <Route path='/profile/:id' component={requireAuth(ProfilePage)}/>
                     <Route path='/event' component={requireAuth(EventPage)}/>
+                    <Route path='/community' component={requireAuth(Community)}/>
+                    <Route path='/post/:id/comments' component={requireAuth(CommentList)}/>
                 </Switch>
               </div>
           </BrowserRouter>
