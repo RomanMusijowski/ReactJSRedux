@@ -31,7 +31,7 @@ const PostList = (props) => {
     //console.log(props.posts);
     console.log(userList);
     const classes = useStyles();
-    var createDate, lastUpdateDate, date1, date2;
+    var createDate = [], lastUpdateDate = [], date1, date2;
 
     const handlePostLike = (postId) => {
         dispatch(postLike(postId));
@@ -39,11 +39,15 @@ const PostList = (props) => {
     };
 
     return(<div>
-            {props.posts && Object.keys(props.posts).map(key => (
+            {props.posts && props.posts.map(key => (
+                console.log(key.createdDate),
+                    createDate = (key.createdDate),
+                    lastUpdateDate = (key.lastModifiedDate),
+                    console.log(createDate[0]),
                 //console.log(props.posts[key].createdDate),
-                createDate = (props.posts[key].createdDate),
-                    lastUpdateDate = (props.posts[key].lastModifiedDate),
-                    console.log(createDate),
+                // createDate = (props.posts[key].createdDate),
+                //     lastUpdateDate = (props.posts[key].lastModifiedDate),
+                //     console.log(Object(createDate)),
                     //date1 = createDate,
                     // date2 = lastUpdateDate,
 
@@ -62,16 +66,16 @@ const PostList = (props) => {
 
                                 }
 
-                                title={<Link to={'/profile/'+props.posts[key].userId}>{/*userList[props.posts[key].userId].username*/ props.posts[key].userId  }</Link>}
+                                title={<Link to={'/profile/'+key.userId}>{/*userList[props.posts[key].userId].username*/ key.userId  }</Link>}
 
 
 
                                 subheader={
                                     //console.log(Intl.DateTimeFormat('en-US').format( props.posts[key].lastModifiedDate))
                                     //console.log(date1[1]);
-                                    //  "Created: "+date1[0]+"/"+date1[1]+"/"+date1[2]
+                                      "Created: "+createDate[0]+"/"+createDate[1]+"/"+createDate[2]
                                     //   "Created: "+createDate+"/"+createDate+"/"+createDate
-                                    "Created: "
+                                    // "Created: "
                                     //<Moment date={props.posts[key].lastModifiedDate}/>
                                     //Moment(props.posts[key].lastModifiedDate).format("lll")
                                 }
@@ -80,19 +84,23 @@ const PostList = (props) => {
 
                             />
 
-                            {/*<CardMedia*/}
-                            {/*    className={classes.photo}*/}
-                            {/*    image={Object.keys(props.posts[key].photos).map(key2 =>*/}
-                            {/*        props.posts[key].photos[key2].url*/}
-                            {/*    )}*/}
+                            <CardMedia
+                                className={classes.photo}
+                                // image={Object.keys(props.posts[key].photos).map(key2 =>
+                                //     props.posts[key].photos[key2].url
+                                // )}
+                                // image={photoView(key.photos)}
+                                image={(key.photos).map(key2 =>
+                                        key2.url
+                                )}
 
-                            {/*/>*/}
+                            />
                             <CardContent>
-                                <p>{props.posts[key].content}</p>
+                               <p>{key.content}</p>
                             </CardContent>
                             <CardActions disableSpacing>
                                 <IconButton aria-label="add to favorites">
-                                    <FavoriteIcon onClick={() => handlePostLike(props.posts[key].id)} /> {props.posts[key].likes}
+                                    <FavoriteIcon onClick={() => handlePostLike(key.id)} /> {key.likes}
                                 </IconButton>
 
 
@@ -101,9 +109,9 @@ const PostList = (props) => {
                                     //onClick={handleExpandClick}
                                 >
 
-                                    <button><Link to={'/post/'+props.posts[key].id+'/comments'}>Comments</Link></button>
+                                    <button><Link to={'/post/'+key.id+'/comments'}>Comments</Link></button>
                                 </IconButton>
-                                {/*<label>{"Last update: "+date2[0]+"/"+date2[1]+"/"+date2[2]+" --- "+date2[3]+" hour "+date2[4]+" min "+date2[5]+" sec"}</label>*/}
+                                <label>{"Last update: "+lastUpdateDate[0]+"/"+lastUpdateDate[1]+"/"+lastUpdateDate[2]+" --- "+lastUpdateDate[3]+" hour "+lastUpdateDate[4]+" min "+lastUpdateDate[5]+" sec"}</label>
                             </CardActions>
                             <Container>
 
