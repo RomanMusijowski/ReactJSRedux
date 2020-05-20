@@ -12,7 +12,7 @@ import {fetchLastCreatedUsers} from "../../services/userApi";
 const Home = () => {
 
     const [currentPage, setCurrentPage] = React.useState(1);
-    const [postsPerPage] = React.useState(2);
+    const [postsPerPage] = React.useState(3);
     const userInfo = useSelector((state) => state.auth.userInfo);
 
     const dispatch = useDispatch();
@@ -32,7 +32,7 @@ const Home = () => {
     const posts = useSelector((state) => state.post);
     console.log(Object.values(posts));
     const postss = Object.values(posts);
-    const numberPages = useSelector((state) => state.post.numberPage);
+    //const numberPages = useSelector((state) => state.post.numberPage);
     const indexOfLastPost = currentPage * postsPerPage;
     const indexOfFirstPost = indexOfLastPost - postsPerPage;
     const currentPosts = postss.slice(indexOfFirstPost, indexOfLastPost);
@@ -49,7 +49,7 @@ const Home = () => {
                           <PostList posts={currentPosts} />
                             <Container maxWidth="sm">
                                 <Pagination postsPerPage={postsPerPage}
-                                            totalPosts={numberPages}
+                                            totalPosts={postss.length}
                                             paginate={paginate}/>
 
                             </Container>

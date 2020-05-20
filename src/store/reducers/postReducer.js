@@ -19,7 +19,7 @@ const postReducer = (state = initState, action) => {
           //const posts = _.chunk(action.payload.data, 2);
           const posts = action.payload.data;
 
-          return { ...state, ...posts, numberPage: posts.length};
+          return { ...state, ...posts/*, numberPage: posts.length*/};
       case postConstants.POST_LOAD_FAILURE:
           return {
               ...state
