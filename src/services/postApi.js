@@ -146,7 +146,7 @@ export const deleteComment = (postId, commentId) => async  (dispatch) =>{
         })
 };
 
-export const putPost = (id, content) => async  (dispatch) =>{
+export const putPost = (id,userId, content) => async  (dispatch) =>{
 
     const formData = new FormData();
     formData.append('content',content);
@@ -154,6 +154,7 @@ export const putPost = (id, content) => async  (dispatch) =>{
     axios.put(URLS.apiPost + '/' + id, formData)
         .then(res => {
             dispatch(putPostSuccess(res))
+            dispatch(getAllPostUser(userId))
         })
         .catch(error => {
             dispatch(putPostFailure(error))

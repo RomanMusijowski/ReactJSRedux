@@ -27,6 +27,12 @@ const useStyles = makeStyles((theme) => ({
     demo: {
         backgroundColor: theme.palette.background.paper,
     },
+    dialogPaper: {
+        minHeight: '80vh',
+        maxHeight: '80vh',
+        minWidth: '80vh',
+        maxWidth: '80vh',
+    },
 }));
 
 const FormCommentPutDialog = ({postId, commentId, contentt, avatar}) => {
@@ -75,7 +81,7 @@ const FormCommentPutDialog = ({postId, commentId, contentt, avatar}) => {
 
             }} onClick={handleClickOpen}/>
 
-            <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
+            <Dialog open={open} onClose={handleClose} classes={{ paper: classes.dialogPaper }} aria-labelledby="form-dialog-title">
                 <DialogTitle id="form-dialog-title">Update your comment</DialogTitle>
                 <DialogContent>
                     <div className={classes.demo}>

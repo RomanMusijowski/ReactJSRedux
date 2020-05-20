@@ -27,9 +27,17 @@ const useStyles = makeStyles((theme) => ({
     demo: {
         backgroundColor: theme.palette.background.paper,
     },
+    dialogPaper: {
+        minHeight: '80vh',
+        maxHeight: '80vh',
+        minWidth: '80vh',
+        maxWidth: '80vh',
+    },
 }));
 
-const FromPostPutDialog = ({postId, contentt, avatar}) => {
+
+
+const FromPostPutDialog = ({postId, contentt, avatar, userId}) => {
 
     const [open, setOpen] = React.useState(false);
     const [content, setContent] = React.useState(contentt);
@@ -52,7 +60,7 @@ const FromPostPutDialog = ({postId, contentt, avatar}) => {
     const handleSubmit = (event/*values, actions*/) => {
         event.preventDefault();
 
-        dispatch(putPost(postId ,content));
+        dispatch(putPost(postId ,userId,content));
 
         //setContent("");
         if(content.length > 0) {
@@ -89,7 +97,7 @@ const FromPostPutDialog = ({postId, contentt, avatar}) => {
 
 
 
-            <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
+            <Dialog open={open} onClose={handleClose} classes={{ paper: classes.dialogPaper }} aria-labelledby="form-dialog-title">
                 <DialogTitle id="form-dialog-title">Update your post</DialogTitle>
                 <DialogContent>
                     <div className={classes.demo}>

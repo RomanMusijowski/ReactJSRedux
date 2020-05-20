@@ -105,6 +105,7 @@ const UserPostList = (props) => {
                                 <FromPostPutDialog postId={props.posts[key].id}
                                                    contentt={props.posts[key].content}
                                                    avatar={props.avatar}
+                                                   userId={props.posts[key].userId}
                                                    />
                             </IconButton>
                             <label>{"Last update: "+date2[0]+"/"+date2[1]+"/"+date2[2]+" --- "+date2[3]+":"+date2[4]}</label>
