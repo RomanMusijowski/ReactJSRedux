@@ -1,28 +1,29 @@
 import axios from 'axios';
 import URLS from "../shared/Urls.constants";
 import {
+    deletePostFailure,
+    deletePostSuccess,
+    postCreateFailure,
+    postCreateSuccess,
+    postLoadFailure,
     postLoadRequest,
     postLoadSuccess,
-    postLoadFailure,
-    postCreateSuccess,
-    postCreateFailure,
-    userPostLikedListLoadSuccess,
+    postUnload,
+    putPostFailure,
+    putPostSuccess,
     userPostLikedListLoadFailure,
-    deletePostSuccess,
-    deletePostFailure,
-    putPostSuccess, putPostFailure, postUnload
+    userPostLikedListLoadSuccess
 } from "../actions/post/actions";
 import {
-    commentsLoadUnload,
-    commentsLoadSuccess,
-    commentsLoadFailure,
-    userInfoLoadSuccess,
-    userInfoLoadFailure,
-    commentsCreateSuccess,
     commentsCreateFailure,
-    deleteCommentSuccess,
+    commentsCreateSuccess,
+    commentsLoadFailure,
+    commentsLoadSuccess,
+    commentsLoadUnload,
     deleteCommentFailure,
-    putCommentSuccess, putCommentFailure
+    deleteCommentSuccess,
+    putCommentFailure,
+    putCommentSuccess
 } from "../actions/comment/actions";
 import {getAllPostUser} from "./userPostApi";
 
@@ -46,9 +47,8 @@ export const getAllPostFriends = () => async (dispatch) =>{
  * @param content
  * @returns {function(...[*]=)}
  */
-export const addPost = (content, file) => async (dispatch) => {
 
-      //const body = JSON.stringify(content);
+export const addPost = (userId, content, file) => async (dispatch) => {
 
       const formData = new FormData();
       formData.append('content',content);
@@ -57,6 +57,7 @@ export const addPost = (content, file) => async (dispatch) => {
       axios.post(URLS.apiPost, formData)
           .then(res => {
               dispatch(postCreateSuccess(res))
+              dispatch(getAllPostUser(userId))
           })
           .catch( error => {dispatch(postCreateFailure(error.response.data.message))})
 };
