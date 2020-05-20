@@ -28,6 +28,7 @@ import {
 import {getAllPostUser} from "./userPostApi";
 
 
+
 /*****
  * Return List Friends login user
  *
@@ -46,9 +47,8 @@ export const getAllPostFriends = () => async (dispatch) =>{
  * @param content
  * @returns {function(...[*]=)}
  */
-export const addPost = (userId, content, file) => async (dispatch) => {
 
-      //const body = JSON.stringify(content);
+export const addPost = (userId, content, file) => async (dispatch) => {
 
       const formData = new FormData();
       formData.append('content',content);
