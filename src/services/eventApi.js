@@ -12,10 +12,10 @@ import {
     fetchListFriendsEventsFailure,
     fetchListFriendsEventsSuccess
 } from "../actions/event/actions";
-import {fetchUserProfile} from "./userApi";
+import {fetchUserEvents, fetchUserProfile} from "./userApi";
 
 
-export const addEvent = (name, description, dateTime, file) => async (dispatch) => {
+export const addEvent = (userId, name, description, dateTime, file) => async (dispatch) => {
 
     const body = JSON.stringify({name: name, description: description, dateTime: dateTime});
 
@@ -26,6 +26,7 @@ export const addEvent = (name, description, dateTime, file) => async (dispatch) 
     axios.post(URLS.apiEvent, formData)
         .then(res => {
                 dispatch(eventCreateSuccess(res));
+                dispatch(fetchUserEvents(userId))
             })
         .catch(error => {
                 dispatch(eventCreateFailure(error.response.data.message));

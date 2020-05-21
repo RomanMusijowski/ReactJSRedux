@@ -20,7 +20,6 @@ const ProfileArea = ({username, email, firstName, lastName,
     const handleAddFriend = (friendId) => {
         dispatch(addFriend(friendId))
         dispatch(fetchUserProfile(loggedInUserId))
-        window.location.reload();
     }
 
     const showAddFriendIcon = function () {
