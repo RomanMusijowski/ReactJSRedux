@@ -26,7 +26,7 @@ const userReducer = (state = INITIAL_STATE, action) => {
             updatedUser.friendsLoad = true
             return{
                 ...state,
-                    [userId]: updatedUser
+                [userId]: updatedUser
             };
         case userConstants.FETCH_USER_EVENTS_SUCCESS:
             if (action.payload.data !== undefined){
@@ -52,23 +52,19 @@ const userReducer = (state = INITIAL_STATE, action) => {
                     ...state,
                     ...newUsers
                 };
-        case postConstants.USER_POST_LOAD_SUCCESS:
-            const userrId = action.payload.pop();
-            const updateedUser = state[userrId];
-            updateedUser.posts = action.payload
-            updateedUser.postsLoad = true
-            return{
-                ...state,
-                [userrId]: updateedUser
-            };
-
-
-            // console.log(action.payload.data)
-            // return {...state};
-        case authConstants.LOGUOT:
-            return {};
-        default:
-            return state
+            case postConstants.USER_POST_LOAD_SUCCESS:
+                const userrId = action.payload.pop();
+                const updateedUser = state[userrId];
+                updateedUser.posts = action.payload
+                updateedUser.postsLoad = true
+                return{
+                    ...state,
+                    [userrId]: updateedUser
+                };
+            case authConstants.LOGUOT:
+                return {};
+            default:
+                return state
     }
 }
 
