@@ -1,5 +1,5 @@
 import React from "react";
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import Card from '@material-ui/core/Card'
 import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
@@ -55,12 +55,14 @@ const EventAdd = (props) => {
 
     const dispatch = useDispatch();
     const classes = useStyles();
+    const userInfoId = useSelector((state) => state.auth.userInfo.id)
 
     const handleSubmit = (values, actions) => {
         actions.setSubmitting(false);
         actions.resetForm();
 
         dispatch(addEvent(
+            userInfoId,
             values.name,
             values.description,
             values.dateTime.toISOString().slice(0, 16).replace('T', ' '),
