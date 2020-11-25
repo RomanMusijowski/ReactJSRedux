@@ -1,5 +1,5 @@
 ## Web page for developers
-  It's a simple front-end project to my back-end (Spring-Boot Rest api).
+  It's a simple front-end project for my back-end (Spring-Boot Rest api).
 
   The goal of this project is to give a user the opportunity to graphically perform the next actions:
     
